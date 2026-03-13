@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growth OS — Sistema Operativo para negocios en expansión</title>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #07090F;
+  --bg2:     #0B0E18;
+  --bg3:     #101420;
+  --bg4:     #141824;
+
+  --copper:  #C8722A;
+  --copper2: #E09050;
+  --sand:    #D4A96A;
+  --sand2:   #E8C894;
+  --rust:    #A0522D;
+
+  --blue:    #3B7DD8;
+  --blue2:   #5B9AEE;
+  --blue3:   #7BB4FF;
+  --sky:     #A8C8F0;
+
+  --green:   #2A8A5C;
+  --green2:  #3DAD74;
+  --red:     #C04030;
+
+  --slate:   #8894A8;
+  --white:   #E8EDF8;
+  --white2:  rgba(232,237,248,0.72);
+  --muted:   rgba(232,237,248,0.38);
+  --muted2:  rgba(232,237,248,0.16);
+
+  --card:    rgba(255,255,255,0.028);
+  --card2:   rgba(255,255,255,0.054);
+  --bd:      rgba(200,114,42,0.14);
+  --bd2:     rgba(200,114,42,0.26);
+  --bdb:     rgba(59,125,216,0.18);
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size:14px; line-height:1.6;
+  overflow-x: hidden;
+}
+
+/* ambient atmosphere */
+body::after {
+  content:'';
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 55% 35% at 92% 6%,  rgba(59,125,216,.08)  0%, transparent 60%),
+    radial-gradient(ellipse 40% 55% at 0%  82%,  rgba(200,114,42,.06) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 50% 120%, rgba(59,125,216,.04) 0%, transparent 60%);
+}
+
+/* ── HEADER ── */
+header {
+  position:sticky; top:0; z-index:500;
+  height:60px;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 40px;
+  background:rgba(7,9,15,.93);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--bd);
+}
+
+.brand { display:flex; align-items:center; gap:14px; }
+
+.brand-mark {
+  width:34px; height:34px; flex-shrink:0;
+  clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);
+  background:linear-gradient(135deg,var(--copper),var(--rust));
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Unbounded',sans-serif; font-size:9px; font-weight:700;
+  color:#fff; letter-spacing:.04em;
+  position:relative;
+}
+.brand-mark::before {
+  content:'';
+  position:absolute; inset:2px;
+  clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);
+  background:rgba(7,9,15,.4);
+}
+.brand-mark span { position:relative; z-index:1; }
+
+.brand-name {
+  font-family:'Unbounded',sans-serif;
+  font-size:11px; font-weight:600; letter-spacing:.08em; color:var(--white);
+}
+.brand-name em {
+  display:block; font-style:normal; font-family:'DM Sans',sans-serif; font-weight:300;
+  font-size:9px; color:var(--muted); letter-spacing:.14em; text-transform:uppercase; margin-top:2px;
+}
+
+.nav-links { display:flex; align-items:center; gap:8px; }
+
+.nbadge {
+  padding:4px 13px; border-radius:99px;
+  font-size:9px; font-weight:400; letter-spacing:.1em; text-transform:uppercase;
+  display:flex; align-items:center; gap:5px;
+}
+.nb-c { background:rgba(200,114,42,.08); border:1px solid rgba(200,114,42,.22); color:var(--sand); }
+.nb-b { background:rgba(59,125,216,.08);  border:1px solid rgba(59,125,216,.22);  color:var(--blue3); }
+.nb-g { background:rgba(42,138,92,.08);  border:1px solid rgba(42,138,92,.22);  color:var(--green2); }
+
+.hdot { width:5px; height:5px; border-radius:50%; background:var(--copper2);
+        animation:hpulse 3s ease-in-out infinite; }
+@keyframes hpulse { 0%,100%{opacity:.8} 50%{opacity:.2} }
+
+.cta-btn {
+  padding:8px 22px; border-radius:8px;
+  background:linear-gradient(135deg,var(--copper),var(--rust));
+  color:var(--white); font-family:'DM Sans',sans-serif; font-weight:500;
+  font-size:12px; letter-spacing:.04em; border:none; cursor:pointer;
+  box-shadow:0 2px 20px rgba(200,114,42,.22); transition:all .25s;
+  text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+}
+.cta-btn:hover { transform:translateY(-1px); box-shadow:0 4px 32px rgba(200,114,42,.4); }
+
+/* ── MAIN ── */
+main { position:relative; z-index:1; max-width:1300px; margin:0 auto; padding:0 36px 120px; }
+
+/* ── HERO ── */
+.hero {
+  padding:80px 0 90px;
+  border-bottom:1px solid rgba(200,114,42,.07);
+  position:relative;
+}
+
+.hero-tag {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:5px 16px; border-radius:4px;
+  background:rgba(200,114,42,.06); border:1px solid rgba(200,114,42,.18);
+  font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--sand);
+  margin-bottom:36px;
+}
+
+.hero h1 {
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(36px,5vw,68px);
+  font-weight:700; line-height:1.06; letter-spacing:-.03em;
+  margin-bottom:28px; max-width:780px;
+}
+.h1-c { color:var(--copper2); }
+.h1-b { color:var(--blue2); font-style:italic; }
+
+.hero-body {
+  font-size:clamp(14px,1.3vw,16px); color:var(--muted);
+  max-width:560px; line-height:1.78; margin-bottom:48px; font-weight:300;
+}
+.hero-body strong { color:var(--white2); font-weight:500; }
+
+.hero-nums {
+  display:flex; gap:0; flex-wrap:wrap;
+  border:1px solid rgba(255,255,255,.05); border-radius:12px;
+  overflow:hidden; margin-bottom:48px; max-width:680px;
+  background:var(--card);
+}
+.hn {
+  flex:1; padding:20px 28px;
+  border-right:1px solid rgba(255,255,255,.05);
+}
+.hn:last-child { border-right:none; }
+.hn-val {
+  font-family:'Unbounded',sans-serif; font-size:28px; font-weight:700;
+  color:var(--sand2); line-height:1; margin-bottom:6px;
+}
+.hn-lbl { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.1em; line-height:1.4; }
+
+.cta-row { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+
+.btn-primary {
+  padding:15px 34px; border-radius:10px;
+  background:linear-gradient(135deg,var(--copper),var(--rust));
+  color:var(--white); font-family:'Unbounded',sans-serif;
+  font-weight:600; font-size:12px; letter-spacing:.04em;
+  border:none; cursor:pointer; text-decoration:none;
+  box-shadow:0 4px 28px rgba(200,114,42,.28); transition:all .25s;
+  display:inline-flex; align-items:center; gap:8px;
+}
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 44px rgba(200,114,42,.44); }
+
+.btn-secondary {
+  padding:14px 26px; border-radius:10px;
+  background:transparent; border:1px solid rgba(255,255,255,.14);
+  color:var(--white2); font-size:13px; font-weight:400;
+  cursor:pointer; transition:all .25s; text-decoration:none;
+}
+.btn-secondary:hover { border-color:rgba(200,114,42,.35); color:var(--sand2); }
+
+.price-note { font-size:11px; color:var(--muted2); padding-left:4px; }
+
+/* ── SECTION HEADS ── */
+.sh {
+  display:flex; align-items:flex-start; gap:18px;
+  margin:72px 0 28px;
+}
+.sh-idx {
+  font-family:'Unbounded',sans-serif; font-size:9px; font-weight:600;
+  color:var(--copper); letter-spacing:.14em; text-transform:uppercase;
+  padding-top:4px; min-width:22px;
+}
+.sh-title {
+  font-family:'Unbounded',sans-serif; font-size:16px; font-weight:700;
+  color:var(--white); letter-spacing:-.01em; line-height:1.3;
+}
+.sh-sub { font-size:12px; color:var(--muted); margin-top:6px; max-width:580px; line-height:1.65; }
+.sh-rule { flex:1; align-self:center; height:1px; margin-left:8px;
+           background:linear-gradient(90deg,rgba(200,114,42,.2),transparent); min-width:40px; }
+
+/* ── GRIDS ── */
+.g2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.g3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; }
+.g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.mb { margin-bottom:14px; }
+
+/* ── BASE CARD ── */
+.card {
+  background:var(--card); border:1px solid rgba(255,255,255,.05);
+  border-radius:16px; padding:26px;
+  transition:border-color .25s, background .25s;
+  position:relative; overflow:hidden;
+}
+.card:hover { background:var(--card2); border-color:rgba(200,114,42,.18); }
+
+.c-tag {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:3px 9px; border-radius:4px; font-size:9px; font-weight:500;
+  letter-spacing:.1em; text-transform:uppercase; margin-bottom:14px;
+}
+.ct-c { background:rgba(200,114,42,.08); border:1px solid rgba(200,114,42,.2); color:var(--copper2); }
+.ct-b { background:rgba(59,125,216,.08); border:1px solid rgba(59,125,216,.2); color:var(--blue3); }
+.ct-g { background:rgba(42,138,92,.08); border:1px solid rgba(42,138,92,.2); color:var(--green2); }
+.ct-s { background:rgba(212,169,106,.08); border:1px solid rgba(212,169,106,.2); color:var(--sand2); }
+
+.c-top {
+  border-radius:16px 16px 0 0; height:3px; width:100%;
+  position:absolute; top:0; left:0;
+}
+.ct-cop { background:linear-gradient(90deg,var(--copper),transparent); }
+.ct-blu { background:linear-gradient(90deg,var(--blue2),transparent); }
+.ct-snd { background:linear-gradient(90deg,var(--sand),transparent); }
+.ct-grn { background:linear-gradient(90deg,var(--green2),transparent); }
+
+/* ── PROBLEMA STATS ── */
+.stat-big {
+  display:flex; align-items:flex-start; gap:22px;
+  padding:26px; border-radius:14px; margin-bottom:14px;
+  background:var(--card); border:1px solid rgba(255,255,255,.05);
+  border-left:3px solid var(--copper2);
+  transition:all .25s;
+}
+.stat-big:hover { background:var(--card2); }
+.stat-num {
+  font-family:'Unbounded',sans-serif; font-size:44px; font-weight:900;
+  color:var(--copper2); line-height:1; flex-shrink:0; letter-spacing:-.03em;
+}
+.stat-txt { font-size:13px; color:var(--muted); line-height:1.72; padding-top:6px; }
+.stat-txt strong { color:var(--white2); font-weight:500; }
+
+/* ── DASHBOARD CARDS ── */
+.dash-card {
+  background:var(--card); border:1px solid rgba(255,255,255,.05);
+  border-radius:16px; padding:26px; position:relative; overflow:hidden;
+  transition:all .3s;
+}
+.dash-card:hover { background:var(--card2); transform:translateY(-3px); }
+
+.dash-card.featured {
+  border-color:rgba(200,114,42,.28);
+  background:linear-gradient(145deg,rgba(200,114,42,.06),rgba(59,125,216,.04));
+}
+.dash-card.featured::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(200,114,42,.4),transparent);
+}
+
+.dash-badge {
+  position:absolute; top:16px; right:16px;
+  font-size:8px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+  padding:3px 8px; border-radius:99px;
+  background:rgba(200,114,42,.14); border:1px solid rgba(200,114,42,.3); color:var(--sand);
+}
+
+.dash-stage {
+  font-family:'Unbounded',sans-serif; font-size:18px; font-weight:700;
+  color:var(--sand2); margin-bottom:6px; letter-spacing:-.01em;
+}
+.dash-stage.b { color:var(--blue3); }
+.dash-stage.g { color:var(--green2); }
+.dash-stage.s { color:var(--slate); }
+
+.dash-name { font-size:12px; color:var(--muted); margin-bottom:18px; line-height:1.5; }
+
+.dash-features { list-style:none; display:flex; flex-direction:column; gap:7px; }
+.dash-features li {
+  font-size:11px; color:var(--muted); display:flex; align-items:center; gap:8px;
+}
+.dash-features li::before {
+  content:''; width:4px; height:4px; border-radius:50%;
+  background:var(--copper2); flex-shrink:0; opacity:.6;
+}
+.dash-features .featured li::before { background:var(--copper2); opacity:1; }
+
+.dash-period {
+  display:inline-block; margin-top:18px;
+  font-size:9px; font-weight:500; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted2); padding:3px 0;
+  border-top:1px solid rgba(255,255,255,.06); width:100%;
+}
+
+/* ── SUBSISTEMAS ── */
+.sis-card {
+  background:var(--card); border:1px solid rgba(255,255,255,.05);
+  border-radius:16px; padding:26px; position:relative; overflow:hidden;
+  transition:all .25s;
+}
+.sis-card:hover { background:var(--card2); }
+.sis-letter {
+  font-family:'Unbounded',sans-serif; font-size:48px; font-weight:900;
+  line-height:1; margin-bottom:14px; letter-spacing:-.04em;
+  background:linear-gradient(135deg,rgba(200,114,42,.55),rgba(200,114,42,.18));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.sis-letter.b2 {
+  background:linear-gradient(135deg,rgba(59,125,216,.55),rgba(59,125,216,.18));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.sis-nom {
+  font-family:'Unbounded',sans-serif; font-size:12px; font-weight:700;
+  color:var(--white2); margin-bottom:5px; letter-spacing:-.01em;
+}
+.sis-sub { font-size:10px; color:var(--copper); letter-spacing:.08em; text-transform:uppercase; margin-bottom:14px; }
+.sis-sub.b { color:var(--blue3); }
+.sis-desc { font-size:12px; color:var(--muted); line-height:1.65; }
+
+/* ── FUNNEL / PRECIOS ── */
+.funnel-wrap {
+  background:var(--card); border:1px solid rgba(255,255,255,.05);
+  border-radius:20px; padding:36px; position:relative; overflow:hidden;
+}
+.funnel-wrap::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(59,125,216,.3),transparent);
+}
+
+.funnel-tiers { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
+.funnel-tier {
+  padding:28px 24px;
+  border-right:1px solid rgba(255,255,255,.05);
+  position:relative; transition:background .25s;
+}
+.funnel-tier:last-child { border-right:none; }
+.funnel-tier:hover { background:rgba(255,255,255,.02); }
+.funnel-tier.pro {
+  background:linear-gradient(180deg,rgba(200,114,42,.05),transparent);
+  border-top:2px solid rgba(200,114,42,.3);
+}
+
+.ft-label {
+  font-size:9px; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted2); margin-bottom:12px; display:block;
+}
+.ft-label.pro-l { color:var(--sand); }
+.ft-label.top-l { color:var(--green2); }
+
+.ft-nombre {
+  font-family:'Unbounded',sans-serif; font-size:11px; font-weight:700;
+  color:var(--white2); margin-bottom:12px; line-height:1.4; letter-spacing:-.01em;
+}
+
+.ft-price {
+  font-family:'Unbounded',sans-serif; font-size:32px; font-weight:900;
+  line-height:1; margin-bottom:14px; letter-spacing:-.02em;
+}
+.ft-price.free { color:var(--muted); }
+.ft-price.paid { color:var(--sand2); }
+.ft-price.top  { color:var(--green2); }
+
+.ft-desc { font-size:11px; color:var(--muted); line-height:1.65; margin-bottom:18px; }
+
+.ft-cta {
+  display:inline-block; padding:8px 16px; border-radius:7px;
+  font-size:10px; font-weight:500; letter-spacing:.06em; text-transform:uppercase;
+  text-decoration:none; transition:all .2s; cursor:pointer;
+}
+.ft-cta.free    { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); color:var(--white2); }
+.ft-cta.free:hover { border-color:rgba(255,255,255,.24); }
+.ft-cta.starter { background:rgba(200,114,42,.1); border:1px solid rgba(200,114,42,.25); color:var(--sand); }
+.ft-cta.starter:hover { background:rgba(200,114,42,.18); }
+.ft-cta.pro-btn {
+  background:linear-gradient(135deg,var(--copper),var(--rust));
+  border:none; color:#fff;
+  box-shadow:0 3px 18px rgba(200,114,42,.28);
+}
+.ft-cta.pro-btn:hover { box-shadow:0 6px 32px rgba(200,114,42,.46); transform:translateY(-1px); }
+.ft-cta.elite { background:rgba(42,138,92,.1); border:1px solid rgba(42,138,92,.25); color:var(--green2); }
+.ft-cta.elite:hover { background:rgba(42,138,92,.18); }
+
+/* ── TESTIMONIOS ── */
+.quote-card {
+  background:var(--card); border:1px solid rgba(255,255,255,.05);
+  border-radius:16px; padding:26px; position:relative; overflow:hidden;
+  border-left:3px solid rgba(200,114,42,.3); transition:all .25s;
+}
+.quote-card:hover { background:var(--card2); border-left-color:var(--copper2); }
+.quote-card.b { border-left-color:rgba(59,125,216,.3); }
+.quote-card.b:hover { border-left-color:var(--blue2); }
+.quote-card.g { border-left-color:rgba(42,138,92,.3); }
+.quote-card.g:hover { border-left-color:var(--green2); }
+
+.q-marks {
+  font-family:'Unbounded',sans-serif; font-size:32px; font-weight:900;
+  color:var(--copper2); opacity:.3; line-height:1; margin-bottom:10px;
+}
+.q-text { font-size:13px; color:var(--white2); line-height:1.72; margin-bottom:16px; font-weight:300; }
+.q-author { font-size:10px; color:var(--muted); letter-spacing:.08em; margin-bottom:10px; }
+.q-result {
+  display:inline-block; font-family:'Unbounded',sans-serif; font-size:10px; font-weight:700;
+  padding:4px 10px; border-radius:4px;
+  background:rgba(200,114,42,.1); border:1px solid rgba(200,114,42,.22); color:var(--sand2);
+  letter-spacing:.04em;
+}
+.q-result.b { background:rgba(59,125,216,.1); border-color:rgba(59,125,216,.22); color:var(--blue3); }
+.q-result.g { background:rgba(42,138,92,.1); border-color:rgba(42,138,92,.22); color:var(--green2); }
+
+/* ── GARANTÍA ── */
+.garantia-box {
+  display:flex; align-items:flex-start; gap:20px;
+  padding:28px 32px; border-radius:14px;
+  background:linear-gradient(135deg,rgba(200,114,42,.05),rgba(59,125,216,.04));
+  border:1px solid rgba(200,114,42,.18);
+}
+.garantia-ico { font-size:32px; flex-shrink:0; }
+.garantia-t {
+  font-family:'Unbounded',sans-serif; font-size:14px; font-weight:700;
+  color:var(--white2); margin-bottom:8px; letter-spacing:-.01em;
+}
+.garantia-d { font-size:12px; color:var(--muted); line-height:1.7; }
+
+/* ── FINAL CTA ── */
+.final-cta {
+  margin-top:72px; border-radius:20px; padding:72px 48px;
+  background:linear-gradient(135deg,rgba(200,114,42,.07),rgba(59,125,216,.05));
+  border:1px solid rgba(200,114,42,.16);
+  text-align:center; position:relative; overflow:hidden;
+}
+.final-cta::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 100%,rgba(59,125,216,.06),transparent);
+  pointer-events:none;
+}
+.fcta-pre {
+  font-size:10px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--copper); margin-bottom:22px; opacity:.85;
+}
+.fcta-h {
+  font-family:'Unbounded',sans-serif;
+  font-size:clamp(24px,3.2vw,44px); font-weight:700;
+  line-height:1.12; margin-bottom:20px; letter-spacing:-.025em;
+}
+.fcta-h .ac { color:var(--sand2); }
+.fcta-h .ab { color:var(--blue2); font-style:italic; }
+.fcta-sub {
+  font-size:15px; color:var(--muted); max-width:480px; margin:0 auto 42px;
+  line-height:1.78; font-weight:300;
+}
+.cta-note { font-size:11px; color:var(--muted2); margin-top:22px; line-height:1.8; }
+
+/* ── DIVIDER ── */
+.divider { height:1px; background:linear-gradient(90deg,transparent,rgba(200,114,42,.12),transparent); margin:0; }
+
+/* ── FOOTER ── */
+footer {
+  position:relative; z-index:1;
+  border-top:1px solid rgba(255,255,255,.05);
+  padding:32px 36px; max-width:1300px; margin:0 auto;
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+}
+.ft-brand { font-family:'Unbounded',sans-serif; font-size:10px; color:var(--muted); letter-spacing:.08em; }
+.ft-stages { display:flex; gap:10px; flex-wrap:wrap; }
+.ft-stage {
+  font-size:9px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted2); padding:3px 8px; border-radius:99px;
+  border:1px solid rgba(255,255,255,.06);
+}
+.ft-handle { font-size:10px; color:var(--muted2); letter-spacing:.06em; }
+
+/* ── REVEAL ── */
+.r { opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+.r.in { opacity:1; transform:translateY(0); }
+.r-d1 { transition-delay:.08s; }
+.r-d2 { transition-delay:.16s; }
+.r-d3 { transition-delay:.24s; }
+.r-d4 { transition-delay:.32s; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1050px) {
+  .g4 { grid-template-columns:1fr 1fr; }
+  .funnel-tiers { grid-template-columns:1fr 1fr; }
+  .funnel-tier:nth-child(2) { border-right:none; }
+  .funnel-tier:nth-child(3) { border-top:1px solid rgba(255,255,255,.05); }
+}
+@media(max-width:720px) {
+  .g2,.g3,.g4 { grid-template-columns:1fr; }
+  header { padding:0 18px; }
+  main { padding:0 18px 80px; }
+  .hero { padding:50px 0 60px; }
+  .hero-nums { flex-direction:column; }
+  .hn { border-right:none; border-bottom:1px solid rgba(255,255,255,.05); }
+  .hn:last-child { border-bottom:none; }
+  .funnel-tiers { grid-template-columns:1fr; }
+  .funnel-tier { border-right:none; border-bottom:1px solid rgba(255,255,255,.05); }
+  .final-cta { padding:40px 22px; }
+  footer { flex-direction:column; align-items:flex-start; padding:24px 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="brand">
+    <div class="brand-mark"><span>GO!</span></div>
+    <div class="brand-name">
+      Growth OS
+      <em>Sistema Operativo para negocios en expansión</em>
+    </div>
+  </div>
+  <div class="nav-links">
+    <span class="nbadge nb-c"><span class="hdot"></span>4 Dashboards</span>
+    <span class="nbadge nb-b">4 Subsistemas</span>
+    <a class="cta-btn" href="#precios">Obtener · $497 →</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero r">
+    <div class="hero-tag">Sistema operativo de crecimiento · @jfcarpio</div>
+    <h1>
+      ¿Tu MRR crece<br>
+      <span class="h1-b">sin ti?</span>
+    </h1>
+    <p class="hero-body">
+      <strong>El 90% de las startups quiebran por falta de sistema, no por falta de idea.</strong>
+      Growth OS es el mapa operativo para cruzar el Valle de la Muerte en los meses 0–24:
+      4 dashboards, 4 subsistemas, 1 sistema que funciona aunque no estés.
+    </p>
+    <div class="hero-nums r r-d1">
+      <div class="hn">
+        <div class="hn-val">4</div>
+        <div class="hn-lbl">Dashboards<br>listos</div>
+      </div>
+      <div class="hn">
+        <div class="hn-val">6</div>
+        <div class="hn-lbl">Fórmulas<br>del Valle</div>
+      </div>
+      <div class="hn">
+        <div class="hn-val">5 min</div>
+        <div class="hn-lbl">Onboarding<br>semanal</div>
+      </div>
+      <div class="hn">
+        <div class="hn-val">$497</div>
+        <div class="hn-lbl">Inversión<br>única</div>
+      </div>
+    </div>
+    <div class="cta-row r r-d2">
+      <a class="btn-primary" href="#precios">Obtener Growth OS — $497 →</a>
+      <a class="btn-secondary" href="GrowthOS_GROW.html">Ver CROSS gratis</a>
+      <span class="price-note">Garantía 30 días</span>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ══ PROBLEMA ══ -->
+  <div class="sh r">
+    <div class="sh-idx">01</div>
+    <div>
+      <div class="sh-title">El Valle de la Muerte no es mala suerte.<br>Es falta de sistema.</div>
+      <div class="sh-sub">Tres datos que ningún founder quiere ver — pero todos necesitan saber.</div>
+    </div>
+    <div class="sh-rule"></div>
+  </div>
+
+  <div class="stat-big r r-d1">
+    <div class="stat-num">90%</div>
+    <div class="stat-txt">
+      <strong>de las startups no quiebran por competencia ni por mercado.</strong>
+      Quiebran porque el fundador no tiene un sistema para tomar decisiones cuando los números empiezan a fallar. No saben qué mirar, ni cuándo, ni qué hacer con lo que ven.
+    </div>
+  </div>
+  <div class="stat-big r r-d2" style="border-left-color:var(--blue2)">
+    <div class="stat-num" style="color:var(--blue3)">80%</div>
+    <div class="stat-txt">
+      <strong>de los founders que sobreviven el Valle concentran el 80% de su presupuesto en los 2 canales con mejor LTV:CAC.</strong>
+      No diversifican por miedo — diversifican con datos. El que no tiene datos, apuesta.
+    </div>
+  </div>
+  <div class="stat-big r r-d3" style="border-left-color:var(--red)">
+    <div class="stat-num" style="color:var(--red)">3 caídas</div>
+    <div class="stat-txt">
+      <strong>consecutivas de MRR = PRIORIDAD ABSOLUTA.</strong>
+      No es un problema de ventas. Es una señal de que el sistema de retención falló. Growth OS tiene un protocolo específico para este escenario — antes de que se convierta en una crisis de runway.
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:72px"></div>
+
+  <!-- ══ PRODUCTO ══ -->
+  <div id="producto"></div>
+  <div class="sh r">
+    <div class="sh-idx">02</div>
+    <div>
+      <div class="sh-title">4 dashboards. Un sistema completo.</div>
+      <div class="sh-sub">Cada dashboard es una brújula táctica para una etapa específica. Datos reales. Copy/paste directo. Sin fórmulas complicadas.</div>
+    </div>
+    <div class="sh-rule"></div>
+  </div>
+
+  <div class="g4 r">
+    <div class="dash-card">
+      <div class="c-top ct-cop"></div>
+      <div class="c-tag ct-c">Etapa 1</div>
+      <div class="dash-stage">LAUNCH</div>
+      <div class="dash-name">Los primeros 45 días</div>
+      <ul class="dash-features">
+        <li>MRR básico</li>
+        <li>CAC top 3</li>
+        <li>3 procesos founder</li>
+        <li>Checklist semanal</li>
+        <li>Runway alert</li>
+      </ul>
+      <div class="dash-period">0 – 6 meses</div>
+    </div>
+
+    <div class="dash-card featured">
+      <div class="c-top ct-cop"></div>
+      <div class="dash-badge">Más usado</div>
+      <div class="c-tag ct-c">Etapa 2 · CORE</div>
+      <div class="dash-stage">CROSS</div>
+      <div class="dash-name">Valle de la Muerte — 6 a 24 meses</div>
+      <ul class="dash-features">
+        <li>MRR 10–15% target</li>
+        <li>CAC &lt;6M payback</li>
+        <li>IDF &lt;70%</li>
+        <li>8 señales semáforo</li>
+        <li>Cohortes</li>
+        <li>RACI</li>
+      </ul>
+      <div class="dash-period">6 – 24 meses</div>
+    </div>
+
+    <div class="dash-card">
+      <div class="c-top ct-grn"></div>
+      <div class="c-tag ct-g">Etapa 3</div>
+      <div class="dash-stage g">SCALE</div>
+      <div class="dash-name">Escala sin límites — 24M en adelante</div>
+      <ul class="dash-features">
+        <li>LTV &gt;5x</li>
+        <li>3 canales</li>
+        <li>Org chart</li>
+        <li>Roadmap $1M ARR</li>
+        <li>NRR &gt;110%</li>
+      </ul>
+      <div class="dash-period">24 meses +</div>
+    </div>
+
+    <div class="dash-card">
+      <div class="c-top ct-blu"></div>
+      <div class="c-tag ct-b">Landing</div>
+      <div class="dash-stage b">Landing</div>
+      <div class="dash-name">Esta página — lista para publicar</div>
+      <ul class="dash-features">
+        <li>Copy listo</li>
+        <li>Funnel completo</li>
+        <li>Diseño editado</li>
+        <li>Gumroad-ready</li>
+      </ul>
+      <div class="dash-period">Para vender el sistema</div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:72px"></div>
+
+  <!-- ══ SUBSISTEMAS ══ -->
+  <div id="sistema"></div>
+  <div class="sh r">
+    <div class="sh-idx">03</div>
+    <div>
+      <div class="sh-title">El sistema que separa<br>a los que cruzan de los que no.</div>
+      <div class="sh-sub">Los 4 subsistemas Growth OS — cada uno cubre un cuadrante crítico del negocio.</div>
+    </div>
+    <div class="sh-rule"></div>
+  </div>
+
+  <div class="g4 r">
+    <div class="sis-card">
+      <div class="c-top ct-cop"></div>
+      <div class="sis-letter">B</div>
+      <div class="sis-nom">BOUNDARY</div>
+      <div class="sis-sub">MRR · Cohortes · Churn</div>
+      <div class="sis-desc">Define los límites financieros reales del negocio. MRR total, tasa de crecimiento, análisis de cohortes y churn mensual. Sin datos de frontera, no hay decisión.</div>
+    </div>
+    <div class="sis-card">
+      <div class="c-top ct-blu"></div>
+      <div class="sis-letter b2">B</div>
+      <div class="sis-nom">BEHAVIOR</div>
+      <div class="sis-sub b">CAC · BCG · Payback</div>
+      <div class="sis-desc">Costo de adquisición por canal con matriz BCG. Identifica los canales estrella, los que drenan caja y los que hay que matar antes del mes 12.</div>
+    </div>
+    <div class="sis-card">
+      <div class="c-top ct-snd"></div>
+      <div class="sis-letter">I</div>
+      <div class="sis-nom">INTELLECT</div>
+      <div class="sis-sub">IDF · RACI · SOPs</div>
+      <div class="sis-desc">Índice de Dependencia del Fundador. Por encima del 70% no hay negocio: hay trabajo disfrazado de empresa. RACI + SOPs para liberar al founder.</div>
+    </div>
+    <div class="sis-card">
+      <div class="c-top ct-grn"></div>
+      <div class="sis-letter">D</div>
+      <div class="sis-nom">DECISION</div>
+      <div class="sis-sub">Semáforo · CCE · Runway</div>
+      <div class="sis-desc">Semáforo de 8 señales para decidir en 15 minutos cada lunes: runway, ciclo de capital de trabajo, LTV:CAC por canal, IDF actual.</div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:72px"></div>
+
+  <!-- ══ PRECIOS ══ -->
+  <div id="precios"></div>
+  <div class="sh r">
+    <div class="sh-idx">04</div>
+    <div>
+      <div class="sh-title">Empieza gratis. Escala cuando estés listo.</div>
+      <div class="sh-sub">Cuatro puntos de entrada según dónde estés en el Valle.</div>
+    </div>
+    <div class="sh-rule"></div>
+  </div>
+
+  <div class="funnel-wrap r">
+    <div class="funnel-tiers">
+      <div class="funnel-tier">
+        <span class="ft-label">Entrada — Gratis</span>
+        <div class="ft-nombre">GROW · 6–24M<br>del Valle</div>
+        <div class="ft-price free">$0</div>
+        <div class="ft-desc">El dashboard más completo del Valle. 8 señales, 4 subsistemas, semáforo y condiciones de salida. Sin registro. Sin trampa.</div>
+        <a class="ft-cta free" href="GrowthOS_GROW.html">Acceder gratis →</a>
+      </div>
+
+      <div class="funnel-tier">
+        <span class="ft-label">Starter</span>
+        <div class="ft-nombre">LAUNCH + GROW<br>+ CROSS</div>
+        <div class="ft-price paid">$47</div>
+        <div class="ft-desc">LAUNCH, GROW y CROSS completos. Para founders en los primeros 6–24 meses que quieren los tres dashboards del Valle.</div>
+        <a class="ft-cta starter" href="#">Obtener Starter →</a>
+      </div>
+
+      <div class="funnel-tier pro">
+        <span class="ft-label pro-l">⭐ Pro — Más popular</span>
+        <div class="ft-nombre">Growth OS<br>Completo</div>
+        <div class="ft-price paid">$497</div>
+        <div class="ft-desc">Los 4 dashboards + landing page lista para publicar + instrucciones de 5 minutos de onboarding por sección.</div>
+        <a class="ft-cta pro-btn" href="#">Obtener Growth OS Pro →</a>
+      </div>
+
+      <div class="funnel-tier">
+        <span class="ft-label top-l">Elite — 1:1</span>
+        <div class="ft-nombre">Growth OS +<br>Implementación</div>
+        <div class="ft-price top">$2,997</div>
+        <div class="ft-desc">Implementación 1:1 del sistema completo con tu negocio. 4 sesiones de 90 minutos. Dashboard configurado con tus datos reales.</div>
+        <a class="ft-cta elite" href="#">Aplicar a 1:1 →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:72px"></div>
+
+  <!-- ══ TESTIMONIOS ══ -->
+  <div class="sh r">
+    <div class="sh-idx">05</div>
+    <div>
+      <div class="sh-title">Founders que cruzaron el Valle.</div>
+      <div class="sh-sub">El sistema en acción.</div>
+    </div>
+    <div class="sh-rule"></div>
+  </div>
+
+  <div class="g3 r">
+    <div class="quote-card">
+      <div class="q-marks">"</div>
+      <div class="q-text">Llevaba 8 meses con el MRR estancado sin saber por qué. Con el subsistema BEHAVIOR identifiqué que mi canal principal tenía un CAC payback de 14 meses. En 3 semanas migré presupuesto al canal con payback de 4. El resultado habla solo.</div>
+      <div class="q-author">Founder · SaaS B2B · Mes 16 en el Valle</div>
+      <span class="q-result">+18% MRR en 30 días</span>
+    </div>
+    <div class="quote-card b">
+      <div class="q-marks" style="color:var(--blue3)">"</div>
+      <div class="q-text">El IDF era del 91%. Yo era el cuello de botella de todo. En 6 semanas documenté los 5 procesos críticos del RACI y delegué 3. Por primera vez salí de vacaciones sin que el negocio explotara.</div>
+      <div class="q-author">CEO · Marketplace de servicios · Mes 20</div>
+      <span class="q-result b">IDF: 91% → 58%</span>
+    </div>
+    <div class="quote-card g">
+      <div class="q-marks" style="color:var(--green2)">"</div>
+      <div class="q-text">Empecé con el dashboard CROSS gratis. En la semana 1 identifiqué que el churn estaba comiendo el crecimiento nuevo. Implementé el protocolo de cohortes y en 60 días el NRR pasó de 88% a 104%.</div>
+      <div class="q-author">Co-founder · EdTech · Mes 9 del Valle</div>
+      <span class="q-result g">Churn: −62% en 60 días</span>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top:72px"></div>
+
+  <!-- ══ GARANTÍA ══ -->
+  <div class="garantia-box r" style="margin-top:72px">
+    <div class="garantia-ico">🛡</div>
+    <div>
+      <div class="garantia-t">Garantía de 30 días sin preguntas</div>
+      <div class="garantia-d">Si en 30 días implementas el checklist semanal de LAUNCH durante 4 semanas y no identificas al menos 1 canal a optimizar o 1 proceso a delegar, te devuelvo el 100% sin formularios ni justificaciones. El riesgo es nuestro.</div>
+    </div>
+  </div>
+
+  <!-- ══ CTA FINAL ══ -->
+  <div class="final-cta r" style="position:relative;z-index:1">
+    <div class="fcta-pre">Growth OS · Sistema Operativo</div>
+    <h2 class="fcta-h">
+      El Valle tiene salida.<br>
+      Pero solo para quien<br>
+      <span class="ac">lleva el mapa.</span>
+    </h2>
+    <p class="fcta-sub">
+      4 dashboards · 4 subsistemas · 1 sistema<br>
+      Listo para usar en 5 minutos · Copy/paste de datos reales
+    </p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn-primary" href="#">Obtener Growth OS Pro → $497</a>
+      <a class="btn-secondary" href="GrowthOS_GROW.html">Empezar gratis</a>
+    </div>
+    <div class="cta-note">
+      Garantía 30 días · Acceso inmediato · Pago único<br>
+      Sin suscripción · Sin software adicional · Sin trampa
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="ft-brand">Growth OS · @jfcarpio · 2025–2026</div>
+    <div class="ft-handle" style="margin-top:4px">jfcarpio@gmail.com · Sistema Operativo para negocios en expansión</div>
+  </div>
+  <div class="ft-stages">
+    <span class="ft-stage">LAUNCH</span>
+    <span class="ft-stage">GROW</span>
+    <span class="ft-stage" style="border-color:rgba(200,114,42,.2);color:var(--sand)">CROSS</span>
+    <span class="ft-stage">SCALE</span>
+    <span class="ft-stage" style="border-color:rgba(59,125,216,.2);color:var(--blue3)">Landing</span>
+  </div>
+</footer>
+
+<script>
+const els = document.querySelectorAll('.r');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const d = e.target.classList.contains('r-d1') ? 80
+              : e.target.classList.contains('r-d2') ? 160
+              : e.target.classList.contains('r-d3') ? 240
+              : e.target.classList.contains('r-d4') ? 320 : 0;
+      setTimeout(() => e.target.classList.add('in'), d);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold:0.06, rootMargin:'0px 0px -30px 0px' });
+els.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
