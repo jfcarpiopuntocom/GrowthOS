@@ -1,0 +1,2868 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Growth OS · CROSS · 6–24 Meses · v1.2 — Las 3 Cs + Calculadora CAC + Barra Riesgo -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growth OS · CROSS · Atravesando el "Valle de la Muerte" de los negocios · 6–24 Meses de Vida del Negocio</title>
+
+<meta name="description" content="Growth OS CROSS: sistema operativo para startups en el Valle de la Muerte (6–24 meses). Las 3 Cs + CAC Payback + Semáforo interactivo.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Growth OS · CROSS · Atravesando el Valle de la Muerte">
+<meta property="og:description" content="Las 3 Cs + CAC Payback + Semáforo interactivo para startups 6–24 meses.">
+<meta property="og:image" content="Logo GrowthOS.png">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Growth OS · CROSS · Valle de la Muerte">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Playfair+Display:wght@400;700;900&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:   #D8D2C4;
+  --bg:      #FAF7F0;
+  --bg2:     #F3EFE4;
+  --bg3:     #EAE5D8;
+
+  --navy:    #0F2347;
+  --navy2:   #1A3560;
+  --navy-l:  #2A4A80;
+  --navy-d:  rgba(15,35,71,.07);
+  --navy-b:  rgba(15,35,71,.18);
+
+  --wine:    #8B6914;
+  --wine2:   #C8891A;
+  --wine-l:  #E5A020;
+  --wine-d:  rgba(200,137,26,.10);
+  --wine-b:  rgba(200,137,26,.30);
+
+  --elec:    #1A3560;
+  --elec2:   #0F2347;
+  --elec-d:  rgba(26,53,96,.07);
+  --elec-b:  rgba(26,53,96,.20);
+
+  --green:   #0A7A55;
+  --green-d: rgba(10,122,85,.09);
+  --green-b: rgba(10,122,85,.26);
+  --red:     #B03020;
+  --red-d:   rgba(176,48,32,.09);
+  --red-b:   rgba(176,48,32,.24);
+  --amber:   #8B6914;
+  --amber-d: rgba(139,105,20,.10);
+  --amber-b: rgba(139,105,20,.26);
+
+  --white:   #0E0C09;
+  --muted:   #2C2418;
+  --dim:     #4A4035;
+
+  --grid:    rgba(28,24,18,.04);
+  --rule:    rgba(28,24,18,.11);
+
+  --mono: 'Space Mono', monospace;
+  --cond: 'Barlow Condensed', sans-serif;
+  --body: 'Lora', Georgia, serif;
+  --serif: 'Playfair Display', Georgia, serif;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--bg3)}
+body{
+  font-family:var(--body);background:var(--bg);color:var(--white);
+  font-size:13px;line-height:1.65;min-height:100vh;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+    radial-gradient(ellipse 60% 40% at 5% 10%,rgba(15,35,71,.04) 0%,transparent 55%),
+    radial-gradient(ellipse 45% 45% at 95% 90%,rgba(200,137,26,.04) 0%,transparent 55%);
+  background-size:28px 28px,28px 28px,100% 100%,100% 100%;
+}
+
+/* ANIM */
+@keyframes fadeUp {from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink  {0%,100%{opacity:1}50%{opacity:.25}}
+@keyframes pring  {0%{transform:scale(1);opacity:.5}100%{transform:scale(2.4);opacity:0}}
+@keyframes scan   {0%{transform:translateY(-100%);opacity:0}8%{opacity:.25}92%{opacity:.25}100%{transform:translateY(1100%);opacity:0}}
+@keyframes fillbar{from{width:0}to{width:var(--w)}}
+@keyframes countup{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+
+.a1{animation:fadeUp .6s .04s both}.a2{animation:fadeUp .6s .10s both}
+.a3{animation:fadeUp .6s .17s both}.a4{animation:fadeUp .6s .24s both}
+.a5{animation:fadeUp .6s .31s both}.a6{animation:fadeUp .6s .38s both}
+.a7{animation:fadeUp .6s .45s both}.a8{animation:fadeUp .6s .52s both}
+.a9{animation:fadeUp .6s .59s both}.a10{animation:fadeUp .6s .66s both}
+
+/* STRIPES */
+.stripe{height:3px;background:linear-gradient(90deg,var(--navy) 0%,var(--navy-l) 35%,var(--wine2) 65%,var(--wine-l) 100%)}
+.bstripe{position:fixed;bottom:0;left:0;right:0;z-index:500;height:2px;background:linear-gradient(90deg,var(--navy),var(--navy-l),var(--wine2),var(--wine-l));opacity:.3}
+
+/* HEADER */
+header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:15px 28px;border-bottom:1px solid var(--rule);
+  background:rgba(250,247,240,.96);backdrop-filter:blur(16px);
+  position:sticky;top:0;z-index:300;
+}
+.logo-area{display:flex;align-items:center;gap:14px}
+.logo-hex{
+  width:40px;height:40px;flex-shrink:0;
+  background:linear-gradient(145deg,var(--navy2),var(--wine2));
+  clip-path:polygon(50% 0%,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-weight:900;font-size:16px;color:#FAF7F0;
+}
+.logo-text strong{display:block;font-family:var(--serif);font-size:16px;font-weight:700;letter-spacing:.04em;color:var(--navy)}
+.logo-text span  {font-family:var(--mono);font-size:8px;color:var(--wine2);letter-spacing:.16em;text-transform:uppercase}
+.hcenter{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px}
+.hcenter::before,.hcenter::after{content:'';width:24px;height:1px;background:var(--rule)}
+.hright{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hpill{display:flex;align-items:center;gap:6px;padding:4px 12px;border:1px solid var(--rule);font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.hpill.hi{border-color:var(--navy-b);color:var(--navy2)}
+.hdot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s infinite;position:relative}
+.hdot::after{content:'';position:absolute;inset:-3px;border-radius:50%;border:1px solid var(--green);opacity:.35;animation:pring 2s infinite}
+
+/* MAIN */
+main{max-width:1440px;margin:0 auto;padding:24px 20px 80px}
+
+/* SECTION HEADER */
+.sl{
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--navy2);display:flex;align-items:center;gap:10px;
+  margin-bottom:6px;margin-top:36px;
+}
+.sl:first-of-type{margin-top:0}
+.sl .sn{font-size:9px;color:#FAF7F0;background:var(--navy2);width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-weight:700}
+.sl::after{content:'';flex:1;height:1px;background:var(--rule)}
+.sl-sub{font-family:var(--body);font-size:13px;color:var(--white);margin-bottom:16px;padding-left:28px;line-height:1.65}
+
+/* GRIDS */
+.g4  {display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.g3  {display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.g2  {display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g21 {display:grid;grid-template-columns:2fr 1fr;gap:12px}
+.g12 {display:grid;grid-template-columns:1fr 2fr;gap:12px}
+.g13 {display:grid;grid-template-columns:1fr 3fr;gap:12px}
+.g211{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+.mb  {margin-bottom:12px}
+
+/* PANEL */
+.panel{
+  background:#fff;border:1px solid var(--rule);
+  padding:18px;position:relative;overflow:hidden;
+  transition:border-color .2s;
+  box-shadow:0 1px 4px rgba(28,24,18,.04);
+}
+.panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--navy-l),transparent 60%);opacity:0;transition:opacity .2s}
+.panel:hover{border-color:var(--navy-b)}.panel:hover::before{opacity:1}
+.panel::after{content:'';position:absolute;bottom:0;right:0;width:12px;height:12px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.panel.wa{border-top:2px solid var(--wine2)}.panel.na{border-top:2px solid var(--navy-l)}
+.panel.ea{border-top:2px solid var(--navy)}  .panel.ga{border-top:2px solid var(--green)}
+.panel.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(15,35,71,.15),transparent);animation:scan 7s linear infinite;pointer-events:none;z-index:5;opacity:1}
+
+/* PANEL TITLE */
+.pt{font-family:var(--serif);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.pt .tag{font-family:var(--mono);font-size:8px;font-weight:400;color:var(--muted);border:1px solid var(--rule);padding:2px 7px;letter-spacing:.08em;text-transform:uppercase}
+
+/* CONTEXT / INSIGHT BOXES */
+.ctx{background:var(--navy-d);border:1px solid var(--navy-b);border-left:3px solid var(--navy-l);padding:11px 13px;margin-bottom:14px;font-size:12.5px;color:var(--white);line-height:1.7}
+.ctx strong{color:var(--navy)}
+.insight{background:var(--wine-d);border:1px solid var(--wine-b);border-left:3px solid var(--wine2);padding:11px 13px;margin-top:12px;font-size:12.5px;color:var(--white);line-height:1.7}
+.insight strong{color:var(--wine)}
+.watch{background:rgba(176,48,32,.06);border-left:3px solid var(--red);padding:10px 13px;margin-top:10px;font-size:12.5px;color:var(--white);line-height:1.6}
+.watch strong{color:var(--red)}
+
+/* FORMULA */
+.formula{background:var(--bg2);border:1px solid var(--rule);padding:14px 16px;margin:12px 0}
+.f-lbl{font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.14em;color:var(--wine2);margin-bottom:8px}
+.f-eq{font-family:var(--mono);font-size:12px;color:var(--white);letter-spacing:.03em;line-height:1.9}
+.f-eq .op{color:var(--navy2)}.f-eq .res{color:var(--green);font-weight:700}
+.f-note{font-family:var(--body);font-size:12px;color:var(--white);margin-top:8px;line-height:1.65}
+
+/* EXAMPLE */
+.ex{background:var(--wine-d);border:1px solid var(--wine-b);padding:11px 13px;margin:8px 0}
+.ex-lbl{font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.14em;color:var(--wine2);margin-bottom:5px}
+.ex-t{font-family:var(--body);font-size:12.5px;color:var(--white);line-height:1.65}
+.ex-t strong{color:var(--white)}
+
+/* VITAL */
+.vital.vn{border-left:2px solid var(--navy-l);padding-left:12px}
+.vital.vw{border-left:2px solid var(--wine2); padding-left:12px}
+.vital.vg{border-left:2px solid var(--green); padding-left:12px}
+.vital.vr{border-left:2px solid var(--red);   padding-left:12px}
+.vital.ve{border-left:2px solid var(--navy);  padding-left:12px}
+.vlbl{font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.vval{font-family:var(--serif);font-size:40px;font-weight:900;line-height:1;animation:countup .8s both}
+.vval.n{color:var(--navy2)}.vval.g{color:var(--green)}.vval.r{color:var(--red)}.vval.w{color:var(--wine2)}
+.vsub{font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:6px;display:flex;align-items:center;gap:6px}
+.vnote{font-size:12px;color:var(--white);margin-top:8px;line-height:1.6}
+
+/* BADGE */
+.badge{display:inline-block;padding:2px 8px;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.bg-g{background:var(--green-d);border:1px solid var(--green-b);color:var(--green)}
+.bg-r{background:var(--red-d);  border:1px solid var(--red-b);  color:var(--red)}
+.bg-a{background:var(--amber-d);border:1px solid var(--amber-b);color:var(--amber)}
+.bg-n{background:var(--navy-d); border:1px solid var(--navy-b); color:var(--navy2)}
+.bg-w{background:var(--wine-d); border:1px solid var(--wine-b); color:var(--wine)}
+
+/* ALERT BOX */
+.abox{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;margin-bottom:8px}
+.abox:last-child{margin-bottom:0}
+.abox.ar{background:var(--red-d);  border-left:3px solid var(--red)}
+.abox.aa{background:var(--amber-d);border-left:3px solid var(--amber)}
+.abox.ag{background:var(--green-d);border-left:3px solid var(--green)}
+.abox.an{background:var(--navy-d); border-left:3px solid var(--navy-l)}
+.abox-i{font-size:17px;flex-shrink:0}
+.abox-t{font-family:var(--serif);font-size:13px;font-weight:700;letter-spacing:.02em;margin-bottom:3px}
+.abox-d{font-family:var(--body);font-size:12.5px;color:var(--white);line-height:1.65}
+.ar .abox-t{color:var(--red)}.aa .abox-t{color:var(--amber)}.ag .abox-t{color:var(--green)}.an .abox-t{color:var(--navy2)}
+
+/* CHECKLIST */
+.ck-list{list-style:none}
+.ck-item{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid rgba(28,24,18,.06)}
+.ck-item:last-child{border-bottom:none}
+.ck-box{width:16px;height:16px;flex-shrink:0;margin-top:3px;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700}
+.ck-box.done{border-color:var(--green);color:var(--green);background:var(--green-d)}
+.ck-box.warn{border-color:var(--amber);color:var(--amber);background:var(--amber-d)}
+.ck-box.todo{border-color:var(--red);background:var(--red-d);color:transparent}
+.ck-t{flex:1;line-height:1.45}
+.ck-t b{color:var(--white);font-family:var(--body);font-size:13px;font-weight:600;display:block;margin-bottom:2px}
+.ck-t small{font-family:var(--mono);font-size:9px;color:var(--muted);display:block;margin-top:3px;line-height:1.55}
+.ck-t .note{font-size:12px;color:var(--white);margin-top:3px;line-height:1.5;font-style:italic}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.12em;color:var(--navy2);padding:7px 8px;text-align:left;border-bottom:1px solid var(--rule);background:var(--navy-d)}
+.tbl td{padding:9px 8px;font-size:12.5px;border-bottom:1px solid rgba(28,24,18,.06);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl .mono{font-family:var(--mono);font-size:11px}
+.tbl .g{color:var(--green)}.tbl .r{color:var(--red)}.tbl .a{color:var(--amber)}.tbl .c{color:var(--navy2)}.tbl .w{color:var(--wine2)}
+
+/* RISK ROWS */
+.risk-row{display:grid;grid-template-columns:20px 1fr auto auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid rgba(28,24,18,.06)}
+.risk-row:last-child{border-bottom:none}
+.rdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.rdot.r{background:var(--red);  box-shadow:0 0 6px rgba(176,48,32,.4)}
+.rdot.a{background:var(--amber);box-shadow:0 0 6px rgba(139,105,20,.4)}
+.rdot.g{background:var(--green);box-shadow:0 0 6px rgba(10,122,85,.4)}
+.ract{font-family:var(--mono);font-size:8px;padding:2px 8px;text-transform:uppercase;letter-spacing:.06em}
+.ract.r{background:var(--red-d);  border:1px solid var(--red-b);  color:var(--red)}
+.ract.a{background:var(--amber-d);border:1px solid var(--amber-b);color:var(--amber)}
+.ract.g{background:var(--green-d);border:1px solid var(--green-b);color:var(--green)}
+
+/* ══ BCG MATRIX ══ */
+.bcg-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.bcg-cell{padding:14px;border:1px solid var(--rule);background:var(--bg2);position:relative;transition:border-color .2s}
+.bcg-cell:hover{border-color:var(--navy-b)}
+.bcg-icon{font-size:22px;margin-bottom:6px}
+.bcg-label{font-family:var(--serif);font-size:13px;font-weight:700;margin-bottom:4px}
+.bcg-desc{font-family:var(--body);font-size:12px;color:var(--white);line-height:1.6}
+.bcg-strat{font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.08em;margin-top:8px;padding:3px 7px;display:inline-block}
+.bcg-cell.estrella .bcg-label{color:var(--green)} .bcg-cell.estrella .bcg-strat{background:var(--green-d);border:1px solid var(--green-b);color:var(--green)}
+.bcg-cell.vaca     .bcg-label{color:var(--navy2)} .bcg-cell.vaca     .bcg-strat{background:var(--navy-d);border:1px solid var(--navy-b);color:var(--navy2)}
+.bcg-cell.pregunta .bcg-label{color:var(--amber)} .bcg-cell.pregunta .bcg-strat{background:var(--amber-d);border:1px solid var(--amber-b);color:var(--amber)}
+.bcg-cell.perro    .bcg-label{color:var(--red)}   .bcg-cell.perro    .bcg-strat{background:var(--red-d);border:1px solid var(--red-b);color:var(--red)}
+.bcg-axis-x{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--muted);margin-top:6px;padding:0 2px}
+.bcg-axis-lbl{font-family:var(--mono);font-size:8px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;text-align:center;margin-top:4px}
+
+/* STEP */
+.step-item{display:flex;gap:13px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(28,24,18,.06)}
+.step-item:last-child{border-bottom:none}
+.step-n{width:28px;height:28px;flex-shrink:0;border-radius:50%;background:var(--navy-d);border:1px solid var(--navy-b);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:14px;font-weight:800;color:var(--navy2);margin-top:2px}
+.step-t{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px}
+.step-b{font-family:var(--body);font-size:12.5px;color:var(--white);line-height:1.65}
+.step-b em{color:var(--navy2);font-style:normal}
+
+/* NORTH STAR */
+.ns{background:linear-gradient(135deg,rgba(15,35,71,.06) 0%,rgba(200,137,26,.06) 100%);border:1px solid var(--navy-b);padding:22px;position:relative;overflow:hidden}
+.ns::before{content:'★';position:absolute;right:20px;top:50%;transform:translateY(-50%);font-size:90px;opacity:.04;color:var(--navy);pointer-events:none}
+.ns-lbl{font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.18em;color:var(--navy2);margin-bottom:6px}
+.ns-m{font-family:var(--serif);font-size:20px;font-weight:900;color:var(--white);line-height:1.3;margin-bottom:8px;letter-spacing:-.01em}
+.ns-s{font-family:var(--body);font-size:13px;color:var(--white);line-height:1.7}
+
+/* OBJ */
+.obj-card{background:var(--bg2);border:1px solid var(--rule);overflow:hidden;margin-bottom:8px}
+.obj-card:last-child{margin-bottom:0}
+.obj-q{font-family:var(--serif);font-size:13px;font-weight:700;padding:10px 14px;border-bottom:1px solid var(--rule);color:var(--wine2);letter-spacing:.02em;display:flex;align-items:center;gap:8px}
+.obj-q::before{content:'❝';font-size:13px;opacity:.4}
+.obj-a{padding:10px 14px;font-family:var(--body);font-size:12.5px;color:var(--white);line-height:1.7}
+.obj-a strong{color:var(--navy2)}
+
+/* SIG */
+.sig-block{
+  display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:20px;
+  margin-top:40px;padding:22px 24px;border:1px solid var(--rule);background:var(--bg2);
+  position:relative;overflow:hidden;
+}
+.sig-block::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--navy2),var(--wine2),transparent)}
+.sig-block::after{display:none}
+.sig-name{font-family:var(--serif);font-size:24px;font-weight:800;letter-spacing:.04em;color:var(--navy);line-height:1}
+.sig-title{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+.sig-desc{font-family:var(--body);font-size:12.5px;color:var(--muted);margin-top:8px;max-width:360px;line-height:1.7}
+.sig-v{font-family:var(--mono);font-size:8px;color:var(--dim);margin-top:14px;letter-spacing:.08em}
+.sig-cta{display:inline-block;text-decoration:none;background:linear-gradient(135deg,var(--navy2),var(--navy));border:1px solid var(--navy-b);color:#FAF7F0;font-family:var(--serif);font-size:14px;font-weight:700;letter-spacing:.06em;padding:10px 20px;transition:all .2s}
+.sig-cta:hover{background:linear-gradient(135deg,var(--wine2),var(--navy2));transform:translateY(-1px)}
+.sig-svcs{display:flex;flex-direction:column;gap:6px;margin-top:12px}
+.sig-svc{padding:6px 12px;border:1px solid var(--rule);font-family:var(--mono);font-size:8px;letter-spacing:.08em;text-transform:uppercase}
+.sig-svc.n{color:var(--navy2);border-color:var(--navy-b)}
+.sig-svc.w{color:var(--wine2);border-color:var(--wine-b)}
+.sig-svc.g{color:var(--green); border-color:var(--green-b)}
+
+/* ══ MRR CHART ══ */
+.mrr-chart{margin:14px 0}
+.mrr-bars{display:flex;align-items:flex-end;gap:4px;height:80px;padding-bottom:4px}
+.mrr-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
+.mrr-bar{width:100%;border-radius:0;transition:background .2s;position:relative}
+.mrr-bar-lbl{font-family:var(--mono);font-size:7px;color:var(--muted);text-align:center;white-space:nowrap}
+.mrr-bar-val{font-family:var(--mono);font-size:7px;color:var(--navy2);text-align:center;white-space:nowrap}
+.mrr-axis{display:flex;justify-content:space-between;font-family:var(--mono);font-size:7px;color:var(--dim);border-top:1px solid var(--rule);padding-top:4px;margin-top:2px}
+
+/* ══ COHORT TABLE ══ */
+.cohort-wrap{overflow-x:auto;margin-top:10px}
+.cohort-tbl{border-collapse:collapse;width:100%;min-width:480px}
+.cohort-tbl th{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy2);padding:7px 8px;text-align:center;border-bottom:1px solid var(--rule);background:var(--navy-d)}
+.cohort-tbl th:first-child{text-align:left}
+.cohort-tbl td{padding:8px;font-family:var(--mono);font-size:11px;text-align:center;border-bottom:1px solid rgba(28,24,18,.06)}
+.cohort-tbl td:first-child{text-align:left;color:var(--muted);font-size:10px}
+.cohort-tbl tr:last-child td{border-bottom:none}
+.cc-g{background:rgba(10,122,85,.14);color:var(--green);font-weight:700}
+.cc-n{background:rgba(15,35,71,.10);color:var(--navy2)}
+.cc-a{background:rgba(139,105,20,.12);color:var(--amber)}
+.cc-r{background:rgba(176,48,32,.10);color:var(--red)}
+.cc-d{background:rgba(28,24,18,.03);color:var(--dim)}
+
+/* ══ PAYBACK GAUGE ══ */
+.payback-gauge{margin:14px 0}
+.pg-track{height:20px;background:rgba(28,24,18,.05);border:1px solid var(--rule);position:relative;overflow:hidden}
+.pg-fill{height:100%;animation:fillbar 1.4s ease-out both;position:relative}
+.pg-zones{display:flex;margin-top:5px}
+.pg-zone{flex:1;text-align:center;font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.06em}
+.pg-marks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--muted);margin-top:2px}
+
+/* ══ CANAL UNIT ECONOMICS ══ */
+.canal-ue{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.cue-row{display:grid;grid-template-columns:110px 1fr 70px 70px 70px;gap:8px;align-items:center;padding:10px 12px;background:var(--bg2);border:1px solid var(--rule);transition:border-color .2s}
+.cue-row:hover{border-color:var(--navy-b)}
+.cue-row.header{background:var(--navy-d);padding:6px 12px}
+.cue-name{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--white)}
+.cue-bar-wrap{position:relative}
+.cue-bar-track{height:4px;background:rgba(28,24,18,.08)}
+.cue-bar-fill{height:100%;animation:fillbar 1.2s ease-out both}
+.cue-val{font-family:var(--mono);font-size:11px;text-align:right;white-space:nowrap}
+.cue-hdr{font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:var(--navy2);text-align:right}
+.cue-hdr:first-child{text-align:left}
+
+/* ══ DEPENDENCY METER ══ */
+.dep-meter{margin:14px 0}
+.dm-track{height:24px;background:rgba(28,24,18,.05);border:1px solid var(--rule);position:relative;overflow:hidden}
+.dm-fill{height:100%;animation:fillbar 1.4s ease-out both}
+.dm-needle{position:absolute;top:0;height:100%;width:2px;background:var(--white);opacity:.6}
+.dm-labels{display:flex;justify-content:space-between;margin-top:5px;font-family:var(--mono);font-size:8px;color:var(--muted)}
+.dm-zones{display:flex;margin-top:3px}
+.dm-zone{flex:1;text-align:center;font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.05em;padding:3px 0}
+
+/* ══ WORKING CAPITAL ══ */
+.wc-flow{display:flex;align-items:center;gap:0;margin:14px 0}
+.wc-node{flex:1;padding:12px 10px;text-align:center;border:1px solid var(--rule);background:var(--bg2);position:relative}
+.wc-node-lbl{font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:5px}
+.wc-node-val{font-family:var(--serif);font-size:18px;font-weight:800;line-height:1}
+.wc-arrow{width:24px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:14px;color:var(--rule);z-index:2}
+.wc-total{margin-top:10px;padding:11px 14px;background:var(--navy-d);border:1px solid var(--navy-b);display:flex;justify-content:space-between;align-items:center}
+.wc-total-lbl{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.wc-total-val{font-family:var(--serif);font-size:20px;font-weight:800}
+
+/* ══ RACI TABLE ══ */
+.raci-wrap{overflow-x:auto;margin-top:10px}
+.raci-tbl{border-collapse:collapse;width:100%;min-width:540px}
+.raci-tbl th{font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;padding:7px 10px;text-align:center;border-bottom:1px solid var(--rule);background:var(--navy-d)}
+.raci-tbl th:first-child{text-align:left;color:var(--navy2)}
+.raci-tbl th.r-col{color:var(--wine2)}
+.raci-tbl th.a-col{color:var(--amber)}
+.raci-tbl th.c-col{color:var(--navy2)}
+.raci-tbl th.i-col{color:var(--muted)}
+.raci-tbl td{padding:9px 10px;font-size:12.5px;border-bottom:1px solid rgba(28,24,18,.06);vertical-align:middle}
+.raci-tbl td:first-child{font-family:var(--serif);font-size:13px;font-weight:600;color:var(--white)}
+.raci-tbl tr:last-child td{border-bottom:none}
+.raci-cell{display:flex;align-items:center;justify-content:center}
+.raci-badge{font-family:var(--mono);font-size:10px;font-weight:700;width:22px;height:22px;display:flex;align-items:center;justify-content:center;border:1px solid}
+.rb-r{background:var(--wine-d);border-color:var(--wine-b);color:var(--wine)}
+.rb-a{background:var(--amber-d);border-color:var(--amber-b);color:var(--amber)}
+.rb-c{background:var(--navy-d);border-color:var(--navy-b);color:var(--navy2)}
+.rb-i{background:rgba(28,24,18,.03);border-color:var(--rule);color:var(--dim)}
+.rb-empty{opacity:0;pointer-events:none}
+
+/* ══ SENS / BAR ══ */
+.sens-table{margin-top:10px}
+.sens-row{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid rgba(28,24,18,.06)}
+.sens-row:last-child{border-bottom:none}
+.sens-pct{font-family:var(--mono);font-size:11px;font-weight:700}
+.sens-bar-wrap{position:relative}
+.sens-bar-track{height:4px;background:rgba(28,24,18,.07)}
+.sens-bar-fill{height:100%;animation:fillbar 1.3s ease-out both}
+.sens-val{font-family:var(--mono);font-size:11px;font-weight:700;text-align:right;white-space:nowrap}
+
+/* ══ MILESTONE TRACK ══ */
+.mst{display:flex;flex-direction:column;gap:0;margin-top:10px}
+.mst-row{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(28,24,18,.06)}
+.mst-row:last-child{border-bottom:none}
+.mst-dot{width:12px;height:12px;border-radius:50%;margin-top:3px;flex-shrink:0}
+.mst-dot.g{background:var(--green);box-shadow:0 0 6px rgba(10,122,85,.35)}
+.mst-dot.a{background:var(--amber);box-shadow:0 0 6px rgba(139,105,20,.35)}
+.mst-dot.r{background:var(--red);  box-shadow:0 0 6px rgba(176,48,32,.35)}
+.mst-dot.n{background:var(--navy2);box-shadow:0 0 6px rgba(15,35,71,.35)}
+.mst-t{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--white);margin-bottom:3px}
+.mst-b{font-family:var(--body);font-size:12.5px;color:var(--white);line-height:1.6}
+.mst-when{font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
+
+/* ══ CANAL CARDS ══ */
+.canal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.canal-card{padding:13px;background:var(--bg2);border:1px solid var(--rule);transition:border-color .2s}
+.canal-card:hover{border-color:var(--navy-b)}
+.cc-name{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
+.cc-desc{font-family:var(--body);font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:8px}
+.cc-tags{display:flex;flex-wrap:wrap;gap:4px}
+.cc-tag{font-family:var(--mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border:1px solid var(--rule);color:var(--muted)}
+.cc-tag.g{border-color:var(--green-b);color:var(--green)}
+.cc-tag.a{border-color:var(--amber-b);color:var(--amber)}
+.cc-tag.r{border-color:var(--red-b);  color:var(--red)}
+.cc-tag.n{border-color:var(--navy-b); color:var(--navy2)}
+.cc-tag.w{border-color:var(--wine-b); color:var(--wine2)}
+
+
+/* ══════════════════════════════════════
+   LAS 3 Cs — Hilo conductor v1.2
+══════════════════════════════════════ */
+.tres-cs{
+  margin:32px 0;background:var(--bg2);border:1px solid var(--rule);
+  position:relative;overflow:hidden;
+}
+.tres-cs::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 60% at 15% 80%,rgba(10,122,85,.05) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 50% at 85% 20%,rgba(15,35,71,.05) 0%,transparent 60%);
+}
+.tc-header{
+  padding:20px 24px 14px;border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;gap:10px;position:relative;
+}
+.tc-kicker{
+  font-family:var(--mono);font-size:8px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--navy2);opacity:.6;
+}
+.tc-titulo{
+  font-family:var(--serif);font-size:15px;font-weight:700;color:var(--navy);
+  flex:1;
+}
+.tc-badge{
+  font-family:var(--mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 10px;border:1px solid var(--navy-b);color:var(--navy2);
+  background:var(--navy-d);
+}
+.tc-body{
+  display:grid;grid-template-columns:340px 1fr;gap:0;
+  min-height:340px;
+}
+@media(max-width:720px){.tc-body{grid-template-columns:1fr}}
+
+/* SVG triangle area */
+.tc-svg-area{
+  border-right:1px solid var(--rule);padding:28px 20px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(160deg,rgba(15,35,71,.03) 0%,rgba(250,247,240,0) 100%);
+  position:relative;
+}
+@media(max-width:720px){.tc-svg-area{border-right:none;border-bottom:1px solid var(--rule)}}
+
+.tc-svg{width:100%;max-width:290px}
+
+/* triangle paths and vertex circles */
+.tc-edge{stroke-width:1.5;fill:none;opacity:.5}
+.tc-edge-c1{stroke:var(--navy2)}
+.tc-edge-c2{stroke:var(--wine2)}
+.tc-edge-c3{stroke:var(--green)}
+
+.tc-vertex{cursor:pointer;transition:all .25s}
+.tc-vertex circle{transition:all .25s}
+.tc-vertex:hover circle{r:14;opacity:1}
+.tc-vertex.active circle{r:14;opacity:1}
+.tc-vertex-c1 circle{fill:rgba(15,35,71,.12);stroke:var(--navy2);stroke-width:1.5}
+.tc-vertex-c2 circle{fill:rgba(200,137,26,.12);stroke:var(--wine2);stroke-width:1.5}
+.tc-vertex-c3 circle{fill:rgba(10,122,85,.12);stroke:var(--green);stroke-width:1.5}
+.tc-vertex.active.tc-vertex-c1 circle{fill:rgba(15,35,71,.2)}
+.tc-vertex.active.tc-vertex-c2 circle{fill:rgba(200,137,26,.2)}
+.tc-vertex.active.tc-vertex-c3 circle{fill:rgba(10,122,85,.2)}
+
+.tc-vertex-label{font-family:'Space Mono',monospace;font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;pointer-events:none}
+.tc-vertex-cn{font-family:'Space Mono',monospace;font-size:9px;font-weight:700;pointer-events:none}
+.tc-center-label{font-family:'Playfair Display',serif;font-size:11px;font-weight:700;fill:rgba(15,35,71,.25);text-anchor:middle;pointer-events:none}
+.tc-center-sub{font-family:'Space Mono',monospace;font-size:7px;fill:rgba(15,35,71,.2);text-anchor:middle;text-transform:uppercase;letter-spacing:.1em;pointer-events:none}
+
+/* side labels on triangle edges */
+.tc-edge-label{font-family:'Space Mono',monospace;font-size:7px;fill:rgba(15,35,71,.3);text-anchor:middle;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
+
+/* info panels on right */
+.tc-panels{padding:20px 22px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+
+.tc-panel{
+  padding:12px 14px;border:1px solid var(--rule);background:var(--bg);
+  transition:all .3s;opacity:.4;transform:translateX(6px);
+  border-left:3px solid transparent;
+}
+.tc-panel.visible{opacity:1;transform:translateX(0)}
+.tc-panel.c1{border-left-color:var(--navy2)}
+.tc-panel.c2{border-left-color:var(--wine2)}
+.tc-panel.c3{border-left-color:var(--green)}
+
+.tc-panel-head{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.tc-panel-cn{font-family:var(--mono);font-size:8px;font-weight:700;padding:2px 7px;letter-spacing:.08em}
+.tc-panel-cn.c1{background:var(--navy-d);border:1px solid var(--navy-b);color:var(--navy2)}
+.tc-panel-cn.c2{background:var(--wine-d);border:1px solid var(--wine-b);color:var(--wine2)}
+.tc-panel-cn.c3{background:var(--green-d);border:1px solid var(--green-b);color:var(--green)}
+.tc-panel-nombre{font-family:var(--serif);font-size:13px;font-weight:700}
+.tc-panel-nombre.c1{color:var(--navy)}
+.tc-panel-nombre.c2{color:var(--wine2)}
+.tc-panel-nombre.c3{color:var(--green)}
+.tc-panel-desc{font-family:var(--body);font-size:12.5px;color:var(--white);line-height:1.6;margin-bottom:8px}
+.tc-tags{display:flex;flex-wrap:wrap;gap:4px}
+.tc-tag{font-family:var(--mono);font-size:8px;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border:1px solid var(--rule);color:var(--muted)}
+.tc-tag.c1{border-color:var(--navy-b);color:var(--navy2);background:var(--navy-d)}
+.tc-tag.c2{border-color:var(--wine-b);color:var(--wine2);background:var(--wine-d)}
+.tc-tag.c3{border-color:var(--green-b);color:var(--green);background:var(--green-d)}
+
+.tc-footer{
+  border-top:1px solid var(--rule);padding:10px 22px;
+  font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.05em;
+  background:rgba(15,35,71,.02);
+}
+.tc-footer strong{color:var(--navy2)}
+
+/* ══════════════════════════════════════
+   CALCULADORA CAC PAYBACK v1.2
+══════════════════════════════════════ */
+.calc-box{
+  background:var(--bg2);border:1px solid var(--rule);padding:18px 20px;
+  margin-top:14px;
+}
+.calc-box-label{
+  font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.18em;
+  color:var(--navy2);margin-bottom:12px;display:block;
+}
+.calc-inputs{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end}
+@media(max-width:560px){.calc-inputs{grid-template-columns:1fr 1fr}}
+.calc-field label{font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:block;margin-bottom:4px}
+.calc-field input{
+  width:100%;font-family:var(--mono);font-size:13px;font-weight:700;
+  padding:8px 10px;border:1px solid var(--rule);background:var(--bg);color:var(--white);
+  outline:none;transition:border-color .2s;
+}
+.calc-field input:focus{border-color:var(--navy-b)}
+.calc-btn{
+  font-family:var(--mono);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
+  padding:9px 16px;background:var(--navy2);color:#FAF7F0;border:none;cursor:pointer;
+  transition:background .2s;white-space:nowrap;
+}
+.calc-btn:hover{background:var(--navy)}
+
+.calc-result{
+  display:none;margin-top:14px;padding:16px 20px;
+  background:var(--bg);border:1px solid var(--rule);
+  animation:fadeUp .3s ease;
+}
+.calc-result-inner{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.calc-val{font-family:var(--mono);font-size:42px;font-weight:700;line-height:1}
+.calc-verdict-wrap{flex:1}
+.calc-verdict{
+  display:inline-block;font-family:var(--mono);font-size:9px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;
+  border:1px solid;margin-bottom:6px;
+}
+.calc-verdict.vg{background:var(--green-d);border-color:var(--green-b);color:var(--green)}
+.calc-verdict.va{background:var(--wine-d);border-color:var(--wine-b);color:var(--wine2)}
+.calc-verdict.vr{background:var(--red-d);border-color:var(--red-b);color:var(--red)}
+.calc-note{font-family:var(--body);font-size:11.5px;color:var(--muted);line-height:1.6}
+
+/* ══════════════════════════════════════
+   SEMÁFORO INTERACTIVO + RISK BAR v1.2
+══════════════════════════════════════ */
+.semaforo-v2{padding:20px;background:var(--bg2);border:1px solid var(--rule);margin-top:16px}
+.sem-titulo{font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.2em;color:var(--navy2);margin-bottom:14px;display:block}
+.sem-preguntas{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.sem-q{
+  display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;
+  padding:10px 12px;background:var(--bg);border:1px solid var(--rule);
+  transition:border-color .2s;
+}
+.sem-q:hover{border-color:var(--navy-b)}
+.sem-q-txt{font-family:var(--body);font-size:13px;color:var(--white);line-height:1.4;font-weight:500}
+.sem-pills{display:flex;gap:4px}
+.sem-pill{
+  font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.06em;
+  padding:3px 8px;border:1px solid var(--rule);cursor:pointer;transition:all .18s;
+  color:var(--muted);background:transparent;text-transform:uppercase;
+}
+.sem-pill:hover{opacity:.8}
+.sem-pill.sel-r{background:var(--red-d);border-color:var(--red-b);color:var(--red)}
+.sem-pill.sel-a{background:var(--amber-d);border-color:var(--amber-b);color:var(--amber)}
+.sem-pill.sel-v{background:var(--green-d);border-color:var(--green-b);color:var(--green)}
+
+/* riesgo animado */
+.sem-score-area{border-top:1px solid var(--rule);padding-top:16px}
+.sem-score-label{
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--mono);font-size:9px;color:var(--muted);margin-bottom:6px;letter-spacing:.05em;
+}
+.sem-score-val{
+  font-family:var(--mono);font-size:20px;font-weight:700;color:var(--navy2);
+  transition:color .4s;
+}
+.sem-bar-track{height:10px;background:rgba(15,35,71,.06);border:1px solid var(--rule);overflow:hidden;margin-bottom:6px}
+.sem-bar-fill{height:100%;width:0;transition:width 1s ease;border-radius:0}
+.sem-bar-zones{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim)}
+.sem-lectura{
+  margin-top:12px;padding:10px 14px;
+  font-family:var(--body);font-size:12.5px;line-height:1.65;
+  border-left:3px solid var(--rule);background:var(--bg);
+  transition:all .4s;color:var(--muted);
+  display:none;
+}
+.sem-lectura.visible{display:block}
+
+
+
+/* RESPONSIVE */
+@media(max-width:1040px){.g4,.g3{grid-template-columns:1fr 1fr}.g21,.g12,.g211,.g13{grid-template-columns:1fr}.canal-grid{grid-template-columns:1fr}.cue-row{grid-template-columns:100px 1fr 60px 60px;}.cue-row .cue-val:last-child{display:none}}
+@media(max-width:640px){.g4,.g3,.g2{grid-template-columns:1fr}header{padding:12px 14px}.hcenter{display:none}main{padding:16px 12px 50px}.wc-flow{flex-direction:column}.wc-arrow{transform:rotate(90deg)}.cue-row{grid-template-columns:1fr 1fr}.cue-bar-wrap{display:none}}
+.data-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px}
+.data-table th{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);opacity:.6;padding:9px 12px;border-bottom:1px solid rgba(15,35,71,.15);text-align:left;background:var(--bg2)}
+.data-table td{padding:9px 12px;border-bottom:1px solid rgba(15,35,71,.06);color:var(--navy)}
+.data-table tr:hover td{background:rgba(15,35,71,.03)}
+.data-table .good{color:var(--green);font-weight:700}
+.data-table .warn{color:var(--wine2);font-weight:700}
+.data-table .bad{color:#B03020;font-weight:700}
+
+/* ── NAV-STRIP v1.11 ── */
+.nav-strip{background:var(--navy);padding:.35rem 1rem;border-bottom:1px solid rgba(250,247,240,.1);position:sticky;top:0;z-index:200}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;gap:1rem;align-items:center}
+.nav-lnk{font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,247,240,.4);text-decoration:none;padding:.2rem .5rem;border:1px solid transparent;transition:all .2s}
+.nav-lnk:hover{color:var(--wine2);border-color:rgba(200,137,26,.3)}
+.nav-lnk.active{color:var(--wine2);border-color:var(--wine-b);background:var(--wine-d)}
+.nav-sep{font-family:var(--mono);font-size:8px;color:rgba(250,247,240,.15)}
+
+/* ══ MAPA DEL VALLE INTERACTIVO ══ */
+.valle-mapa{margin:24px 0 0;overflow:hidden;border:1px solid var(--navy-b);background:var(--bg);}
+.valle-mapa-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);padding:7px 14px;border-bottom:1px solid rgba(15,35,71,.08);
+  display:flex;justify-content:space-between;align-items:center;}
+.valle-mapa-lbl em{color:var(--wine2);font-style:normal;}
+.valle-hitos{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(15,35,71,.07);}
+.valle-hito{padding:7px 10px;border-right:1px solid rgba(15,35,71,.06);cursor:pointer;transition:background .15s;}
+.valle-hito:last-child{border-right:none;}
+.valle-hito:hover{background:var(--bg3);}
+.vh-code{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.08em;margin-bottom:2px;}
+.vh-desc{font-family:var(--mono);font-size:7px;letter-spacing:.04em;color:var(--muted);line-height:1.5;}
+#valle-pos{transition:transform 1s cubic-bezier(.4,0,.2,1);}
+#valle-ring{transform-box:fill-box;transform-origin:center;animation:vpulse 2.4s ease-in-out infinite;}
+@keyframes vpulse{0%,100%{opacity:.5;transform:scale(1);}50%{opacity:.06;transform:scale(2.6);}}
+
+
+/* ══ RESULTADO INLINE SEMÁFORO — sin scroll ══ */
+.sem-resultado{
+  margin-top:14px;border:1px solid rgba(15,35,71,.1);background:var(--bg);
+  overflow:hidden;display:none;
+}
+.sem-resultado.visible{display:block;}
+.sem-res-top{
+  display:grid;grid-template-columns:1fr auto;gap:0;
+  border-bottom:1px solid rgba(15,35,71,.08);
+}
+.sem-res-score{
+  padding:14px 16px;
+  border-right:1px solid rgba(15,35,71,.08);
+}
+.sem-res-pct{
+  font-family:var(--mono);font-size:44px;font-weight:700;
+  color:var(--navy);line-height:1;margin-bottom:3px;
+  transition:color .5s;
+}
+.sem-res-lbl{
+  font-family:var(--mono);font-size:8px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:8px;
+}
+.sem-res-bar{height:4px;background:rgba(15,35,71,.08);border-radius:2px;overflow:hidden;margin-bottom:10px;}
+.sem-res-barfill{height:100%;border-radius:2px;transition:width .9s ease,background .5s;}
+.sem-res-tag{
+  display:inline-block;font-family:var(--mono);font-size:9px;
+  letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px;
+  transition:background .5s,color .5s;
+}
+.sem-res-tag.crit{background:rgba(176,48,32,.12);color:var(--red);}
+.sem-res-tag.vig{background:rgba(200,137,26,.12);color:var(--wine2);}
+.sem-res-tag.est{background:rgba(15,35,71,.07);color:var(--navy2);}
+.sem-res-tag.scale{background:rgba(10,122,85,.12);color:var(--green);}
+/* Mini Valle SVG */
+.sem-mini-mapa{
+  padding:8px 12px 6px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg);
+  min-width:180px;
+}
+/* Acción concreta */
+.sem-res-accion{
+  padding:12px 16px;font-family:var(--mono);font-size:11px;
+  line-height:1.7;border-top:2px solid transparent;
+  transition:border-color .5s,background .5s;letter-spacing:.02em;
+}
+.sem-res-accion.crit{border-color:var(--red);background:rgba(176,48,32,.04);}
+.sem-res-accion.vig{border-color:var(--wine2);background:rgba(200,137,26,.04);}
+.sem-res-accion.est{border-color:var(--navy-l);background:var(--bg2);}
+.sem-res-accion.scale{border-color:var(--green);background:rgba(10,122,85,.04);}
+.sem-res-accion strong{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px;}
+/* 3Cs status inline */
+.sem-3cs{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  border-top:1px solid rgba(15,35,71,.07);
+}
+.sem-3c{
+  padding:8px 10px;border-right:1px solid rgba(15,35,71,.06);
+  border-top:3px solid transparent;transition:border-color .4s;
+}
+.sem-3c:last-child{border-right:none;}
+.sem-3c-id{font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.06em;color:var(--muted);}
+.sem-3c-nom{font-family:var(--mono);font-size:9px;font-weight:700;color:var(--navy2);margin-top:1px;}
+/* Mini mapa pulse */
+#mini-ring{transform-box:fill-box;transform-origin:center;animation:mpulse 2.4s ease-in-out infinite;}
+@keyframes mpulse{0%,100%{opacity:.5;transform:scale(1);}50%{opacity:.06;transform:scale(2.8);}}
+#mini-pos{transition:transform 1s cubic-bezier(.4,0,.2,1);}
+
+
+/* ══ LANG SWITCH ══ */
+.lang-switch{display:flex;align-items:center;border:1px solid var(--rule);overflow:hidden;font-family:var(--mono);font-size:8px;font-weight:700;letter-spacing:.12em}
+.lang-btn{padding:4px 10px;cursor:pointer;background:transparent;color:var(--muted);border:none;text-transform:uppercase;transition:background .15s,color .15s}
+.lang-btn.active{background:var(--navy);color:#FAF7F0}
+.lang-btn:hover:not(.active){background:var(--navy-d);color:var(--navy2)}
+/* ══ EDITORIAL BOLD ══ */
+.bld{font-weight:700;color:var(--white)}.bld-w{font-weight:700;color:var(--wine2)}.bld-n{font-weight:700;color:var(--navy2)}.bld-g{font-weight:700;color:var(--green)}.bld-r{font-weight:700;color:var(--red)}
+
+@media(max-width:640px){
+  .nav-strip{padding:.25rem .75rem}
+  .nav-inner{gap:.5rem;flex-wrap:wrap;justify-content:center}
+  .nav-lnk{font-size:7px;padding:.15rem .35rem;letter-spacing:.08em}
+  .nav-sep{font-size:7px}
+  header{padding:8px 12px;gap:8px;flex-wrap:wrap}
+  .logo-area{gap:8px}
+  .logo-hex{width:30px;height:30px;font-size:12px}
+  .logo-text strong{font-size:13px}
+  .logo-vol{display:none}
+  .hright{margin-left:auto}
+  .hcenter{display:none!important}
+}
+@media(max-width:400px){
+  .nav-inner{gap:.3rem}
+  .nav-lnk{font-size:6.5px;padding:.1rem .3rem}
+}
+</style>
+<script>
+if(!Element.prototype.closest){Element.prototype.closest=function(s){var e=this;do{if(typeof e.matches==='function'&&e.matches(s))return e;e=e.parentElement||e.parentNode;}while(e!==null&&e.nodeType===1);return null;};}
+if(typeof NodeList!=='undefined'&&!NodeList.prototype.forEach){NodeList.prototype.forEach=Array.prototype.forEach;}
+if(!Array.from){Array.from=function(a){return Array.prototype.slice.call(a);};}
+if(!String.prototype.includes){String.prototype.includes=function(s,p){return this.indexOf(s,p)!==-1;};}
+</script>
+</head>
+<body>
+
+<!-- NAV-STRIP v1.2 -->
+<div class="nav-strip">
+  <div class="nav-inner">
+    <a class="nav-lnk" href="GrowthOS_LAUNCH.html"><span data-t="nav_launch">!LAUNCH · 45 días</span></a>
+    <span class="nav-sep">·</span>
+    <a class="nav-lnk" href="GrowthOS_GROW.html"><span data-t="nav_grow">GROW · 0–6M</span></a>
+    <span class="nav-sep">·</span>
+    <a class="nav-lnk active" href="#"><span data-t="nav_cross">CROSS · 6–24M</span></a>
+    <span class="nav-sep">·</span>
+    <a class="nav-lnk" href="GrowthOS_SCALE.html"><span data-t="nav_scale">SCALE · 24M+</span></a>
+  </div>
+</div>
+
+<div class="stripe"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-area a1">
+    <img src="Logo GrowthOS.png" width="98" height="98" alt="Growth OS — Logo" loading="lazy">
+   
+    <div class="logo-text">
+      <p> <strong data-t="logo_full">Growth OS · sistema operativo gerencial-financiero para negocios en expansión</strong></p>
+      <p><span class="logo-vol" data-t="logo_vol2">Vol. 2 · Atravesando el "Valle de la Muerte"</span></p>
+    </div>
+  </div>
+  <div class="hcenter a1"><span data-t="hcenter">de 6 a 24 meses de vida · "El Valle de la Muerte"</span></div>
+  <div class="hright a1">
+    <div class="lang-switch" role="group" aria-label="Cambiar idioma">
+      <button class="lang-btn active" id="btn-es" onclick="setLang('es')" aria-pressed="true">ES</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ════════════════════════════
+     00 · PUNTO DE PARTIDA
+════════════════════════════ -->
+<p class="sl a2"><span class="sn">00</span><span data-t="s00_title">El valle — la única pregunta que importa en los meses 6–24</span></p>
+<p class="sl-sub a2"><span data-t="s00_sub"><strong>Se conoce como el "<em>Valle de la Muerte</em>" (6-24 meses) a la etapa inicial crítica de un emprendimiento, y se llama así porque representa un alto riesgo de insolvencia y cierre antes de alcanzar el punto de equilibrio. La mayoría no supera esta fase — <strong class="bld-r">no por falta de producto, sino por falta de</strong> <em>sistema</em>.</strong></span></p>
+
+<div class="g13 mb a2">
+  <div class="ns panel">
+    <p class="ns-lbl"><span data-t="ns_lbl">★ Métrica fundamental · meses 6–24</span></p>
+    <p class="ns-m"><span data-t="ns_m">¿Puede el negocio crecer mientras el/la fundador/a se ausenta una semana?</span></p>
+    <p class="ns-s"><span data-t="ns_s_a">No si hay más ventas esta semana versus la anterior.</span> <strong class="bld-n" style="color:var(--elec2)" data-t="ns_s_b">Si el sistema opera, cobra, entrega y retiene sin que el fundador intervenga en cada paso.</strong> <span data-t="ns_s_c"><strong class="bld">Esa es la diferencia entre tener un negocio y tener un trabajo propio con más riesgo.</strong> Todo lo que sigue en este volumen mide esa distinción.</span></p>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+      <span class="badge bg-g" data-t="badge_mrr">MRR creciendo</span>
+      <span class="badge bg-n" data-t="badge_ret">Retención &gt;70%</span>
+      <span class="badge bg-a" data-t="badge_cac">CAC Payback &lt;6M</span>
+      <span class="badge bg-r" data-t="badge_dep">Dependencia &lt;70%</span>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+    <div class="panel vital ve a3">
+      <p class="vlbl" data-t="vl_mrr">MRR growth rate · meta mensual</p>
+      <p class="vval n">10–15%</p>
+      <p class="vsub"><span class="badge bg-n" data-t="vsub_mensual">mensual</span></p>
+      <p class="vnote" data-t="vn_mrr">Un negocio de servicios puede crecer más rápido. Un producto físico normalmente más lento. Lo que importa: la curva es ascendente 3 meses consecutivos.</p>
+    </div>
+    <div class="panel vital vg a3">
+      <p class="vlbl" data-t="vl_od">Owner Dependency · hito de salida</p>
+      <p class="vval g">&lt;70%</p>
+      <p class="vsub"><span class="badge bg-g" data-t="vsub_procesos">% de procesos</span></p>
+      <p class="vnote" data-t="vn_od">Si el 90% de los procesos dependen del fundador, no hay negocio vendible ni escalable. El trabajo del valle es bajar ese número sistemáticamente.</p>
+    </div>
+    <div class="panel vital ve a3">
+      <p class="vlbl" data-t="vl_cac">CAC Payback · hito de salida</p>
+      <p class="vval n">&lt;6M</p>
+      <p class="vsub"><span class="badge bg-n" data-t="vsub_meses">meses</span></p>
+      <p class="vnote" data-t="vn_cac">Si se tarda más de 6 meses en recuperar lo que costó adquirir un cliente, el motor de crecimiento consume más caja de la que genera antes de poder escalar.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════
+     LAS 3 Cs — HILO CONDUCTOR
+════════════════════════════ -->
+<div class="tres-cs a3">
+  <div class="tc-header">
+    <div>
+      <span class="tc-kicker"><span data-t="tc_kicker">Marco estructural · Growth OS CROSS</span></span>
+      <div class="tc-titulo"><span data-t="tc_titulo">Las 3 Cs — Los tres pilares del Valle</span></div>
+    </div>
+    <span class="tc-badge"><span data-t="tc_badge">Pulsa cada vértice</span></span>
+  </div>
+  <div class="tc-body">
+
+    <!-- SVG Triangle -->
+    <div class="tc-svg-area">
+      <svg class="tc-svg" viewBox="0 0 290 290" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Triángulo borde completo -->
+        <polygon points="145,28 268,240 22,240" fill="rgba(15,35,71,.03)" stroke="none"/>
+
+        <!-- Tres aristas coloreadas -->
+        <line x1="145" y1="28" x2="22" y2="240" class="tc-edge tc-edge-c1"/>
+        <line x1="145" y1="28" x2="268" y2="240" class="tc-edge tc-edge-c2"/>
+        <line x1="22" y1="240" x2="268" y2="240" class="tc-edge tc-edge-c3"/>
+
+        <!-- Etiquetas en las aristas -->
+        <text x="75" y="148" class="tc-edge-label" transform="rotate(-57,75,148)">Claridad</text>
+        <text x="215" y="148" class="tc-edge-label" transform="rotate(57,215,148)">Consistencia</text>
+        <text x="145" y="256" class="tc-edge-label">Cash Flow</text>
+
+        <!-- Centro -->
+        <circle cx="145" cy="176" r="36" fill="rgba(15,35,71,.05)" stroke="rgba(15,35,71,.12)" stroke-width="1"/>
+        <text x="145" y="172" class="tc-center-label">Growth</text>
+        <text x="145" y="185" class="tc-center-label">OS</text>
+        <text x="145" y="198" class="tc-center-sub">CROSS</text>
+
+        <!-- C1 — CLARIDAD (top) -->
+        <g class="tc-vertex tc-vertex-c1" data-c="c1" onclick="activarC(this,'c1')" role="button" tabindex="0" aria-label="C1 Claridad — ver descripción" onkeydown="if(event.key==='Enter'||event.key===' ')activarC(this,'c1')">
+          <circle cx="145" cy="28" r="11" opacity=".85"/>
+          <text x="145" y="32" class="tc-vertex-cn" fill="#0F2347" text-anchor="middle">C₁</text>
+          <text x="145" y="14" class="tc-vertex-label" fill="#0F2347" text-anchor="middle">CLARIDAD</text>
+        </g>
+
+        <!-- C2 — CONSISTENCIA (bottom-right) -->
+        <g class="tc-vertex tc-vertex-c2" data-c="c2" onclick="activarC(this,'c2')" role="button" tabindex="0" aria-label="C2 Consistencia — ver descripción" onkeydown="if(event.key==='Enter'||event.key===' ')activarC(this,'c2')">
+          <circle cx="268" cy="240" r="11" opacity=".85"/>
+          <text x="268" y="244" class="tc-vertex-cn" fill="#C8891A" text-anchor="middle">C₂</text>
+          <text x="290" y="228" class="tc-vertex-label" fill="#C8891A" text-anchor="end">CONSIST.</text>
+        </g>
+
+        <!-- C3 — CASH FLOW (bottom-left) -->
+        <g class="tc-vertex tc-vertex-c3" data-c="c3" onclick="activarC(this,'c3')" role="button" tabindex="0" aria-label="C3 Cash Flow — ver descripción" onkeydown="if(event.key==='Enter'||event.key===' ')activarC(this,'c3')">
+          <circle cx="22" cy="240" r="11" opacity=".85"/>
+          <text x="22" y="244" class="tc-vertex-cn" fill="#0A7A55" text-anchor="middle">C₃</text>
+          <text x="0" y="228" class="tc-vertex-label" fill="#0A7A55" text-anchor="start">CASH</text>
+        </g>
+
+      </svg>
+    </div>
+
+    <!-- Panels derecha -->
+    <div class="tc-panels">
+
+      <div class="tc-panel c1 visible" id="panel-c1">
+        <div class="tc-panel-head">
+          <span class="tc-panel-cn c1">C₁</span>
+          <span class="tc-panel-nombre c1"><span data-t="c1_name">Claridad</span>
+        </div>
+        <p class="tc-panel-desc" data-t="c1_desc">Problema real verificado con pagos reales de clientes reales. No encuestas, no intenciones, no promesas. Sin claridad no hay canal que funcione.</p>
+        <div class="tc-tags">
+          <span class="tc-tag c1" data-t="tct_icp">ICP Definido</span>
+          <span class="tc-tag c1" data-t="tct_pp">Problema Pagado</span>
+          <span class="tc-tag c1" data-t="tct_pv">Propuesta Validada</span>
+        </div>
+      </div>
+
+      <div class="tc-panel c2" id="panel-c2">
+        <div class="tc-panel-head">
+          <span class="tc-panel-cn c2">C₂</span>
+          <span class="tc-panel-nombre c2">Consistencia</span>
+        </div>
+        <p class="tc-panel-desc" data-t="c2_desc">Procesos que funcionan sin el fundador. Si no existe el manual, el proceso no existe. La consistencia es lo que convierte ejecución en sistema.</p>
+        <div class="tc-tags">
+          <span class="tc-tag c2" data-t="tct_sop">SOPs documentados</span>
+          <span class="tc-tag c2" data-t="tct_idf">IDF &lt;70%</span>
+          <span class="tc-tag c2" data-t="tct_raci">RACI Activo</span>
+        </div>
+      </div>
+
+      <div class="tc-panel c3" id="panel-c3">
+        <div class="tc-panel-head">
+          <span class="tc-panel-cn c3">C₃</span>
+          <span class="tc-panel-nombre c3">Cash Flow</span>
+        </div>
+        <p class="tc-panel-desc" data-t="c3_desc">El negocio genera más efectivo del que consume cada mes. Sin excepción. El crecimiento sin cash flow positivo es deuda disfrazada de tracción.</p>
+        <div class="tc-tags">
+          <span class="tc-tag c3" data-t="tct_run">Runway &gt;4M</span>
+          <span class="tc-tag c3" data-t="tct_mrg">Margen &gt;50%</span>
+          <span class="tc-tag c3" data-t="tct_cacpb">CAC Payback &lt;6M</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="tc-footer">
+    <span data-t="tc_footer"><strong data-t="tc_footer_lbl">Regla del Valle:</strong> Los tres vértices deben sostenerse simultáneamente. Un negocio con Claridad y Cash Flow pero sin Consistencia es dependiente del fundador. Con Claridad y Consistencia pero sin Cash Flow, quema efectivo hasta la extinción. Con Cash Flow y Consistencia pero sin Claridad, escala el modelo equivocado.</span>
+  </div>
+</div>
+
+
+<!-- MAPA DEL VALLE — conectado en tiempo real al Semáforo Sección 07 -->
+<div class="valle-mapa a2">
+  <div class="valle-mapa-lbl">
+    <span data-t="mapa_lbl">◆ Mapa del Valle · Posición según semáforo mensual</span>
+    <em data-t="mapa_sub">Completa la Sección 07 → tu posición se mueve en tiempo real</em>
+  </div>
+
+  <svg width="100%" viewBox="0 0 680 210" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="vsky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#E4DED0"/>
+        <stop offset="100%" stop-color="#FAF7F0"/>
+      </linearGradient>
+      <linearGradient id="vterr" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"   stop-color="#0D1E3A"/>
+        <stop offset="18%"  stop-color="#1A3560"/>
+        <stop offset="36%"  stop-color="#2A1508"/>
+        <stop offset="50%"  stop-color="#170904"/>
+        <stop offset="64%"  stop-color="#0A2E12"/>
+        <stop offset="82%"  stop-color="#0A4A2E"/>
+        <stop offset="100%" stop-color="#052015"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Cielo -->
+    <rect width="680" height="210" fill="url(#vsky)"/>
+
+    <!-- Terreno sólido -->
+    <path d="M 0,210 L 0,92
+             C 28,76 58,54 90,44
+             C 118,35 145,46 165,64
+             C 188,84 202,108 222,133
+             C 240,154 258,174 282,192
+             C 305,204 325,210 345,213
+             C 365,210 385,204 405,192
+             C 425,178 440,158 458,136
+             C 476,112 496,86 520,65
+             C 548,42 575,27 608,16
+             C 632,8  656,5  680,3
+             L 680,210 Z"
+          fill="url(#vterr)"/>
+
+    <!-- Perfil del terreno -->
+    <path d="M 0,92 C 28,76 58,54 90,44 C 118,35 145,46 165,64 C 188,84 202,108 222,133 C 240,154 258,174 282,192 C 305,204 325,210 345,213 C 365,210 385,204 405,192 C 425,178 440,158 458,136 C 476,112 496,86 520,65 C 548,42 575,27 608,16 C 632,8 656,5 680,3"
+          fill="none" stroke="rgba(250,247,240,.10)" stroke-width="1.5"/>
+
+    <!-- Sombra fondo del valle -->
+    <ellipse cx="345" cy="213" rx="96" ry="13" fill="rgba(176,48,32,.06)"/>
+
+    <!-- Líneas divisorias etapas -->
+    <line x1="228" y1="0" x2="228" y2="210" stroke="rgba(200,137,26,.16)" stroke-width="0.5" stroke-dasharray="3 6"/>
+    <line x1="458" y1="0" x2="458" y2="210" stroke="rgba(10,122,85,.18)" stroke-width="0.5" stroke-dasharray="3 6"/>
+
+    <!-- Labels etapas -->
+    <text x="114" y="16" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" letter-spacing="1.6" fill="rgba(250,247,240,.38)">GROW · 0–6M</text>
+    <text x="343" y="16" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" letter-spacing="1.6" fill="rgba(176,48,32,.70)">CROSS · EL VALLE · 6–24M</text>
+    <text x="569" y="16" text-anchor="middle" font-family="Space Mono,monospace" font-size="8" letter-spacing="1.6" fill="rgba(10,122,85,.70)">SCALE · 24M+</text>
+
+    <!-- Ruta dorada del emprendedor -->
+    <path d="M 40,92 C 72,72 96,52 120,46 C 142,40 160,50 176,66 C 192,82 206,106 224,132 C 242,156 262,176 285,192 C 306,204 326,210 345,213 C 364,210 384,204 405,192 C 424,178 440,158 458,134 C 478,108 500,82 524,62 C 552,40 578,26 600,18"
+          fill="none" stroke="rgba(200,137,26,.48)" stroke-width="1.5" stroke-dasharray="4 5"/>
+
+    <!-- Hitos clicables -->
+    <!-- 6M: entrada al valle -->
+    <g style="cursor:pointer" onclick="document.getElementById('sec01').scrollIntoView({behavior:'smooth'})">
+      <circle cx="176" cy="66" r="10" fill="transparent"/>
+      <circle cx="176" cy="66" r="3.5" fill="#FAF7F0" stroke="rgba(200,137,26,.7)" stroke-width="1.5"/>
+      <text x="176" y="56" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="rgba(200,137,26,.75)" letter-spacing=".5">6M</text>
+    </g>
+
+    <!-- 14M: fondo del valle -->
+    <g style="cursor:pointer" onclick="document.getElementById('sec07').scrollIntoView({behavior:'smooth'})">
+      <circle cx="345" cy="213" r="10" fill="transparent"/>
+      <circle cx="345" cy="213" r="3.5" fill="#FAF7F0" stroke="rgba(176,48,32,.7)" stroke-width="1.5"/>
+      <text x="345" y="202" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="rgba(176,48,32,.72)" letter-spacing=".5">FONDO</text>
+    </g>
+
+    <!-- 20M: salida -->
+    <g style="cursor:pointer" onclick="document.getElementById('sec05').scrollIntoView({behavior:'smooth'})">
+      <circle cx="458" cy="136" r="10" fill="transparent"/>
+      <circle cx="458" cy="136" r="3.5" fill="#FAF7F0" stroke="rgba(200,137,26,.7)" stroke-width="1.5"/>
+      <text x="458" y="125" text-anchor="middle" font-family="Space Mono,monospace" font-size="7" fill="rgba(200,137,26,.75)" letter-spacing=".5">20M</text>
+    </g>
+
+    <!-- SCALE -->
+    <g style="cursor:pointer" onclick="document.getElementById('sec07').scrollIntoView({behavior:'smooth'})">
+      <circle cx="600" cy="18" r="10" fill="transparent"/>
+      <circle cx="600" cy="18" r="3.5" fill="rgba(10,122,85,.9)" stroke="#FAF7F0" stroke-width="1.5"/>
+      <text x="620" y="22" font-family="Space Mono,monospace" font-size="7" fill="rgba(10,122,85,.85)" letter-spacing=".5">SCALE</text>
+    </g>
+
+    <!-- POSICIÓN ACTUAL — animada por el semáforo -->
+    <g id="valle-pos" style="transform:translate(345px,213px)">
+      <circle id="valle-ring" r="12" fill="none" stroke="rgba(176,48,32,.45)" stroke-width="0.8"/>
+      <circle id="valle-dot"  r="7"  fill="#B03020"/>
+      <rect   id="valle-bg"   x="-24" y="-23" width="48" height="16" rx="2" fill="rgba(15,35,71,.85)"/>
+      <text   id="valle-txt"  x="0" y="-12" text-anchor="middle" font-family="Space Mono,monospace" font-size="9" font-weight="700" fill="rgba(200,137,26,.9)">—</text>
+    </g>
+
+  </svg>
+
+  <!-- Hitos descriptivos -->
+  <div class="valle-hitos">
+    <div class="valle-hito" onclick="document.getElementById('sec01').scrollIntoView({behavior:'smooth'})">
+      <div class="vh-code" style="color:var(--wine2)" data-t="vh0">6M · Entrada</div>
+      <div class="vh-desc">MRR + Retención<br>toman el control</div>
+    </div>
+    <div class="valle-hito" onclick="document.getElementById('sec03').scrollIntoView({behavior:'smooth'})">
+      <div class="vh-code" style="color:var(--red)" data-t="vh1">12–14M · Fondo</div>
+      <div class="vh-desc">CAC · IDF · Caja<br>los tres en tensión</div>
+    </div>
+    <div class="valle-hito" onclick="document.getElementById('sec05').scrollIntoView({behavior:'smooth'})">
+      <div class="vh-code" style="color:var(--wine2)" data-t="vh2">18–20M · Salida</div>
+      <div class="vh-desc">Sistema > Fundador<br>RACI documentado</div>
+    </div>
+    <div class="valle-hito" onclick="document.getElementById('sec07').scrollIntoView({behavior:'smooth'})">
+      <div class="vh-code" style="color:var(--green)" data-t="vh3">24M · SCALE</div>
+      <div class="vh-desc">Semáforo verde<br>listo para escalar</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════
+     01 · MRR Y CRECIMIENTO
+════════════════════════════ -->
+<p id="sec01" class="sl a3"><span class="sn">01</span><span data-t="s01_title">MRR y motor de ingresos — el pulso mensual del negocio</span></p>
+<p class="sl-sub a3"><span data-t="s01_sub">El MRR no mide cuánto se vendió en un mes — mide cuánto ingreso está garantizado el próximo mes antes de conseguir un cliente nuevo. Es la diferencia entre un negocio predecible y uno que empieza desde cero cada 30 días.</span></p>
+
+<div class="g2 mb a4">
+
+  <!-- MRR FÓRMULA -->
+  <div class="panel wa">
+    <p class="pt"><span data-t="pt_mrr">MRR · Ingresos Recurrentes Mensuales</span> <span class="tag" data-t="pt_mrr_tag">Pulso del modelo</span></p>
+    <div class="ctx"><strong data-t="ctx_mrr_lbl">Por qué importa en el valle:</strong> <strong class="bld-n">El MRR es el único número que revela si el negocio tiene memoria.</strong> Si cada mes se cobra de nuevo a los mismos clientes sin conseguirlos de nuevo, <strong class="bld-n">hay modelo.</strong> Si no, <strong class="bld-r" data-t="ns_hay_ej">hay ejecución, no sistema.</strong></div>
+    <div class="formula">
+      <p class="f-lbl" data-t="flbl_mrr">Descomposición del MRR</p>
+      <p class="f-eq"><span class="res">MRR total</span> <span class="op">=</span> MRR nuevo<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="op">+</span> MRR de expansión (upsell / cross-sell existentes)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="op">−</span> MRR contracción (downgrade)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="op">−</span> MRR churneado (cancelaciones)</p>
+      <p class="f-note" data-t="fn_mrr"><strong class="bld-n">El MRR de expansión es el más eficiente</strong>: viene de clientes ya adquiridos, con CAC=0. Un negocio sano tiene MRR de expansión ≥ MRR churneado → Net Revenue Retention &gt;100%.</p>
+    </div>
+    <div class="ex">
+      <p class="ex-lbl" data-t="exl0">Consultoría de marketing · mes 12</p>
+      <p class="ex-t">5 clientes recurrentes × $400/mes = <strong>$2,000 MRR base</strong>. Mes 13: 2 clientes nuevos × $400 = +$800 nuevo. 1 cliente sube a $600 = +$200 expansión. 0 cancelaciones. MRR mes 13 = <strong>$3,000 (+50%)</strong>.</p>
+    </div>
+    <div class="ex">
+      <p class="ex-lbl" data-t="exl1">Producto físico con suscripción mensual</p>
+      <p class="ex-t">Caja de café premium: 30 suscriptores × $28/mes = <strong>$840 MRR</strong>. Mes siguiente: +8 nuevos, −3 cancelaciones, 0 upsell. MRR = <strong>$1,120 (+33%)</strong>. Net MRR Churn = −3/30 = <strong>−10%</strong>. A revisar.</p>
+    </div>
+    <div class="watch"><strong data-t="watch_mrr_lbl">Señal de alerta:</strong> MRR que no crece 3 meses consecutivos en el valle indica que la adquisición y la retención se neutralizan. El negocio está en un treadmill — trabaja para mantenerse, no para avanzar.</div>
+  </div>
+
+  <!-- MRR GROWTH RATE -->
+  <div class="panel na sc">
+    <p class="pt"><span data-t="pt_mrrg">MRR Growth Rate</span> <span class="tag" data-t="pt_mrrg_tag">¿La curva sube?</span></p>
+    <div class="ctx"><strong data-t="ctx_mrrg_lbl">Lectura del gráfico:</strong> Cada barra = MRR mensual. El color indica la tasa de crecimiento MoM. Verde &gt;10%, Ámbar 5–10%, Rojo &lt;5% o negativo.</div>
+    <div class="mrr-chart">
+      <div class="mrr-bars">
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$1.2K</div>
+          <div class="mrr-bar" style="height:22%;background:var(--amber);--w:100%;animation:fillbar 0s"></div>
+          <div class="mrr-bar-lbl">M6</div>
+        </div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$1.5K</div>
+          <div class="mrr-bar" style="height:28%;background:var(--green)"></div>
+          <div class="mrr-bar-lbl">M7</div>
+        </div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$1.9K</div>
+          <div class="mrr-bar" style="height:35%;background:var(--green)"></div>
+          <div class="mrr-bar-lbl">M8</div>
+        </div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$2.2K</div>
+          <div class="mrr-bar" style="height:41%;background:var(--green)"></div>
+          <div class="mrr-bar-lbl">M9</div>
+        </div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$2.4K</div>
+          <div class="mrr-bar" style="height:45%;background:var(--amber)"></div>
+          <div class="mrr-bar-lbl">M10</div>
+        </div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$2.3K</div>
+          <div class="mrr-bar" style="height:43%;background:var(--red)"></div>
+          <div class="mrr-bar-lbl">M11</div>
+        </div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$2.7K</div>
+          <div class="mrr-bar" style="height:50%;background:var(--green)"></div>
+          <div class="mrr-bar-lbl">M12</div>
+        </div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$3.1K</div>
+          <div class="mrr-bar" style="height:58%;background:var(--green)"></div>
+          <div class="mrr-bar-lbl">M13</div>
+        </div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$3.5K</div>
+          <div class="mrr-bar" style="height:65%;background:var(--green)"></div>
+          <div class="mrr-bar-lbl">M14</div>
+        </div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$3.8K</div>
+          <div class="mrr-bar" style="height:71%;background:var(--green)"></div>
+          <div class="mrr-bar-lbl">M15</div>
+        </div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$4.2K</div>
+          <div class="mrr-bar" style="height:78%;background:var(--green)"></div>
+          <div class="mrr-bar-lbl">M18</div>
+        </div>
+        <div class="mrr-bar-wrap">
+          <div class="mrr-bar-val">$5.4K</div>
+          <div class="mrr-bar" style="height:100%;background:var(--green)"></div>
+          <div class="mrr-bar-lbl">M24</div>
+        </div>
+      </div>
+      <div class="mrr-axis"><span>Referencia ilustrativa</span><span>MoM: 🟢 &gt;10% · 🟡 5–10% · 🔴 &lt;5%</span></div>
+    </div>
+
+    <div class="formula">
+      <p class="f-lbl" data-t="flbl_formulas">Fórmulas clave</p>
+      <p class="f-eq"><span class="res">MRR Growth %</span> <span class="op">=</span> (MRR este mes <span class="op">−</span> MRR mes anterior) <span class="op">÷</span> MRR mes anterior <span class="op">×</span> 100<br>
+      <span class="res">Net MRR Churn</span> <span class="op">=</span> (MRR churneado <span class="op">−</span> MRR expansión) <span class="op">÷</span> MRR inicio de mes <span class="op">×</span> 100</p>
+      <p class="f-note" data-t="fn_nrr">Net MRR Churn negativo (cuando expansión &gt; churn) se llama Net Revenue Retention &gt;100% y es la señal más poderosa de salud del negocio en el valle.</p>
+    </div>
+    <div class="insight"><strong data-t="insight_mrr_lbl">Regla del valle:</strong> <strong class="bld" data-t="ins_mrr_txt">Si el MRR cae un mes, no es una crisis — es una señal.</strong> <strong class="bld-w" data-t="ins_mrr_b">Si cae dos meses seguidos, es un problema sistémico</strong> de retención o adquisición. <strong class="bld-r" data-t="ins_mrr_c">Si cae tres, es prioridad absoluta</strong> antes que cualquier otra iniciativa.</div>
+  </div>
+
+</div>
+
+
+<!-- ════════════════════════════
+     02 · COHORT RETENTION
+════════════════════════════ -->
+<p id="sec02" class="sl a5"><span class="sn">02</span><span data-t="s02_title">Cohort Retention — ¿los clientes se quedan o se van?</span></p>
+<p class="sl-sub a5">El análisis de cohortes revela lo que el MRR oculta. Un negocio puede mostrar MRR creciente mientras pierde el 60% de sus clientes cada mes — porque adquiere más de los que pierde. Las cohortes muestran la verdad desnuda: ¿qué porcentaje de los clientes del mes X sigue activo en el mes X+N?</p>
+
+<div class="g2 mb a5">
+
+  <div class="panel wa">
+    <p class="pt"><span data-t="pt_coh">Análisis de cohortes · primeras 6 cohortes</span> <span class="tag" data-t="pt_coh_tag">Referencia ilustrativa</span></p>
+    <div class="ctx"><strong data-t="ctx_coh_lbl">Cómo leer la tabla:</strong> Cada fila = una cohorte (clientes que entraron ese mes). Cada columna = meses desde la entrada. El número = % de esa cohorte que sigue activa.</div>
+    <div class="cohort-wrap">
+      <table class="cohort-tbl">
+        <thead>
+          <tr>
+            <th>Cohorte</th>
+            <th>M+0</th>
+            <th>M+1</th>
+            <th>M+2</th>
+            <th>M+3</th>
+            <th>M+4</th>
+            <th>M+5</th>
+            <th>M+6</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mes 6 (n=12)</td>
+            <td class="cc-g">100%</td>
+            <td class="cc-g">83%</td>
+            <td class="cc-n">75%</td>
+            <td class="cc-n">67%</td>
+            <td class="cc-a">58%</td>
+            <td class="cc-a">58%</td>
+            <td class="cc-a">50%</td>
+          </tr>
+          <tr>
+            <td>Mes 7 (n=15)</td>
+            <td class="cc-g">100%</td>
+            <td class="cc-g">87%</td>
+            <td class="cc-n">80%</td>
+            <td class="cc-n">73%</td>
+            <td class="cc-a">60%</td>
+            <td class="cc-a">60%</td>
+            <td class="cc-d">—</td>
+          </tr>
+          <tr>
+            <td>Mes 8 (n=18)</td>
+            <td class="cc-g">100%</td>
+            <td class="cc-g">89%</td>
+            <td class="cc-g">83%</td>
+            <td class="cc-n">78%</td>
+            <td class="cc-n">72%</td>
+            <td class="cc-d">—</td>
+            <td class="cc-d">—</td>
+          </tr>
+          <tr>
+            <td>Mes 9 (n=22)</td>
+            <td class="cc-g">100%</td>
+            <td class="cc-g">91%</td>
+            <td class="cc-g">86%</td>
+            <td class="cc-g">82%</td>
+            <td class="cc-d">—</td>
+            <td class="cc-d">—</td>
+            <td class="cc-d">—</td>
+          </tr>
+          <tr>
+            <td>Mes 10 (n=25)</td>
+            <td class="cc-g">100%</td>
+            <td class="cc-g">92%</td>
+            <td class="cc-g">88%</td>
+            <td class="cc-d">—</td>
+            <td class="cc-d">—</td>
+            <td class="cc-d">—</td>
+            <td class="cc-d">—</td>
+          </tr>
+          <tr>
+            <td>Mes 11 (n=28)</td>
+            <td class="cc-g">100%</td>
+            <td class="cc-g">93%</td>
+            <td class="cc-d">—</td>
+            <td class="cc-d">—</td>
+            <td class="cc-d">—</td>
+            <td class="cc-d">—</td>
+            <td class="cc-d">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight"><strong data-t="coh_pos_lbl">Señal positiva:</strong> Las cohortes recientes (Mes 9, 10, 11) muestran mejor retención que las anteriores. El negocio está mejorando su onboarding y entrega de valor. La cohorte del Mes 6 con 50% a M+6 es el benchmark a superar.</div>
+    <div class="watch"><strong data-t="coh_alrt_lbl">Señal de alerta:</strong> Si ninguna cohorte supera el 40% a los 6 meses, el problema no es la adquisición — es el producto o la promesa. Crecer el CAC sobre un modelo con retención rota destruye caja a velocidad acelerada.</div>
+  </div>
+
+  <div class="panel na">
+    <p class="pt"><span data-t="pt_bench">Interpretación y benchmarks</span> <span class="tag" data-t="pt_bench_tag">Por tipo de negocio</span></p>
+    <div class="formula">
+      <p class="f-lbl" data-t="flbl_churn">Tasa de retención vs churn</p>
+      <p class="f-eq"><span class="res">Churn mensual %</span> <span class="op">=</span> Clientes perdidos ese mes <span class="op">÷</span> Clientes inicio de mes <span class="op">×</span> 100<br>
+      <span class="res">LTV</span> <span class="op">=</span> Ticket promedio mensual <span class="op">÷</span> Churn mensual %</p>
+      <p class="f-note" data-t="fn_churn">Con churn del 5%/mes: LTV = 20× ticket mensual. Con churn del 15%/mes: LTV = 6.7× ticket mensual. La diferencia en valor del negocio es enorme.</p>
+    </div>
+
+    <div class="sens-table">
+      <div class="sens-row">
+        <span class="sens-pct" style="color:var(--green)">SaaS / software</span>
+        <div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="--w:90%;background:var(--green)"></div></div></div>
+        <span class="sens-val" style="color:var(--green)">&gt;85% a M+6</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-pct" style="color:var(--elec2)">Consultoría recurrente</span>
+        <div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="--w:75%;background:var(--elec)"></div></div></div>
+        <span class="sens-val" style="color:var(--elec2)">&gt;70% a M+6</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-pct" style="color:var(--elec2)">Servicios profesionales</span>
+        <div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="--w:65%;background:var(--elec)"></div></div></div>
+        <span class="sens-val" style="color:var(--elec2)">&gt;60% a M+6</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-pct" style="color:var(--amber)">E-commerce / suscripción</span>
+        <div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="--w:55%;background:var(--amber)"></div></div></div>
+        <span class="sens-val" style="color:var(--amber)">&gt;50% a M+6</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-pct" style="color:var(--amber)">Producto físico puntual</span>
+        <div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="--w:40%;background:var(--amber)"></div></div></div>
+        <span class="sens-val" style="color:var(--amber)">&gt;35% a M+6</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-pct" style="color:var(--red)" data-t="bench_alrt">Zona de alerta universal</span>
+        <div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="--w:25%;background:var(--red)"></div></div></div>
+        <span class="sens-val" style="color:var(--red)">&lt;30% a M+3</span>
+      </div>
+    </div>
+
+    <div class="ctx" style="margin-top:14px"><strong data-t="pal_lbl">Palancas de retención en el valle:</strong> Onboarding claro en los primeros 7 días · Primer resultado tangible antes del día 30 · Punto de contacto proactivo en el día 45 · Encuesta de satisfacción en el día 60 · Oferta de renovación antes del día 85.</div>
+  </div>
+
+</div>
+
+
+<!-- ════════════════════════════
+     03 · CAC PAYBACK + UNIT ECONOMICS POR CANAL
+════════════════════════════ -->
+<p id="sec03" class="sl a5"><span class="sn">03</span><span data-t="s03_title">CAC Payback y Unit Economics por canal — dónde poner el dinero</span></p>
+<p class="sl-sub a5">En el arranque, el CAC era una métrica de supervivencia. En el valle, es una métrica de asignación de capital. El CAC Payback period revela cuánto tiempo hay que financiar cada cliente nuevo antes de que empiece a retornar. La unit economics por canal revela qué canales merecen más inversión y cuáles hay que cerrar.</p>
+
+<div class="g2 mb a6">
+
+  <div class="panel ea">
+    <p class="pt"><span data-t="pt_cac">CAC Payback Period</span> <span class="tag" data-t="pt_cac_tag">¿Cuándo recupera lo que costó?</span></p>
+    <div class="ctx"><strong data-t="ctx_cac_lbl">Por qué es crítico en el valle:</strong> <strong class="bld-r">Si el payback es de 8 meses y el churn promedio es de 5 meses, el negocio jamás recupera el costo de adquisición.</strong> Escalar en esas condiciones es financiar una quema de caja acelerada.</div>
+    <div class="formula">
+      <p class="f-lbl" data-t="flbl_cac">Fórmula</p>
+      <p class="f-eq"><span class="res">CAC Payback</span> <span class="op">=</span> CAC<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="op">÷</span> (Ticket mensual <span class="op">×</span> Margen bruto %)</p>
+      <p class="f-note" data-t="fn_cac">El denominador es el margen bruto mensual por cliente — lo que cada cliente aporta, neto de costos directos, para recuperar lo que costó adquirirlo.</p>
+    </div>
+    <div class="ex">
+      <p class="ex-lbl" data-t="exl2">Agencia de contenido · cliente recurrente</p>
+      <p class="ex-t">CAC = <strong>$280</strong>. Retainer mensual = $600. Margen bruto = 55%. Contribución mensual = $330. Payback = 280 ÷ 330 = <strong>0.85 meses</strong>. Excelente. Cualquier canal con ese payback merece más inversión.</p>
+    </div>
+    <div class="ex">
+      <p class="ex-lbl" data-t="exl3">E-commerce · producto físico</p>
+      <p class="ex-t">CAC = <strong>$45</strong>. Ticket promedio = $38. Margen = 42%. Contribución = $16. Payback = 45 ÷ 16 = <strong>2.8 compras</strong>. ¿La frecuencia de compra lo permite? Si el cliente compra 1×/trimestre, el payback es de <strong>8.4 meses</strong>. Revisar.</p>
+    </div>
+
+    <div class="payback-gauge">
+      <div class="pg-track">
+        <div class="pg-fill" style="--w:50%;background:linear-gradient(90deg,var(--green) 0%,var(--amber) 50%,var(--red) 100%)"></div>
+      </div>
+      <div class="pg-zones">
+        <div class="pg-zone" style="color:var(--green)">Excelente</div>
+        <div class="pg-zone" style="color:var(--green)">Bueno</div>
+        <div class="pg-zone" style="color:var(--amber)">Aceptable</div>
+        <div class="pg-zone" style="color:var(--amber)">Tenso</div>
+        <div class="pg-zone" style="color:var(--red)">Crítico</div>
+      </div>
+      <div class="pg-marks"><span>&lt;1M</span><span>2M</span><span>3M</span><span>4M</span><span>5M</span><span style="color:var(--red)">6M+</span></div>
+    </div>
+    <div class="watch"><strong data-t="watch_cac_lbl">Regla del valle:</strong> <strong class="bld" data-t="watch_cac_bld">CAC Payback &gt;6 meses en el valle exige revisar precio, canal o estructura de costos antes de aumentar el gasto en adquisición.</strong> Escalar sobre payback largo financia el crecimiento con deuda implícita.</div>
+
+    <!-- CALCULADORA CAC PAYBACK v1.2 -->
+    <div class="calc-box">
+      <span class="calc-box-label" data-t="calc_lbl">◆ Calculadora · CAC Payback — ingresa tus números reales</span>
+      <div class="calc-inputs">
+        <div class="calc-field">
+          <label data-t="calc_cac">CAC ($)</label>
+          <input type="number" id="inp-cac" placeholder="ej. 280" min="0" step="1">
+        </div>
+        <div class="calc-field">
+          <label data-t="calc_ticket">Ticket mensual ($)</label>
+          <input type="number" id="inp-ticket" placeholder="ej. 600" min="0" step="1">
+        </div>
+        <div class="calc-field">
+          <label data-t="calc_margen">Margen bruto (%)</label>
+          <input type="number" id="inp-margen" placeholder="ej. 55" min="0" max="100" step="1">
+        </div>
+        <button class="calc-btn" onclick="calcPayback()" aria-label="Calcular CAC Payback"><span data-t="calc_btn">Calcular →</span></button>
+      </div>
+      <div class="calc-result" id="calc-result-payback">
+        <div class="calc-result-inner">
+          <div class="calc-val" id="calc-val-payback"></div>
+          <div class="calc-verdict-wrap">
+            <div class="calc-verdict" id="calc-verdict-payback"></div>
+            <div class="calc-note" id="calc-note-payback"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel ga">
+    <p class="pt"><span data-t="pt_ue">Unit Economics por canal</span> <span class="tag" data-t="pt_ue_tag">Referencia ilustrativa</span></p>
+    <div class="ctx"><strong data-t="ctx_ue_lbl">Cómo leer:</strong> Cada fila = un canal. Las columnas muestran CAC, LTV estimado, ratio LTV:CAC y payback. Verde = invertir más · Ámbar = optimizar · Rojo = pausar o cerrar.</div>
+
+    <div class="canal-ue">
+      <div class="cue-row header">
+        <span class="cue-hdr" data-t="cue_canal">Canal</span>
+        <span class="cue-hdr" data-t="cue_ltv">LTV:CAC ratio</span>
+        <span class="cue-hdr" data-t="cue_cac">CAC</span>
+        <span class="cue-hdr" data-t="cue_pb">Payback</span>
+        <span class="cue-hdr" data-t="cue_acc">Acción</span>
+      </div>
+      <div class="cue-row">
+        <span class="cue-name">Referidos</span>
+        <div class="cue-bar-wrap"><div class="cue-bar-track"><div class="cue-bar-fill" style="--w:95%;background:var(--green)"></div></div></div>
+        <span class="cue-val" style="color:var(--green)">$18</span>
+        <span class="cue-val" style="color:var(--green)">0.9M</span>
+        <span class="cue-val"><span class="badge bg-g">Escalar</span></span>
+      </div>
+      <div class="cue-row">
+        <span class="cue-name">SEO / orgánico</span>
+        <div class="cue-bar-wrap"><div class="cue-bar-track"><div class="cue-bar-fill" style="--w:85%;background:var(--green)"></div></div></div>
+        <span class="cue-val" style="color:var(--green)">$35</span>
+        <span class="cue-val" style="color:var(--green)">1.8M</span>
+        <span class="cue-val"><span class="badge bg-g">Invertir</span></span>
+      </div>
+      <div class="cue-row">
+        <span class="cue-name">Email / nurture</span>
+        <div class="cue-bar-wrap"><div class="cue-bar-track"><div class="cue-bar-fill" style="--w:70%;background:var(--elec)"></div></div></div>
+        <span class="cue-val" style="color:var(--elec2)">$62</span>
+        <span class="cue-val" style="color:var(--elec2)">3.2M</span>
+        <span class="cue-val"><span class="badge bg-n">Mantener</span></span>
+      </div>
+      <div class="cue-row">
+        <span class="cue-name">Meta Ads</span>
+        <div class="cue-bar-wrap"><div class="cue-bar-track"><div class="cue-bar-fill" style="--w:45%;background:var(--amber)"></div></div></div>
+        <span class="cue-val" style="color:var(--amber)">$148</span>
+        <span class="cue-val" style="color:var(--amber)">5.1M</span>
+        <span class="cue-val"><span class="badge bg-a">Optimizar</span></span>
+      </div>
+      <div class="cue-row">
+        <span class="cue-name">Google Ads</span>
+        <div class="cue-bar-wrap"><div class="cue-bar-track"><div class="cue-bar-fill" style="--w:30%;background:var(--amber)"></div></div></div>
+        <span class="cue-val" style="color:var(--amber)">$210</span>
+        <span class="cue-val" style="color:var(--amber)">6.8M</span>
+        <span class="cue-val"><span class="badge bg-a">Revisar</span></span>
+      </div>
+      <div class="cue-row">
+        <span class="cue-name">Ferias / eventos</span>
+        <div class="cue-bar-wrap"><div class="cue-bar-track"><div class="cue-bar-fill" style="--w:14%;background:var(--red)"></div></div></div>
+        <span class="cue-val" style="color:var(--red)">$480</span>
+        <span class="cue-val" style="color:var(--red)">9M+</span>
+        <span class="cue-val"><span class="badge bg-r">Pausar</span></span>
+      </div>
+    </div>
+    <div class="insight"><strong data-t="insight_ue_lbl">Regla de la concentración:</strong> <strong class="bld-n" data-t="ins_ue_txt">En el valle, el 80% del presupuesto de adquisición debe ir a los 2 canales con mejor LTV:CAC.</strong> Dispersar el presupuesto entre 5 canales en busca del canal perfecto es la forma más eficiente de no encontrar ninguno.</div>
+  </div>
+
+</div>
+
+
+<!-- ════════════════════════════
+     04 · BCG POR CANAL
+════════════════════════════ -->
+<p id="sec04" class="sl a6"><span class="sn">04</span><span data-t="s04_title">BCG por canal — dónde está el crecimiento y dónde está el margen</span></p>
+<p class="sl-sub a6"><span data-t="s04_sub">En en GROW la matriz BCG se aplicó a productos. En el valle se aplica a canales: ¿qué canal crece rápido y genera margen (Estrella)? ¿cuál genera margen pero no crece más (Vaca)? ¿cuál crece pero a pérdida (Interrogante)? ¿cuál no hace ninguna de las dos cosas (Perro)?</span></p>
+
+<div class="g2 mb a6">
+
+  <div class="panel wa">
+    <p class="pt"><span data-t="pt_bcg">Matriz BCG · canales de adquisición</span> <span class="tag" data-t="pt_bcg_tag">Crecimiento vs. rentabilidad</span></p>
+    <div class="ctx"><strong data-t="ctx_bcg_lbl">Ejes:</strong> Horizontal = tasa de crecimiento del canal (MoM). Vertical = rentabilidad (LTV:CAC ratio). Un canal puede ser eficiente pero estancado — o crecer rápido a costos insostenibles.</div>
+    <div class="bcg-grid">
+      <div class="bcg-cell estrella">
+        <div class="bcg-icon">⭐</div>
+        <div class="bcg-label" data-t="bcg0">Estrella</div>
+        <div class="bcg-desc" data-t="bcgd0">Alto crecimiento · Alta rentabilidad. Referidos y SEO suelen caer aquí. Invertir para sostener el crecimiento antes de que maduren a Vaca.</div>
+        <span class="bcg-strat" data-t="bs0">Invertir agresivamente</span>
+      </div>
+      <div class="bcg-cell pregunta">
+        <div class="bcg-icon">❓</div>
+        <div class="bcg-label" data-t="bcg1">Interrogante</div>
+        <div class="bcg-desc" data-t="bcgd1">Alto crecimiento · Baja rentabilidad. Meta Ads nuevo o influencer sin historial. Decidir: ¿invertir para llegar a Estrella o cortar antes de quemar más?</div>
+        <span class="bcg-strat" data-t="bs1">Decidir en 60 días</span>
+      </div>
+      <div class="bcg-cell vaca">
+        <div class="bcg-icon">🐄</div>
+        <div class="bcg-label" data-t="bcg2">Vaca</div>
+        <div class="bcg-desc" data-t="bcgd2">Bajo crecimiento · Alta rentabilidad. Email nurture y base de clientes. No crecer más — ordeñar el margen para financiar Estrellas e Interrogantes.</div>
+        <span class="bcg-strat" data-t="bs2">Mantener · no invertir más</span>
+      </div>
+      <div class="bcg-cell perro">
+        <div class="bcg-icon">🐕</div>
+        <div class="bcg-label" data-t="bcg3">Perro</div>
+        <div class="bcg-desc" data-t="bcgd3">Bajo crecimiento · Baja rentabilidad. Ferias, catálogos físicos, o un canal que "siempre se ha hecho" sin medir. Cierre inmediato y reasignación.</div>
+        <span class="bcg-strat" data-t="bs3">Cerrar / reasignar</span>
+      </div>
+    </div>
+    <div class="bcg-axis-x"><span data-t="bcg_ax_l">← Baja rentabilidad</span><span data-t="bcg_ax_r">Alta rentabilidad →</span></div>
+    <div class="bcg-axis-lbl" data-t="bcg_ax_lbl">Eje horizontal: LTV:CAC del canal</div>
+  </div>
+
+  <div class="panel na">
+    <p class="pt"><span data-t="pt_diag">Diagnóstico de canal en el valle</span> <span class="tag" data-t="pt_diag_tag">Cómo asignar el presupuesto</span></p>
+    <div class="mst">
+      <div class="mst-row">
+        <div class="mst-dot g"></div>
+        <div>
+          <p class="mst-t" data-t="mt0">Estrella confirmada → duplicar presupuesto</p>
+          <p class="mst-b" data-t="mtb0">Un canal con LTV:CAC &gt;4× y crecimiento MoM &gt;10% durante 3 meses consecutivos no es suerte — es un sistema. Asignarle el 50–60% del presupuesto de adquisición.</p>
+        </div>
+        <span class="mst-when">Mes 8–12</span>
+      </div>
+      <div class="mst-row">
+        <div class="mst-dot a"></div>
+        <div>
+          <p class="mst-t" data-t="mt1">Interrogante → dar 60 días y una hipótesis</p>
+          <p class="mst-b" data-t="mtb1">No extender un canal que no funciona con más tiempo sin una hipótesis específica de por qué va a mejorar. Si no hay hipótesis clara, es un Perro disfrazado.</p>
+        </div>
+        <span class="mst-when">Mes 10–14</span>
+      </div>
+      <div class="mst-row">
+        <div class="mst-dot n"></div>
+        <div>
+          <p class="mst-t" data-t="mt2">Vaca → proteger la rentabilidad, no crecer</p>
+          <p class="mst-b" data-t="mtb2">Invertir en una Vaca para hacerla crecer suele matar la rentabilidad. El objetivo es mantener el flujo de margen y redirigir la energía a las Estrellas.</p>
+        </div>
+        <span class="mst-when">Continuo</span>
+      </div>
+      <div class="mst-row">
+        <div class="mst-dot r"></div>
+        <div>
+          <p class="mst-t" data-t="mt3">Perro → cerrar sin sentimentalismo</p>
+          <p class="mst-b">El argumento "llevo 2 años en ferias" no es una razón financiera. <strong class="bld-r" data-t="watch_err_bld">Si los datos confirman Perro, cada mes que se mantiene activo financia el estancamiento.</strong></p>
+        </div>
+        <span class="mst-when">Inmediato</span>
+      </div>
+    </div>
+    <div class="watch"><strong data-t="watch_err_lbl">El error más común del valle:</strong> mantener 5 canales activos "para diversificar" cuando ninguno recibe suficiente inversión para madurar. La concentración estratégica en 2 canales probados produce más crecimiento que la dispersión en 6.</div>
+  </div>
+
+</div>
+
+
+<!-- ════════════════════════════
+     05 · DEPENDENCIA + CAPITAL DE TRABAJO
+════════════════════════════ -->
+<p id="sec05" class="sl a7"><span class="sn">05</span><span data-t="s05_title">Dependencia del fundador y ciclo de capital de trabajo</span></p>
+<p class="sl-sub a7">Dos indicadores que la mayoría de los dashboards ignoran hasta que se convierten en la causa directa del colapso. La dependencia define si hay negocio o solo hay un freelancer con empleados. El ciclo de capital de trabajo define si el negocio se financia a sí mismo o si cada mes de crecimiento requiere más caja inyectada.</p>
+
+<div class="g2 mb a7">
+
+  <!-- DEPENDENCIA DEL FUNDADOR -->
+  <div class="panel wa sc">
+    <p class="pt"><span data-t="pt_idf">Índice de Dependencia del Fundador</span> <span class="tag" data-t="pt_idf_tag">¿Puede ausentarse una semana?</span></p>
+    <div class="ctx"><strong data-t="ctx_idf_lbl">Definición operativa:</strong> El porcentaje de procesos críticos del negocio — ventas, entrega, finanzas, operaciones, decisiones — que no pueden ejecutarse sin la presencia o aprobación directa del fundador.</div>
+    <div class="formula">
+      <p class="f-lbl" data-t="flbl_idf">Cálculo simplificado</p>
+      <p class="f-eq"><span class="res">IDF %</span> <span class="op">=</span> (Procesos donde el fundador es esencial <span class="op">÷</span> Total de procesos críticos) <span class="op">×</span> 100</p>
+      <p class="f-note">Proceso crítico = si no ocurre esta semana, afecta ingresos, clientes o continuidad operacional. Hacer el café no es un proceso crítico. Aprobar propuestas sí lo es.</p>
+    </div>
+
+    <div class="dep-meter">
+      <div class="dm-track">
+        <div class="dm-fill" style="--w:85%;background:linear-gradient(90deg,var(--green) 0%,var(--amber) 50%,var(--red) 75%,rgba(232,64,64,.3) 100%)"></div>
+        <div class="dm-needle" style="left:68%"></div>
+      </div>
+      <div class="dm-labels"><span style="color:var(--green)">0%</span><span></span><span style="color:var(--amber)">50%</span><span></span><span style="color:var(--red)">100%</span></div>
+      <div class="dm-zones">
+        <div class="dm-zone" style="color:var(--green);background:var(--green-d)" data-t="idf_s0">Listo para escalar</div>
+        <div class="dm-zone" style="color:var(--elec2);background:var(--elec-d)">Aceptable</div>
+        <div class="dm-zone" style="color:var(--amber);background:var(--amber-d)" data-t="idf_s2">Zona de alerta</div>
+        <div class="dm-zone" style="color:var(--red);background:var(--red-d)">Crítico</div>
+      </div>
+    </div>
+
+    <div class="sens-table">
+      <div class="sens-row">
+        <span class="sens-pct" style="color:var(--green)">&lt;40% dep.</span>
+        <div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="--w:40%;background:var(--green)"></div></div></div>
+        <span class="sens-val" style="color:var(--green)" data-t="idf_l0">Listo para contratar gerente</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-pct" style="color:var(--elec2)">40–70% dep.</span>
+        <div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="--w:70%;background:var(--elec)"></div></div></div>
+        <span class="sens-val" style="color:var(--elec2)">Meta del Valle · <strong data-t="idf_l1b">hito de salida</strong></span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-pct" style="color:var(--amber)">70–85% dep.</span>
+        <div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="--w:85%;background:var(--amber)"></div></div></div>
+        <span class="sens-val" style="color:var(--amber)">Documentar + delegar urgente</span>
+      </div>
+      <div class="sens-row">
+        <span class="sens-pct" style="color:var(--red)">&gt;85% dep.</span>
+        <div class="sens-bar-wrap"><div class="sens-bar-track"><div class="sens-bar-fill" style="--w:100%;background:var(--red)"></div></div></div>
+        <span class="sens-val" style="color:var(--red)" data-t="idf_l3">No hay negocio, hay trabajo</span>
+      </div>
+    </div>
+
+    <div class="step-item" style="margin-top:12px">
+      <span class="step-n" style="background:var(--wine-d);border-color:var(--wine-b);color:var(--wine-l)">1</span>
+      <div><p class="step-t" data-t="st0">Mapear todos los procesos críticos</p><p class="step-b" data-t="stb0">Listar cada proceso que si se detiene afecta operaciones. Clasificar: ¿puede hacerlo otra persona con instrucciones escritas?</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-n" style="background:var(--wine-d);border-color:var(--wine-b);color:var(--wine-l)">2</span>
+      <div><p class="step-t" data-t="st1">Documentar antes de delegar</p><p class="step-b" data-t="stb1">Un proceso sin documentación solo puede ser delegado al fundador que lo creó. El SOP (Standard Operating Procedure) es el puente entre dependencia y sistema.</p></div>
+    </div>
+    <div class="step-item">
+      <span class="step-n" style="background:var(--wine-d);border-color:var(--wine-b);color:var(--wine-l)">3</span>
+      <div><p class="step-t" data-t="st2">Delegar con RACI, no con fe</p><p class="step-b" data-t="stb2">Sin claridad de quién es Responsable, Accountable, Consultado e Informado en cada proceso, la delegación produce confusión y regresa al fundador. Ver sección 06.</p></div>
+    </div>
+  </div>
+
+  <!-- CICLO DE CAPITAL DE TRABAJO -->
+  <div class="panel ea">
+    <p class="pt"><span data-t="pt_cct">Ciclo de Capital de Trabajo</span> <span class="tag" data-t="pt_cct_tag">¿Se financia el crecimiento?</span></p>
+    <div class="ctx"><strong data-t="ctx_cct_lbl">El problema del valle:</strong> Un negocio puede ser rentable en el P&amp;L y estar sin caja al mismo tiempo. Si se cobra a 60 días y se paga a proveedores en 15, <strong class="bld-r">cada unidad de crecimiento consume caja antes de generarla.</strong></div>
+    <div class="formula">
+      <p class="f-lbl" data-t="flbl_cce">Ciclo de Conversión de Efectivo (CCE)</p>
+      <p class="f-eq"><span class="res">CCE</span> <span class="op">=</span> Días de Inventario<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="op">+</span> Días de Cuentas por Cobrar (DSO)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="op">−</span> Días de Cuentas por Pagar (DPO)</p>
+      <p class="f-note" data-t="fn_cce">CCE positivo = el negocio financia a sus clientes. CCE negativo = los clientes financian al negocio (modelo Amazon/Mercado Libre). En el valle, el objetivo es reducir el CCE al mínimo posible.</p>
+    </div>
+
+    <div class="wc-flow">
+      <div class="wc-node" style="border-color:var(--wine-b)">
+        <div class="wc-node-lbl" data-t="cce_inv">Días de inventario</div>
+        <div class="wc-node-val" style="color:var(--wine-l)">15d</div>
+      </div>
+      <div class="wc-arrow">→</div>
+      <div class="wc-node" style="border-color:var(--elec-b)">
+        <div class="wc-node-lbl" data-t="cce_dso">Días en cobrar (DSO)</div>
+        <div class="wc-node-val" style="color:var(--elec2)">30d</div>
+      </div>
+      <div class="wc-arrow">→</div>
+      <div class="wc-node" style="border-color:var(--green-b)">
+        <div class="wc-node-lbl" data-t="cce_dpo">Días que pago (DPO)</div>
+        <div class="wc-node-val" style="color:var(--green)">20d</div>
+      </div>
+    </div>
+    <div class="wc-total">
+      <span class="wc-total-lbl">CCE = 15 + 30 − 20 =</span>
+      <span class="wc-total-val" style="color:var(--amber)">25 días</span>
+    </div>
+
+    <div class="ex" style="margin-top:12px">
+      <p class="ex-lbl" data-t="exl4">Interpretación · CCE = 25 días</p>
+      <p class="ex-t">Por cada <strong>$1,000</strong> de ventas mensuales, el negocio tiene <strong>$833</strong> atrapados en el ciclo operativo en todo momento (1,000 × 25/30). Si el MRR crece de $5K a $10K, se necesitan <strong>$4,166 adicionales</strong> de caja solo para financiar el ciclo.</p>
+    </div>
+
+    <div class="canal-grid" style="margin-top:12px">
+      <div class="canal-card">
+        <div class="cc-name" style="color:var(--green)" data-t="cc_reduce">Reducir CCE</div>
+        <div class="cc-desc" data-t="cc_reduce_txt">Cobrar por adelantado o al inicio. Pedir anticipo del 50%. Negociar plazos con proveedores. Reducir inventario con just-in-time donde sea posible.</div>
+        <div class="cc-tags"><span class="cc-tag g">Anticipo &gt;50%</span><span class="cc-tag g">DPO &gt; DSO</span></div>
+      </div>
+      <div class="canal-card">
+        <div class="cc-name" style="color:var(--red)" data-t="cc_err">Error frecuente</div>
+        <div class="cc-desc" data-t="cc_err_txt">Financiar el crecimiento con la tarjeta de crédito personal mientras el negocio tiene $8K en cuentas por cobrar pendientes a 60 días. El problema es el DSO, no la caja.</div>
+        <div class="cc-tags"><span class="cc-tag r">DSO alto</span><span class="cc-tag r" data-t="cc_tag_err">Sin política de cobro</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ════════════════════════════
+     06 · RACI + ORGANIGRAMA
+════════════════════════════ -->
+<p id="sec06" class="sl a7"><span class="sn">06</span><span data-t="s06_title">Primer organigrama con RACI básico — quién hace qué, exactamente</span></p>
+<p class="sl-sub a7">El organigrama en el valle no es un diagrama de jerarquía — es un mapa de claridad operacional. Sin él, "todo el mundo es responsable de todo" se convierte en la razón por la que nada se hace con consistencia. El RACI elimina la ambigüedad que genera dependencia del fundador.</p>
+
+<div class="g2 mb a8">
+
+  <div class="panel na">
+    <p class="pt"><span data-t="pt_raci">Matriz RACI · procesos críticos del valle</span> <span class="tag" data-t="pt_raci_tag">Referencia ilustrativa</span></p>
+    <div class="ctx"><strong data-t="ctx_raci_lbl">Clave RACI:</strong> <span style="color:var(--wine-l)">R = Responsible</span> (hace el trabajo) · <span style="color:var(--amber)">A = Accountable</span> (responde por el resultado) · <span style="color:var(--elec2)">C = Consulted</span> (aporta criterio) · <span style="color:var(--muted)">I = Informed</span> (recibe actualización)</div>
+    <div class="raci-wrap">
+      <table class="raci-tbl">
+        <thead>
+          <tr>
+            <th data-t="raci_proc">Proceso</th>
+            <th class="r-col" data-t="raci_fund">Fundador</th>
+            <th class="a-col" data-t="raci_ops">Ops Lead</th>
+            <th class="c-col" data-t="raci_com">Comercial</th>
+            <th class="i-col" data-t="raci_fin">Finanzas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-t="raci_r1">Cierre de ventas &gt;$500</td>
+            <td><div class="raci-cell"><span class="raci-badge rb-a">A</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-i">I</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-r">R</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-i">I</span></div></td>
+          </tr>
+          <tr>
+            <td data-t="raci_r2">Onboarding de cliente</td>
+            <td><div class="raci-cell"><span class="raci-badge rb-c">C</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-a">A</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-r">R</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-i">I</span></div></td>
+          </tr>
+          <tr>
+            <td data-t="raci_r3">Entrega / producción</td>
+            <td><div class="raci-cell"><span class="raci-badge rb-i">I</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-a">A</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-r">R</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-i">I</span></div></td>
+          </tr>
+          <tr>
+            <td data-t="raci_r4">Facturación y cobro</td>
+            <td><div class="raci-cell"><span class="raci-badge rb-a">A</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-i">I</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-i">I</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-r">R</span></div></td>
+          </tr>
+          <tr>
+            <td data-t="raci_r5">Reportes semanales</td>
+            <td><div class="raci-cell"><span class="raci-badge rb-a">A</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-r">R</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-c">C</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-c">C</span></div></td>
+          </tr>
+          <tr>
+            <td data-t="raci_r6">Compras a proveedores</td>
+            <td><div class="raci-cell"><span class="raci-badge rb-a">A</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-r">R</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-i">I</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-c">C</span></div></td>
+          </tr>
+          <tr>
+            <td data-t="raci_r7">Estrategia y precios</td>
+            <td><div class="raci-cell"><span class="raci-badge rb-a">A</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-c">C</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-c">C</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-c">C</span></div></td>
+          </tr>
+          <tr>
+            <td data-t="raci_r8">Soporte postventa</td>
+            <td><div class="raci-cell"><span class="raci-badge rb-i">I</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-a">A</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-r">R</span></div></td>
+            <td><div class="raci-cell"><span class="raci-badge rb-i">I</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight"><strong data-t="insight_raci_lbl">Diagnóstico RACI:</strong> <strong class="bld">Contar cuántas A tiene el fundador.</strong> Si tiene más del 60% de las A del negocio, el IDF es estructuralmente alto. El trabajo del valle es transferir las A de operaciones al Ops Lead — el fundador solo debe retener las A de estrategia, precios y decisiones de capital.</div>
+  </div>
+
+  <div class="panel wa">
+    <p class="pt"><span data-t="pt_org">Organigrama funcional del valle</span> <span class="tag" data-t="pt_org_tag">Estructura para escalar</span></p>
+    <div class="ctx"><strong data-t="ctx_org_lbl">Principio del valle:</strong> El organigrama no refleja cuánta gente hay — refleja qué funciones existen. Una sola persona puede cubrir múltiples funciones al inicio. El organigrama define qué funciones deben cubrirse antes de poder crecer.</div>
+
+    <!-- Org chart -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin:16px 0">
+      <div style="padding:10px 22px;background:var(--navy-d);border:1px solid var(--navy-b);text-align:center">
+        <div style="font-family:var(--serif);font-size:13px;font-weight:800;color:var(--navy);letter-spacing:.04em;text-transform:uppercase">Fundador / CEO</div>
+        <div style="font-family:var(--mono);font-size:8px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:.08em">Estrategia · Visión · Capital · Cultura</div>
+      </div>
+      <div style="width:1px;height:18px;background:var(--rule)"></div>
+      <div style="display:flex;gap:8px;width:100%;justify-content:center;flex-wrap:wrap">
+        <div style="flex:1;min-width:130px;padding:9px 12px;background:var(--wine-d);border:1px solid var(--wine-b);text-align:center">
+          <div style="font-family:var(--serif);font-size:12px;font-weight:700;color:var(--wine2);text-transform:uppercase;letter-spacing:.04em">Comercial</div>
+          <div style="font-family:var(--mono);font-size:8px;color:var(--muted);margin-top:3px;line-height:1.5">Ventas · CRM<br>Propuestas · Seguimiento</div>
+        </div>
+        <div style="flex:1;min-width:130px;padding:9px 12px;background:var(--elec-d);border:1px solid var(--elec-b);text-align:center">
+          <div style="font-family:var(--serif);font-size:12px;font-weight:700;color:var(--navy2);text-transform:uppercase;letter-spacing:.04em">Operaciones</div>
+          <div style="font-family:var(--mono);font-size:8px;color:var(--muted);margin-top:3px;line-height:1.5">Entrega · Calidad<br>SOPs · Proveedores</div>
+        </div>
+        <div style="flex:1;min-width:130px;padding:9px 12px;background:var(--green-d);border:1px solid var(--green-b);text-align:center">
+          <div style="font-family:var(--serif);font-size:12px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.04em">Finanzas</div>
+          <div style="font-family:var(--mono);font-size:8px;color:var(--muted);margin-top:3px;line-height:1.5">Cobros · Pagos<br>Reportes · Caja</div>
+        </div>
+        <div style="flex:1;min-width:130px;padding:9px 12px;background:var(--amber-d);border:1px solid var(--amber-b);text-align:center">
+          <div style="font-family:var(--serif);font-size:12px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:.04em">Marketing</div>
+          <div style="font-family:var(--mono);font-size:8px;color:var(--muted);margin-top:3px;line-height:1.5">Canales · Contenido<br>CAC · Cohortes</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mst">
+      <div class="mst-row">
+        <div class="mst-dot a"></div>
+        <div>
+          <p class="mst-t" data-t="mt4">Primer hire del valle: Operaciones (mes 8–12)</p>
+          <p class="mst-b" data-t="mtb4">Si el fundador está en el cuello de botella de entrega, es imposible crecer. El primer hire libera capacidad de entrega — no de ventas.</p>
+        </div>
+        <span class="mst-when">Mes 8–12</span>
+      </div>
+      <div class="mst-row">
+        <div class="mst-dot n"></div>
+        <div>
+          <p class="mst-t" data-t="mt5">Segundo hire del valle: Comercial (mes 12–18)</p>
+          <p class="mst-b" data-t="mtb5">Una vez la entrega está sistematizada, el fundador puede enfocarse en crecer ventas — o contratar a alguien que lo haga con un sistema definido.</p>
+        </div>
+        <span class="mst-when">Mes 12–18</span>
+      </div>
+      <div class="mst-row">
+        <div class="mst-dot g"></div>
+        <div>
+          <p class="mst-t" data-t="mt6">Tercer hire del valle: Finanzas / Admin (mes 16–22)</p>
+          <p class="mst-b" data-t="mtb6">La caja del negocio gestionada por el fundador es un riesgo operacional. El tercer hire libera tiempo estratégico y cierra el ciclo de dependencia.</p>
+        </div>
+        <span class="mst-when">Mes 16–22</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ════════════════════════════
+     07 · SEMÁFORO MENSUAL
+════════════════════════════ -->
+<p id="sec07" class="sl a8"><span class="sn">07</span><span data-t="s07_title">Semáforo mensual del valle — revisar el primer lunes de cada mes</span></p>
+<p class="sl-sub a8"><span data-t="s07_sub">Ocho señales que indican el estado real del negocio en el valle. Selecciona el estado de cada indicador (Rojo / Ámbar / Verde) y el sistema calcula tu posición en tiempo real.</span></p>
+
+<div class="g211 mb a8">
+
+  <div class="panel">
+    <p class="pt"><span data-t="pt_sem">Semáforo Mensual Interactivo</span> <span class="tag" data-t="pt_sem_tag">Primer lunes de cada mes · 45min</span></p>
+    <div class="semaforo-v2">
+      <span class="sem-titulo" data-t="sem_titulo">◆ Selecciona el estado actual de cada indicador</span>
+      <div class="sem-preguntas">
+
+        <div class="sem-q" data-q="0">
+          <span class="sem-q-txt" data-t="sq0">¿El MRR de este mes es mayor al del mes anterior?</span>
+          <div class="sem-pills">
+            <button class="sem-pill" data-val="0" aria-label="Rojo — crítico" onclick="semPick(this,0,0)">R</button>
+            <button class="sem-pill" data-val="1" aria-label="Ámbar — vigilancia" onclick="semPick(this,0,1)">Á</button>
+            <button class="sem-pill" data-val="2" aria-label="Verde — óptimo" onclick="semPick(this,0,2)">V</button>
+          </div>
+        </div>
+
+        <div class="sem-q" data-q="1">
+          <span class="sem-q-txt" data-t="sq1">¿La retención a M+6 supera el 60%?</span>
+          <div class="sem-pills">
+            <button class="sem-pill" data-val="0" aria-label="Rojo — crítico" onclick="semPick(this,1,0)">R</button>
+            <button class="sem-pill" data-val="1" aria-label="Ámbar — vigilancia" onclick="semPick(this,1,1)">Á</button>
+            <button class="sem-pill" data-val="2" aria-label="Verde — óptimo" onclick="semPick(this,1,2)">V</button>
+          </div>
+        </div>
+
+        <div class="sem-q" data-q="2">
+          <span class="sem-q-txt" data-t="sq2">¿El CAC de este mes es igual o menor al del mes anterior?</span>
+          <div class="sem-pills">
+            <button class="sem-pill" data-val="0" aria-label="Rojo — crítico" onclick="semPick(this,2,0)">R</button>
+            <button class="sem-pill" data-val="1" aria-label="Ámbar — vigilancia" onclick="semPick(this,2,1)">Á</button>
+            <button class="sem-pill" data-val="2" aria-label="Verde — óptimo" onclick="semPick(this,2,2)">V</button>
+          </div>
+        </div>
+
+        <div class="sem-q" data-q="3">
+          <span class="sem-q-txt" data-t="sq3">¿El fundador pudo ausentarse 5 días hábiles sin crisis?</span>
+          <div class="sem-pills">
+            <button class="sem-pill" data-val="0" aria-label="Rojo — crítico" onclick="semPick(this,3,0)">R</button>
+            <button class="sem-pill" data-val="1" aria-label="Ámbar — vigilancia" onclick="semPick(this,3,1)">Á</button>
+            <button class="sem-pill" data-val="2" aria-label="Verde — óptimo" onclick="semPick(this,3,2)">V</button>
+          </div>
+        </div>
+
+        <div class="sem-q" data-q="4">
+          <span class="sem-q-txt" data-t="sq4">¿El CCE se redujo o mantuvo igual este mes?</span>
+          <div class="sem-pills">
+            <button class="sem-pill" data-val="0" aria-label="Rojo — crítico" onclick="semPick(this,4,0)">R</button>
+            <button class="sem-pill" data-val="1" aria-label="Ámbar — vigilancia" onclick="semPick(this,4,1)">Á</button>
+            <button class="sem-pill" data-val="2" aria-label="Verde — óptimo" onclick="semPick(this,4,2)">V</button>
+          </div>
+        </div>
+
+        <div class="sem-q" data-q="5">
+          <span class="sem-q-txt" data-t="sq5">¿El canal principal mantuvo o mejoró su LTV:CAC?</span>
+          <div class="sem-pills">
+            <button class="sem-pill" data-val="0" aria-label="Rojo — crítico" onclick="semPick(this,5,0)">R</button>
+            <button class="sem-pill" data-val="1" aria-label="Ámbar — vigilancia" onclick="semPick(this,5,1)">Á</button>
+            <button class="sem-pill" data-val="2" aria-label="Verde — óptimo" onclick="semPick(this,5,2)">V</button>
+          </div>
+        </div>
+
+        <div class="sem-q" data-q="6">
+          <span class="sem-q-txt" data-t="sq6">¿Se documentó al menos un proceso que antes hacía solo el fundador?</span>
+          <div class="sem-pills">
+            <button class="sem-pill" data-val="0" aria-label="Rojo — crítico" onclick="semPick(this,6,0)">R</button>
+            <button class="sem-pill" data-val="1" aria-label="Ámbar — vigilancia" onclick="semPick(this,6,1)">Á</button>
+            <button class="sem-pill" data-val="2" aria-label="Verde — óptimo" onclick="semPick(this,6,2)">V</button>
+          </div>
+        </div>
+
+        <div class="sem-q" data-q="7">
+          <span class="sem-q-txt" data-t="sq7">¿La caja cubre al menos 4 meses de quema sin ingresos nuevos?</span>
+          <div class="sem-pills">
+            <button class="sem-pill" data-val="0" aria-label="Rojo — crítico" onclick="semPick(this,7,0)">R</button>
+            <button class="sem-pill" data-val="1" aria-label="Ámbar — vigilancia" onclick="semPick(this,7,1)">Á</button>
+            <button class="sem-pill" data-val="2" aria-label="Verde — óptimo" onclick="semPick(this,7,2)">V</button>
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- RESULTADO INLINE — aparece donde el usuario ya está -->
+      <div class="sem-resultado" id="sem-resultado">
+
+        <div class="sem-res-top">
+          <!-- Score + barra -->
+          <div class="sem-res-score">
+            <div class="sem-res-lbl" data-t="sem_score_lbl">Puntuación del mes</div>
+            <div class="sem-res-pct" id="sem-res-pct">0%</div>
+            <div class="sem-res-bar">
+              <div class="sem-res-barfill" id="sem-res-barfill"></div>
+            </div>
+            <span class="sem-res-tag" id="sem-res-tag">—</span>
+          </div>
+          <!-- Mini Valle SVG -->
+          <div class="sem-mini-mapa">
+            <svg width="180" height="110" viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+              <!-- Terreno -->
+              <path d="M0,110 L0,50 C8,42 18,30 30,24 C40,18 50,24 58,34 C66,44 71,56 80,68 C88,78 95,86 104,92 C108,95 113,96 118,97 C123,96 127,94 132,90 C140,83 146,73 154,62 C160,52 167,40 175,30 L180,26 L180,110 Z" fill="rgba(15,35,71,.18)"/>
+              <path d="M0,50 C8,42 18,30 30,24 C40,18 50,24 58,34 C66,44 71,56 80,68 C88,78 95,86 104,92 C108,95 113,96 118,97 C123,96 127,94 132,90 C140,83 146,73 154,62 C160,52 167,40 175,30" fill="none" stroke="rgba(15,35,71,.18)" stroke-width="1"/>
+              <!-- Divisores -->
+              <line x1="62" y1="0" x2="62" y2="110" stroke="rgba(200,137,26,.18)" stroke-width="0.5" stroke-dasharray="2 4"/>
+              <line x1="122" y1="0" x2="122" y2="110" stroke="rgba(10,122,85,.2)"  stroke-width="0.5" stroke-dasharray="2 4"/>
+              <!-- Labels -->
+              <text x="31" y="10" text-anchor="middle" font-family="Space Mono,monospace" font-size="6" fill="rgba(15,35,71,.3)" letter-spacing=".5">GROW</text>
+              <text x="92" y="10" text-anchor="middle" font-family="Space Mono,monospace" font-size="6" fill="rgba(176,48,32,.55)" letter-spacing=".5">VALLE</text>
+              <text x="151" y="10" text-anchor="middle" font-family="Space Mono,monospace" font-size="6" fill="rgba(10,122,85,.55)" letter-spacing=".5">SCALE</text>
+              <!-- Ruta -->
+              <path d="M10,50 C18,43 28,30 38,25 C46,20 54,26 61,35 C69,46 73,58 81,69 C89,79 96,87 105,92 C110,95 114,97 118,97 C122,96 126,93 132,89 C140,82 147,70 156,58 C163,48 170,36 178,28" fill="none" stroke="rgba(200,137,26,.4)" stroke-width="1" stroke-dasharray="3 4"/>
+              <!-- Punto de posición -->
+              <g id="mini-pos" style="transform:translate(118px,97px)">
+                <circle id="mini-ring" r="8" fill="none" stroke="rgba(176,48,32,.4)" stroke-width="0.7"/>
+                <circle id="mini-dot"  r="5" fill="#B03020"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Acción concreta -->
+        <div class="sem-res-accion" id="sem-res-accion">
+          <strong id="sem-res-accion-t">—</strong>
+          <span id="sem-res-accion-d"></span>
+        </div>
+
+        <!-- Las 3 Cs — estado por pilar -->
+        <div class="sem-3cs">
+          <div class="sem-3c" id="s3c1">
+            <div class="sem-3c-id">C₁</div>
+            <div class="sem-3c-nom" data-t="c1_name">Claridad</div>
+          </div>
+          <div class="sem-3c" id="s3c2">
+            <div class="sem-3c-id">C₂</div>
+            <div class="sem-3c-nom" data-t="c2_name">Consistencia</div>
+          </div>
+          <div class="sem-3c" id="s3c3">
+            <div class="sem-3c-id">C₃</div>
+            <div class="sem-3c-nom" data-t="c3_name">Cash Flow</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <div class="panel">
+      <p class="pt"><span data-t="pt_sig">🚨 Señales críticas del valle</span> <span class="tag" data-t="pt_sig_tag">Acción este mes</span></p>
+      <div class="abox ar">
+        <span class="abox-i">🔴</span>
+        <div><p class="abox-t" data-t="ab0">MRR negativo 2 meses seguidos</p><p class="abox-d" data-t="abd0">Parar toda iniciativa de crecimiento. Hablar con los últimos 10 clientes que cancelaron. La causa siempre está en la experiencia, no en el precio.</p></div>
+      </div>
+      <div class="abox ar">
+        <span class="abox-i">🔴</span>
+        <div><p class="abox-t" data-t="ab1">CAC Payback &gt; duración media del cliente</p><p class="abox-d" data-t="abd1">El modelo está en quema estructural. Cada cliente nuevo cuesta más de lo que genera antes de irse. Revisar precio, canal o propuesta de valor antes de invertir un peso más en adquisición.</p></div>
+      </div>
+      <div class="abox aa">
+        <span class="abox-i">🟡</span>
+        <div><p class="abox-t" data-t="ab2">IDF &gt; 85% después del mes 12</p><p class="abox-d"><strong class="bld" data-t="abox_idf_bld">Si a los 12 meses el fundador sigue haciendo el 85% de los procesos críticos, el crecimiento ya llegó a su límite físico.</strong> El siguiente paso requiere delegar antes de contratar.</p></div>
+      </div>
+      <div class="abox ag">
+        <span class="abox-i">🟢</span>
+        <div><p class="abox-t" data-t="ab3">Listo para SCALE cuando…</p><p class="abox-d" data-t="abd3">MRR creciendo 3M consecutivos · CAC Payback &lt;6M · Retención &gt;60% a M+6 · IDF &lt;70% · Runway ≥4M · RACI documentado para procesos principales.</p></div>
+      </div>
+    </div>
+
+    <div class="panel wa">
+      <p class="pt"><span data-t="pt_m24">Decisión del Mes 24</span> <span class="tag" data-t="pt_m24_tag">Tres caminos hacia SCALE</span></p>
+      <div class="step-item">
+        <span class="step-n" style="background:var(--green-d);border-color:var(--green-b);color:var(--green)">↑</span>
+        <div><p class="step-t" style="color:var(--green)" data-t="st3">Escalar a SCALE</p><p class="step-b">MRR creciente · Payback &lt;6M · IDF &lt;70% · Retención confirmada. <em data-t="dec_em0"><strong class="bld-g">El sistema opera. Es hora de blindar la rentabilidad.</strong></em></p></div>
+      </div>
+      <div class="step-item">
+        <span class="step-n" style="background:var(--amber-d);border-color:var(--amber-b);color:var(--amber)">→</span>
+        <div><p class="step-t" style="color:var(--amber)" data-t="st4">Consolidar primero</p><p class="step-b">MRR crece pero retención baja o IDF alto. <em data-t="dec_em1"><strong class="bld-w">Resolver la retención y la dependencia antes de escalar.</strong> Dos meses más en el valle.</em></p></div>
+      </div>
+      <div class="step-item">
+        <span class="step-n" style="background:var(--red-d);border-color:var(--red-b);color:var(--red)">↺</span>
+        <div><p class="step-t" style="color:var(--red)" data-t="st5">Rediseñar el modelo</p><p class="step-b">CAC Payback &gt;LTV o churn estructuralmente alto. <em data-t="dec_em2"><strong class="bld-r">El modelo no escala.</strong> Cambiar propuesta, segmento o mecanismo de entrega con los datos de 24 meses.</em></p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- FIRMA -->
+<div class="sig-block a9">
+  <div>
+    <p class="sig-name">J. F. Carpio</p>
+    <p class="sig-title" data-t="sig_title">Dashboards · Visualizaciones · para negocios en expansión</p>
+    <p class="sig-desc"><span data-t="sig_desc">Este dashboard está diseñado para usarse de forma autónoma. Cuando los números del valle empiecen a acumularse y la interpretación requiera más contexto, la versión personalizada está disponible.</span></p>
+    <p class="sig-v" data-t="sig_v">GROWTH OS · CROSS · 6–24 MESES · v1.0 · J.F.CARPIO · 2025–2026</p>
+    <p class="sig-v">&nbsp;</p>
+<img src="Logo GrowthOS Con Slogan.png" width="193" height="174" alt=""/>  </div>
+  <div style="text-align:right">
+    <p style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px"><span data-t="sig_cta_label">¿Quieres esto con tus números reales?</span></p>
+    <a class="sig-cta" href="https://wa.me/593999905080?text=Estoy%20interesado%2Fa%20en%20hablar%20de%20dashboards%20o%20reportes%20para%20mi%20negocio" target="_blank" rel="noopener"><span data-t="sig_cta">Hablar con J.F.Carpio →</span></a>
+    <p style="font-family:var(--mono);font-size:9px;color:var(--muted);margin-top:8px;text-transform:uppercase;letter-spacing:.08em" data-t="sig_handle">@jfcarpio · Dashboards</p>
+    <div class="sig-svcs">
+<span class="sig-svc n" data-t="svc0">✦ Dashboard CROSS con tus números REALES en 48–72h</span>
+<span class="sig-svc w" data-t="svc1">✦ Análisis de cohortes con tu base de clientes real</span>
+<span class="sig-svc n">✦ <a href="https://tally.so/r/mBxk8A" data-t="svc_link">Quiero una llamada de exploración de 10 minutos</a></span>
+<span class="sig-svc g" data-t="svc2">✦ Sistema completo Growth OS · 4 dashboards</span>
+    </div>
+  </div>
+</div>
+
+</main>
+<div class="bstripe"></div>
+<script>
+/* ══ LAS 3 Cs — interactividad ══ */
+function activarC(el, clave) {
+  // Reset all vertices
+  document.querySelectorAll('.tc-vertex').forEach(v => v.classList.remove('active'));
+  // Reset all panels
+  document.querySelectorAll('.tc-panel').forEach(p => p.classList.remove('visible'));
+  // Activate clicked
+  el.classList.add('active');
+  const panel = document.getElementById('panel-' + clave);
+  if (panel) panel.classList.add('visible');
+}
+// Start with C1 active
+window.addEventListener('DOMContentLoaded', function() {
+  const v1 = document.querySelector('.tc-vertex-c1');
+  if (v1) v1.classList.add('active');
+});
+
+/* ══ CALCULADORA CAC PAYBACK ══ */
+function calcPayback() {
+  const cac    = parseFloat(document.getElementById('inp-cac').value) || 0;
+  const ticket = parseFloat(document.getElementById('inp-ticket').value) || 0;
+  const margen = parseFloat(document.getElementById('inp-margen').value) || 0;
+
+  if (!cac || !ticket || !margen) {
+    alert('Ingresa los tres valores para calcular el payback.');
+    return;
+  }
+
+  const contrib = ticket * (margen / 100);
+  const months  = cac / contrib;
+  const res     = document.getElementById('calc-result-payback');
+  const val     = document.getElementById('calc-val-payback');
+  const verd    = document.getElementById('calc-verdict-payback');
+  const note    = document.getElementById('calc-note-payback');
+
+  res.style.display = 'block';
+  val.textContent = months.toFixed(1) + 'M';
+
+  var _tl = (typeof currentLang!=='undefined' && T[currentLang]) ? T[currentLang] : T['es'];
+  if (months <= 3) {
+    val.style.color='var(--green)'; verd.className='calc-verdict vg';
+    verd.textContent=(_tl.cv_exc||'✓ EXCELENTE — Payback en')+' '+months.toFixed(1)+' '+(_tl.vsub_meses||'meses');
+    note.textContent=_tl.cv_exc_note||'Canal altamente eficiente. Duplicar inversión y monitorear el CAC mensualmente para detectar saturación a tiempo.';
+  } else if (months <= 6) {
+    val.style.color='var(--green)'; verd.className='calc-verdict vg';
+    verd.textContent=_tl.cv_opt||'✓ ÓPTIMO — Dentro del umbral del Valle';
+    note.textContent=_tl.cv_opt_note||'Payback bajo el umbral crítico de 6 meses. Escalar con confianza. Documentar el canal como Estrella BCG.';
+  } else if (months <= 9) {
+    val.style.color='var(--wine2)'; verd.className='calc-verdict va';
+    verd.textContent=_tl.cv_ace||'◎ ACEPTABLE — Optimizar antes de escalar';
+    note.textContent=_tl.cv_ace_note||'Payback sobre umbral. Revisar si el margen puede subir 5–10% o si el ticket promedio puede aumentar antes de escalar este canal.';
+  } else if (months <= 12) {
+    val.style.color='var(--wine2)'; verd.className='calc-verdict va';
+    verd.textContent=_tl.cv_ten||'◎ TENSO — Revisar precio o canal urgente';
+    note.textContent=_tl.cv_ten_note||'El canal está bajo tensión financiera. Sin mejora en 60 días, reclasificar como Perro BCG y reasignar presupuesto a canales con mejor ratio.';
+  } else {
+    val.style.color='var(--red)'; verd.className='calc-verdict vr';
+    verd.textContent=_tl.cv_crit||'✗ CRÍTICO — Pausar inmediatamente';
+    note.textContent=_tl.cv_crit_note||'Payback mayor a 12 meses. Pausar el canal y revisar la propuesta de valor o segmento objetivo.';
+  }
+}
+
+/* ══ SEMÁFORO INTERACTIVO — resultado inline sin scroll ══ */
+const semScores = new Array(8).fill(-1);
+
+// q→C mapping: 0=MRR(C3), 1=retención(C3), 2=CAC(C3), 3=IDF(C2), 4=CCE(C3), 5=LTV:CAC(C3), 6=SOP(C2), 7=caja(C3)
+const semC = ['c3','c3','c3','c2','c3','c3','c2','c3'];
+
+function getACCIONES() {
+  var L = (typeof currentLang !== 'undefined') ? currentLang : 'es';
+  var tl = T[L] || T['es'];
+  return {
+    crit:  {t:tl.acc_crit_t  || 'CRÍTICO', d:tl.acc_crit_d  || ''},
+    vig:   {t:tl.acc_vig_t   || 'VIGILANCIA ACTIVA', d:tl.acc_vig_d   || ''},
+    est:   {t:tl.acc_est_t   || 'ESTABLE EN EL VALLE', d:tl.acc_est_d   || ''},
+    scale: {t:tl.acc_scale_t || 'LISTO PARA SCALE', d:tl.acc_scale_d || ''}
+  };
+}
+
+const C_COLORS = {r:'#B03020', a:'#C8891A', v:'#0A7A55'};
+
+function semPick(btn, q, val) {
+  btn.closest('.sem-pills').querySelectorAll('.sem-pill').forEach(p => {
+    p.classList.remove('sel-r','sel-a','sel-v');
+  });
+  btn.classList.add(['sel-r','sel-a','sel-v'][val]);
+  semScores[q] = val;
+  actualizarSemaforo();
+}
+
+function actualizarSemaforo() {
+  const filled = semScores.filter(s => s >= 0);
+  if (filled.length === 0) return;
+
+  const total       = filled.reduce((a,b) => a+b, 0);
+  const maxPossible = filled.length * 2;
+  const pct         = Math.round((total / maxPossible) * 100);
+
+  // Determinar estado
+  let estado, color, barColor;
+  if (pct < 35) {
+    estado = 'crit';  color = '#B03020'; barColor = 'linear-gradient(90deg,#B03020,rgba(176,48,32,.65))';
+  } else if (pct < 60) {
+    estado = 'vig';   color = '#C8891A'; barColor = 'linear-gradient(90deg,#C8891A,#E5A020)';
+  } else if (pct < 85) {
+    estado = 'est';   color = '#1A3560'; barColor = 'linear-gradient(90deg,#1A3560,#2A4A80)';
+  } else {
+    estado = 'scale'; color = '#0A7A55'; barColor = 'linear-gradient(90deg,#1A3560,#0A7A55)';
+  }
+
+  function getSemTags() {
+  var L = (typeof currentLang !== 'undefined') ? currentLang : 'es';
+  var tl = T[L] || T['es'];
+  return {crit:tl.tag_crit||'Crítico', vig:tl.tag_vig||'Vigilancia activa', est:tl.tag_est||'Estable en el Valle', scale:tl.tag_scale||'Listo para SCALE'};
+}
+
+  // Actualizar UI resultado inline
+  const res = document.getElementById('sem-resultado');
+  if (res) { res.classList.add('visible'); }
+
+  const pctEl = document.getElementById('sem-res-pct');
+  if (pctEl) { pctEl.textContent = pct + '%'; pctEl.style.color = color; }
+
+  const bfEl = document.getElementById('sem-res-barfill');
+  if (bfEl) { bfEl.style.background = barColor; setTimeout(()=>{bfEl.style.width=pct+'%';},80); bfEl.style.width='0%'; }
+
+  const tagEl = document.getElementById('sem-res-tag');
+  if (tagEl) { tagEl.textContent = getSemTags()[estado]; tagEl.className = 'sem-res-tag ' + estado; }
+
+  const acEl  = document.getElementById('sem-res-accion');
+  const acT   = document.getElementById('sem-res-accion-t');
+  const acD   = document.getElementById('sem-res-accion-d');
+  if (acEl && getACCIONES()[estado]) {
+    acEl.className = 'sem-res-accion ' + estado;
+    acT.textContent = getACCIONES()[estado].t;
+    acD.textContent = getACCIONES()[estado].d;
+  }
+
+  // Las 3 Cs — calcular estado por pilar
+  const cMap = {c1:[], c2:[], c3:[]};
+  semScores.forEach((s,i) => { if (s>=0 && semC[i]) cMap[semC[i]].push(s); });
+  const cBorder = {r:'#B03020', a:'#C8891A', v:'#0A7A55'};
+  function cEstado(arr) {
+    if (!arr.length) return null;
+    if (arr.some(x=>x===0)) return 'r';
+    if (arr.every(x=>x===2)) return 'v';
+    return 'a';
+  }
+  [['s3c1','c1'],['s3c2','c2'],['s3c3','c3']].forEach(([id,key]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const st = cEstado(cMap[key]);
+    el.style.borderTopColor = st ? cBorder[st] : 'transparent';
+  });
+
+  // Sincronizar mapa superior + mini-mapa
+  actualizarMapa(pct);
+}
+
+/* ══ MAPA DEL VALLE — sincronizado con semáforo (mapa grande + mini) ══ */
+function lerp(a,b,t){return a+(b-a)*t;}
+function interpolar(wpts, pct) {
+  if (pct <= wpts[0].p) return {x:wpts[0].x, y:wpts[0].y};
+  if (pct >= wpts[wpts.length-1].p) return {x:wpts[wpts.length-1].x, y:wpts[wpts.length-1].y};
+  for (let i=0; i<wpts.length-1; i++) {
+    const a=wpts[i], b=wpts[i+1];
+    if (pct>=a.p && pct<=b.p) {
+      const t=(pct-a.p)/(b.p-a.p);
+      return {x:lerp(a.x,b.x,t), y:lerp(a.y,b.y,t)};
+    }
+  }
+}
+
+function actualizarMapa(pct) {
+  const cl = pct<35?'#B03020':pct<60?'#C8891A':'#0A7A55';
+
+  // Mapa grande (arriba)
+  const WPTS_BIG = [
+    {p:0,   x:345, y:213},
+    {p:35,  x:400, y:192},
+    {p:60,  x:458, y:136},
+    {p:85,  x:528, y:72},
+    {p:100, x:600, y:18},
+  ];
+  const {x:bx, y:by} = interpolar(WPTS_BIG, pct);
+  const pos  = document.getElementById('valle-pos');
+  const ring = document.getElementById('valle-ring');
+  const dot  = document.getElementById('valle-dot');
+  const txt  = document.getElementById('valle-txt');
+  if (pos)  pos.style.transform = `translate(${bx}px,${by}px)`;
+  if (dot)  dot.setAttribute('fill', cl);
+  if (ring) ring.setAttribute('stroke', cl+'80');
+  if (txt)  txt.textContent = pct + '%';
+
+  // Mini-mapa (inline, sección 07)
+  const WPTS_MINI = [
+    {p:0,   x:118, y:97},
+    {p:35,  x:132, y:89},
+    {p:60,  x:154, y:62},
+    {p:85,  x:170, y:38},
+    {p:100, x:178, y:26},
+  ];
+  const {x:mx, y:my} = interpolar(WPTS_MINI, pct);
+  const mpos  = document.getElementById('mini-pos');
+  const mring = document.getElementById('mini-ring');
+  const mdot  = document.getElementById('mini-dot');
+  if (mpos)  mpos.style.transform = `translate(${mx}px,${my}px)`;
+  if (mdot)  mdot.setAttribute('fill', cl);
+  if (mring) mring.setAttribute('stroke', cl+'80');
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   LANG + STORAGE SYSTEM — Growth OS CROSS v1.0
+   ══════════════════════════════════════════════════════════════════ */
+var T = {
+  es:{
+    active:'Activo',
+    confidential:'Uso Interno · Confidencial',
+    nav_launch:'!LAUNCH · 45 días',
+    ns_lbl:'★ Métrica fundamental · meses 6–24',
+    ns_m:'¿Puede el negocio crecer mientras el/la fundador/a se ausenta una semana?',
+    tc_kicker:'Marco estructural · Growth OS CROSS',
+    tc_titulo:'Las 3 Cs — Los tres pilares del Valle',
+    tc_badge:'Pulsa cada vértice',
+    s00_title:'El valle — la única pregunta que importa en los meses 6–24',
+    s00_sub:'Se conoce como el "Valle de la Muerte" (6-24 meses) a la etapa inicial crítica de un emprendimiento, y se llama así porque representa un alto riesgo de insolvencia y cierre antes de alcanzar el punto de equilibrio. La mayoría no supera esta fase — no por falta de producto, sino por falta de sistema.',
+    s01_title:'MRR y motor de ingresos — el pulso mensual del negocio',
+    s01_sub:'El MRR no mide cuánto se vendió en un mes — mide cuánto ingreso está garantizado el próximo mes antes de conseguir un cliente nuevo. Es la diferencia entre un negocio predecible y uno que empieza desde cero cada 30 días.',
+    s02_title:'Cohort Retention — ¿los clientes se quedan o se van?',
+    s03_title:'CAC Payback y Unit Economics por canal — dónde poner el dinero',
+    s03_sub:'En el arranque, el CAC era una métrica de supervivencia. En el valle, es una métrica de asignación de capital. El CAC Payback period revela cuánto tiempo hay que financiar cada cliente nuevo antes de que empiece a retornar.',
+    s04_title:'BCG por canal — dónde está el crecimiento y dónde está el margen',
+    s04_sub:'En el GROW la matriz BCG se aplicó a productos. En el valle se aplica a canales.',
+    s05_title:'Dependencia del fundador y ciclo de capital de trabajo',
+    s06_title:'Primer organigrama con RACI básico — quién hace qué, exactamente',
+    s06_sub:'El organigrama en el valle no es un diagrama de jerarquía — es un mapa de claridad operacional. Sin él, "todo el mundo es responsable de todo" se convierte en la razón por la que nada se hace con consistencia.',
+    s07_title:'Semáforo mensual del valle — revisar el primer lunes de cada mes',
+    s07_sub:'Ocho señales que indican el estado real del negocio en el valle. Selecciona el estado de cada indicador (Rojo / Ámbar / Verde) y el sistema calcula tu posición en tiempo real.',
+    sig_desc:'Este dashboard está diseñado para usarse de forma autónoma. Cuando los números del valle empiecen a acumularse y la interpretación requiera más contexto, la versión personalizada está disponible.',
+    sig_cta_label:'¿Quieres esto con tus números reales?',
+    sig_cta:'Hablar con J.F.Carpio →',
+    ns_s_a:'No si hay más ventas esta semana versus la anterior.',
+    ns_s_b:'Si el sistema opera, cobra, entrega y retiene sin que el fundador intervenga en cada paso.',
+    ns_s_c:'Esa es la diferencia entre tener un negocio y tener un trabajo propio con más riesgo. Todo lo que sigue en este volumen mide esa distinción.',
+    vn_mrr:'Un negocio de servicios puede crecer más rápido. Un producto físico normalmente más lento. Lo que importa: la curva es ascendente 3 meses consecutivos.',
+    vn_od:'Si el 90% de los procesos dependen del fundador, no hay negocio vendible ni escalable. El trabajo del valle es bajar ese número sistemáticamente.',
+    vn_cac:'Si se tarda más de 6 meses en recuperar lo que costó adquirir un cliente, el motor de crecimiento consume más caja de la que genera antes de poder escalar.',
+    vsub_mensual:'mensual',
+    vsub_procesos:'% de procesos',
+    vsub_meses:'meses',
+    tct_icp:'ICP Definido',
+    tct_pp:'Problema Pagado',
+    tct_pv:'Propuesta Validada',
+    tct_sop:'SOPs documentados',
+    tct_idf:'IDF <70%',
+    tct_raci:'RACI Activo',
+    tct_run:'Runway >4M',
+    tct_mrg:'Margen >50%',
+    tct_cacpb:'CAC Payback <6M',
+    vhd0:'MRR + Retención · toman el control',
+    vhd1:'CAC · IDF · Caja · los tres en tensión',
+    vhd2:'Sistema > Fundador · RACI documentado',
+    vhd3:'Semáforo verde · listo para escalar',
+    ctx_mrr_lbl:'Por qué importa en el valle:',
+    ctx_mrrg_lbl:'Lectura del gráfico:',
+    ctx_cac_lbl:'Por qué es crítico en el valle:',
+    ctx_ue_lbl:'Cómo leer:',
+    ctx_bcg_lbl:'Ejes:',
+    ctx_idf_lbl:'Definición operativa:',
+    ctx_cct_lbl:'El problema del valle:',
+    ctx_raci_lbl:'Clave RACI:',
+    ctx_org_lbl:'Principio del valle:',
+    ctx_coh_lbl:'Cómo leer la tabla:',
+    insight_mrr_lbl:'Regla del valle:',
+    insight_ue_lbl:'Regla de la concentración:',
+    insight_raci_lbl:'Diagnóstico RACI:',
+    watch_mrr_lbl:'Señal de alerta:',
+    watch_cac_lbl:'Regla del valle:',
+    bcgd0:'Alto crecimiento · Alta rentabilidad. Referidos y SEO suelen caer aquí. Invertir para sostener el crecimiento antes de que maduren a Vaca.',
+    bcgd1:'Alto crecimiento · Baja rentabilidad. Meta Ads nuevo o influencer sin historial. Decidir: ¿invertir para llegar a Estrella o cortar antes de quemar más?',
+    bcgd2:'Bajo crecimiento · Alta rentabilidad. Email nurture y base de clientes. No crecer más — ordeñar el margen para financiar Estrellas e Interrogantes.',
+    bcgd3:'Bajo crecimiento · Baja rentabilidad. Ferias, catálogos físicos, o un canal que "siempre se ha hecho" sin medir. Cierre inmediato y reasignación.',
+    mtb0:'Un canal con LTV:CAC &gt;4× y crecimiento MoM &gt;10% durante 3 meses consecutivos no es suerte — es un sistema. Asignarle el 50–60% del presupuesto de adquisición.',
+    mtb1:'No extender un canal que no funciona con más tiempo sin una hipótesis específica de por qué va a mejorar. Si no hay hipótesis clara, es un Perro disfrazado.',
+    mtb2:'Invertir en una Vaca para hacerla crecer suele matar la rentabilidad. El objetivo es mantener el flujo de margen y redirigir la energía a las Estrellas.',
+    mtb3_pre:'El argumento "llevo 2 años en ferias" no es una razón financiera. Si los datos confirman Perro, cada mes que se mantiene activo financia el estancamiento.',
+    mtb4:'Si el fundador está en el cuello de botella de entrega, es imposible crecer. El primer hire libera capacidad de entrega — no de ventas.',
+    mtb5:'Una vez la entrega está sistematizada, el fundador puede enfocarse en crecer ventas — o contratar a alguien que lo haga con un sistema definido.',
+    mtb6:'La caja del negocio gestionada por el fundador es un riesgo operacional. El tercer hire libera tiempo estratégico y cierra el ciclo de dependencia.',
+    stb0:'Listar cada proceso que si se detiene afecta operaciones. Clasificar: ¿puede hacerlo otra persona con instrucciones escritas?',
+    stb1:'Un proceso sin documentación solo puede ser delegado al fundador que lo creó. El SOP (Standard Operating Procedure) es el puente entre dependencia y sistema.',
+    stb2:'Sin claridad de quién es Responsable, Accountable, Consultado e Informado en cada proceso, la delegación produce confusión y regresa al fundador. Ver sección 06.',
+    abd0:'Parar toda iniciativa de crecimiento. Hablar con los últimos 10 clientes que cancelaron. La causa siempre está en la experiencia, no en el precio.',
+    abd1:'El modelo está en quema estructural. Cada cliente nuevo cuesta más de lo que genera antes de irse. Revisar precio, canal o propuesta de valor antes de invertir un peso más en adquisición.',
+    abd3:'MRR creciendo 3M consecutivos · CAC Payback &lt;6M · Retención &gt;60% a M+6 · IDF &lt;70% · Runway ≥4M · RACI documentado para procesos principales.',
+    dec_st0:'MRR creciente · Payback <6M · IDF <70% · Retención confirmada.',
+    dec_st1:'MRR crece pero retención baja o IDF alto.',
+    dec_st2:'CAC Payback >LTV o churn estructuralmente alto.',
+    sig_v:'GROWTH OS · CROSS · 6–24 MESES · v1.0 · J.F.CARPIO · 2025–2026',
+    svc0:'✦ Dashboard CROSS con tus números REALES en 48–72h',
+    svc1:'✦ Análisis de cohortes con tu base de clientes real',
+    svc2:'✦ Sistema completo Growth OS · 4 dashboards',
+    sig_handle:'@jfcarpio · Dashboards',
+    logo_sub:'sistema operativo gerencial-financiero para negocios en expansión',
+    logo_vol2:'Vol. 2 · Atravesando el "Valle de la Muerte"',
+    pt_mrr:'MRR · Ingresos Recurrentes Mensuales',
+    pt_mrr_tag:'Pulso del modelo',
+    pt_mrrg:'MRR Growth Rate',
+    pt_mrrg_tag:'¿La curva sube?',
+    pt_coh:'Análisis de cohortes · primeras 6 cohortes',
+    pt_coh_tag:'Referencia ilustrativa',
+    pt_bench:'Interpretación y benchmarks',
+    pt_bench_tag:'Por tipo de negocio',
+    pt_cac:'CAC Payback Period',
+    pt_cac_tag:'¿Cuándo recupera lo que costó?',
+    pt_ue:'Unit Economics por canal',
+    pt_ue_tag:'Referencia ilustrativa',
+    pt_bcg:'Matriz BCG · canales de adquisición',
+    pt_bcg_tag:'Crecimiento vs. rentabilidad',
+    pt_diag:'Diagnóstico de canal en el valle',
+    pt_diag_tag:'Cómo asignar el presupuesto',
+    pt_idf:'Índice de Dependencia del Fundador',
+    pt_idf_tag:'¿Puede ausentarse una semana?',
+    pt_cct:'Ciclo de Capital de Trabajo',
+    pt_cct_tag:'¿Se financia el crecimiento?',
+    pt_raci:'Matriz RACI · procesos críticos del valle',
+    pt_raci_tag:'Referencia ilustrativa',
+    pt_org:'Organigrama funcional del valle',
+    pt_org_tag:'Estructura para escalar',
+    pt_sem:'Semáforo Mensual Interactivo',
+    pt_sem_tag:'Primer lunes de cada mes · 45min',
+    pt_sig:'🚨 Señales críticas del valle',
+    pt_sig_tag:'Acción este mes',
+    pt_m24:'Decisión del Mes 24',
+    pt_m24_tag:'Tres caminos hacia SCALE',
+    nav_cross:'CROSS · 6–24M',
+    nav_grow:'GROW · 0–6M',
+    nav_scale:'SCALE · 24M+',
+    hcenter:'de 6 a 24 meses de vida · "El Valle de la Muerte"',
+    sem_titulo:'◆ Selecciona el estado actual de cada indicador',
+    sem_score_lbl:'Puntuación del mes',
+    sq0:'¿El MRR de este mes es mayor al del mes anterior?',
+    sq1:'¿La retención a M+6 supera el 60%?',
+    sq2:'¿El CAC de este mes es igual o menor al del mes anterior?',
+    sq3:'¿El fundador pudo ausentarse 5 días hábiles sin crisis?',
+    sq4:'¿El CCE se redujo o mantuvo igual este mes?',
+    sq5:'¿El canal principal mantuvo o mejoró su LTV:CAC?',
+    sq6:'¿Se documentó al menos un proceso que antes hacía solo el fundador?',
+    sq7:'¿La caja cubre al menos 4 meses de quema sin ingresos nuevos?',
+    vh0:'6M · Entrada',
+    vh1:'12–14M · Fondo',
+    vh2:'18–20M · Salida',
+    vh3:'24M · SCALE',
+    ab0:'MRR negativo 2 meses seguidos',
+    ab1:'CAC Payback &gt; duración media del cliente',
+    ab2:'IDF &gt; 85% después del mes 12',
+    ab3:'Listo para SCALE cuando…',
+    st0:'Mapear todos los procesos críticos',
+    st1:'Documentar antes de delegar',
+    st2:'Delegar con RACI, no con fe',
+    st3:'Escalar a SCALE',
+    st4:'Consolidar primero',
+    st5:'Rediseñar el modelo',
+    mt0:'Estrella confirmada → duplicar presupuesto',
+    mt1:'Interrogante → dar 60 días y una hipótesis',
+    mt2:'Vaca → proteger la rentabilidad, no crecer',
+    mt3:'Perro → cerrar sin sentimentalismo',
+    mt4:'Primer hire del valle: Operaciones (mes 8–12)',
+    mt5:'Segundo hire del valle: Comercial (mes 12–18)',
+    mt6:'Tercer hire del valle: Finanzas / Admin (mes 16–22)',
+    bcg0:'Estrella',
+    bcg1:'Interrogante',
+    bcg2:'Vaca',
+    bcg3:'Perro',
+    bs0:'Invertir agresivamente',
+    bs1:'Decidir en 60 días',
+    bs2:'Mantener · no invertir más',
+    bs3:'Cerrar / reasignar',
+    c1_name:'Claridad',
+    c2_name:'Consistencia',
+    c3_name:'Cash Flow',
+    tc_footer:'Regla del Valle: Los tres vértices deben sostenerse simultáneamente. Un negocio con Claridad y Cash Flow pero sin Consistencia es dependiente del fundador. Con Claridad y Consistencia pero sin Cash Flow, quema efectivo hasta la extinción. Con Cash Flow y Consistencia pero sin Claridad, escala el modelo equivocado.',
+    badge_mrr:'MRR creciendo',
+    badge_ret:'Retención >70%',
+    badge_cac:'CAC Payback <6M',
+    badge_dep:'Dependencia <70%',
+    vl_mrr:'MRR growth rate · meta mensual',
+    vl_od:'Owner Dependency · hito de salida',
+    vl_cac:'CAC Payback · hito de salida',
+    cue_canal:'Canal',
+    cue_ltv:'LTV:CAC ratio',
+    cue_cac:'CAC',
+    cue_pb:'Payback',
+    cue_acc:'Acción',
+    calc_lbl:'◆ Calculadora · CAC Payback — ingresa tus números reales',
+    calc_cac:'CAC ($)',
+    calc_ticket:'Ticket mensual ($)',
+    calc_margen:'Margen bruto (%)',
+    calc_btn:'Calcular →',
+    mapa_lbl:'◆ Mapa del Valle · Posición según semáforo mensual',
+    mapa_sub:'Completa la Sección 07 → tu posición se mueve en tiempo real',
+    sig_title:'Dashboards · Visualizaciones · para negocios en expansión',
+    c1_desc:'Problema real verificado con pagos reales de clientes reales. No encuestas, no intenciones, no promesas. Sin claridad no hay canal que funcione.',
+    c1_desc_bare:'Problema real verificado con pagos reales de clientes reales. No encuestas, no intenciones, no promesas. Sin claridad no hay canal que funcione.',
+    c2_desc:'Procesos que funcionan sin el fundador. Si no existe el manual, el proceso no existe. La consistencia es lo que convierte ejecución en sistema.',
+    c2_desc_bare:'Procesos que funcionan sin el fundador. Si no existe el manual, el proceso no existe. La consistencia es lo que convierte ejecución en sistema.',
+    c3_desc:'El negocio genera más efectivo del que consume cada mes. Sin excepción. El crecimiento sin cash flow positivo es deuda disfrazada de tracción.',
+    c3_desc_bare:'El negocio genera más efectivo del que consume cada mes. Sin excepción. El crecimiento sin cash flow positivo es deuda disfrazada de tracción.',
+    tc_footer_lbl:'Regla del Valle:',
+    flbl_mrr:'Descomposición del MRR',
+    flbl_formulas:'Fórmulas clave',
+    flbl_cac:'Fórmula',
+    flbl_churn:'Tasa de retención vs churn',
+    flbl_cce:'Ciclo de Conversión de Efectivo (CCE)',
+    flbl_idf:'Cálculo simplificado',
+    fn_mrr:'El MRR de expansión es el más eficiente: viene de clientes ya adquiridos, con CAC=0. Un negocio sano tiene MRR de expansión ≥ MRR churneado → Net Revenue Retention &gt;100%.',
+    fn_churn:'Con churn del 5%/mes: LTV = 20× ticket mensual. Con churn del 15%/mes: LTV = 6.7× ticket mensual. La diferencia en valor del negocio es enorme.',
+    fn_cac:'El denominador es el margen bruto mensual por cliente — lo que cada cliente aporta, neto de costos directos, para recuperar lo que costó adquirirlo.',
+    fn_nrr:'Net MRR Churn negativo (cuando expansión &gt; churn) se llama Net Revenue Retention &gt;100% y es la señal más poderosa de salud del negocio en el valle.',
+    fn_cce:'CCE positivo = el negocio financia a sus clientes. CCE negativo = los clientes financian al negocio (modelo Amazon/Mercado Libre). En el valle, el objetivo es reducir el CCE al mínimo posible.',
+    fn_idf:'Proceso crítico = si no ocurre esta semana, afecta ingresos, clientes o continuidad operacional. Hacer el café no es un proceso crítico.',
+    exl0:'Consultoría de marketing · mes 12',
+    exl1:'Producto físico con suscripción mensual',
+    exl2:'Agencia de contenido · cliente recurrente',
+    exl3:'E-commerce · producto físico',
+    exl4:'Interpretación · CCE = 25 días',
+    ins_mrr_txt:'Si el MRR cae un mes, no es una crisis — es una señal.',
+    ins_mrr_b:'Si cae dos meses seguidos, es un problema sistémico',
+    ins_mrr_c:'Si cae tres, es prioridad absoluta',
+    ins_ue_txt:'En el valle, el 80% del presupuesto de adquisición debe ir a los 2 canales con mejor LTV:CAC.',
+    watch_err_bld:'Si los datos confirman Perro, cada mes que se mantiene activo financia el estancamiento.',
+    abox_idf_bld:'Si a los 12 meses el fundador sigue haciendo el 85% de los procesos críticos, el crecimiento ya llegó a su límite físico.',
+    pal_lbl:'Palancas de retención en el valle:',
+    coh_pos_lbl:'Señal positiva:',
+    coh_alrt_lbl:'Señal de alerta:',
+    bcg_ax_l:'← Baja rentabilidad',
+    bcg_ax_r:'Alta rentabilidad →',
+    bcg_ax_lbl:'Eje horizontal: LTV:CAC del canal',
+    raci_proc:'Proceso',
+    raci_fund:'Fundador',
+    raci_ops:'Ops Lead',
+    raci_com:'Comercial',
+    raci_fin:'Finanzas',
+    raci_r1:'Cierre de ventas &gt;$500',
+    raci_r2:'Onboarding de cliente',
+    raci_r3:'Entrega / producción',
+    raci_r4:'Facturación y cobro',
+    raci_r5:'Reportes semanales',
+    raci_r6:'Compras a proveedores',
+    raci_r7:'Estrategia y precios',
+    raci_r8:'Soporte postventa',
+    cce_inv:'Días de inventario',
+    cce_dso:'Días en cobrar (DSO)',
+    cce_dpo:'Días que pago (DPO)',
+    cc_reduce:'Reducir CCE',
+    cc_err:'Error frecuente',
+    cc_reduce_txt:'Cobrar por adelantado o al inicio. Pedir anticipo del 50%. Negociar plazos con proveedores. Reducir inventario con just-in-time donde sea posible.',
+    cc_err_txt:'Financiar el crecimiento con la tarjeta de crédito personal mientras el negocio tiene $8K en cuentas por cobrar pendientes a 60 días. El problema es el DSO, no la caja.',
+    watch_err_lbl:'El error más común del valle:',
+    watch_err_body:'mantener 5 canales activos "para diversificar" cuando ninguno recibe suficiente inversión para madurar. La concentración en 1–2 canales con datos reales supera siempre a la diversificación prematura.',
+    svc_link:'Quiero una llamada de exploración de 10 minutos',
+    logo_main:'Growth OS · sistema operativo gerencial-financiero para negocios en expansión',
+    logo_main2:'Growth OS · sistema operativo gerencial-financiero para negocios en expansión',
+    s02_sub:'El análisis de cohortes revela lo que el MRR oculta. Un negocio puede mostrar MRR creciente mientras pierde el 60% de sus clientes cada trimestre.',
+    s05_sub:'Dos indicadores que la mayoría de los dashboards ignoran hasta que se convierten en la causa directa del colapso. La dependencia del fundador y el capital de trabajo son el tejido conectivo del Valle.',
+    tag_crit:'Crítico',
+    tag_vig:'Vigilancia activa',
+    tag_est:'Estable en el Valle',
+    tag_scale:'Listo para SCALE',
+    acc_crit_t:'CRÍTICO — Parar y revisar ahora',
+    acc_crit_d:'3 o más señales en rojo. Detener toda iniciativa de crecimiento nueva. Revisar MRR, caja y CAC esta semana — en ese orden. El Valle exige diagnóstico, no más acción.',
+    acc_vig_t:'VIGILANCIA ACTIVA — Esta semana',
+    acc_vig_d:'Señales mixtas. El negocio opera pero hay fricción. Identificar el indicador más rojo y atacarlo primero. No lanzar nada nuevo hasta estabilizar.',
+    acc_est_t:'ESTABLE EN EL VALLE — Mantener ritmo',
+    acc_est_d:'El sistema funciona. Revisar si hay oportunidad de acelerar el IDF más rápido. Documentar un proceso adicional este mes.',
+    acc_scale_t:'LISTO PARA SCALE — Evaluar el paso',
+    acc_scale_d:'Sistema operando a máxima capacidad del Valle. Revisar los tres caminos del Mes 24 con datos reales antes de ejecutar.',
+    cv_exc:'✓ EXCELENTE — Payback en',
+    cv_opt:'✓ ÓPTIMO — Dentro del umbral del Valle',
+    cv_ace:'◎ ACEPTABLE — Optimizar antes de escalar',
+    cv_ten:'◎ TENSO — Revisar precio o canal urgente',
+    cv_crit:'✗ CRÍTICO — Pausar inmediatamente',
+    cv_exc_note:'Canal altamente eficiente. Duplicar inversión y monitorear el CAC mensualmente para detectar saturación a tiempo.',
+    cv_opt_note:'Payback bajo el umbral crítico de 6 meses. Escalar con confianza. Documentar el canal como Estrella BCG.',
+    cv_ace_note:'Payback sobre umbral. Revisar si el margen puede subir 5–10% o si el ticket promedio puede aumentar antes de escalar este canal.',
+    cv_ten_note:'El canal está bajo tensión financiera. Sin mejora en 60 días, reclasificar como Perro BCG y reasignar presupuesto a canales con mejor ratio.',
+    cv_crit_note:'Payback mayor a 12 meses. Cada cliente nuevo consume más caja de la que genera antes de recuperarse. Pausar el canal y revisar la propuesta de valor o segmento objetivo.',
+    logo_full:'Growth OS · sistema operativo gerencial-financiero para negocios en expansión',
+    ns_hay_ej:'hay ejecución, no sistema.',
+    vl_od2:'Owner Dependency · hito de salida',
+    vsub_proc2:'% de procesos',
+    vl_cac2:'CAC Payback · hito de salida',
+    watch_cac_bld:'CAC Payback &gt;6 meses en el valle exige revisar precio, canal o estructura de costos antes de aumentar el gasto en adquisición.',
+    bench_alrt:'Zona de alerta universal',
+    cc_tag_err:'Sin política de cobro',
+    idf_s0:'Listo para escalar',
+    idf_s2:'Zona de alerta',
+    idf_l0:'Listo para contratar gerente',
+    idf_l1b:'hito de salida',
+    idf_l3:'No hay negocio, hay trabajo',
+    dec_em0:'El sistema opera. Es hora de blindar la rentabilidad.',
+    dec_em1:'Resolver la retención y la dependencia antes de escalar. Dos meses más en el valle.',
+    dec_em2:'El modelo no escala. Cambiar propuesta, segmento o mecanismo de entrega con los datos de 24 meses.'
+  },
+  en:{
+    active:'Active',
+    confidential:'Internal Use · Confidential',
+    nav_launch:'!LAUNCH · 45 days',
+    ns_lbl:'★ Core metric · months 6–24',
+    ns_m:'Can the business grow while the founder takes a full week off?',
+    tc_kicker:'Structural framework · Growth OS CROSS',
+    tc_titulo:'The 3 Cs — Three pillars of the Valley',
+    tc_badge:'Tap each vertex',
+    s00_title:'The valley — the only question that matters in months 6–24',
+    s00_sub:'The "Valley of Death" (6–24 months) is the critical early stage of a business — high risk of insolvency before break-even. Most don\'t make it through. Not for lack of product. For lack of system.',
+    s01_title:'MRR and revenue engine — the monthly pulse of the business',
+    s01_sub:'MRR doesn\'t measure how much was sold in a month — it measures how much revenue is guaranteed next month before a single new customer walks in. Predictable business vs. starting from zero every 30 days.',
+    s02_title:'Cohort Retention — do your customers stay or leave?',
+    s03_title:'CAC Payback and Unit Economics by channel — where to put the money',
+    s03_sub:'At launch, CAC was a survival metric. In the valley, it is a capital allocation metric. The CAC Payback period reveals how long you must finance each new customer before they start returning.',
+    s04_title:'BCG by channel — where growth is and where margin is',
+    s04_sub:'In GROW, the BCG matrix applied to products. In the valley it applies to channels.',
+    s05_title:'Founder dependency and working capital cycle',
+    s06_title:'First org chart with basic RACI — who does exactly what',
+    s06_sub:'The org chart in the valley is not a hierarchy diagram — it is an operational clarity map. Without it, "everyone is responsible for everything" becomes the reason nothing gets done consistently.',
+    s07_title:'Monthly valley traffic light — first Monday of each month',
+    s07_sub:'Eight signals that indicate the real state of the business in the valley. Select the status of each indicator (Red / Amber / Green) and the system calculates your position in real time.',
+    sig_desc:'This dashboard is designed for autonomous use. When the valley numbers pile up and interpretation requires more context, the personalized version is available.',
+    sig_cta_label:'Want this with your real numbers?',
+    sig_cta:'Talk to J.F.Carpio →',
+    ns_s_a:'Not if there are more sales this week vs. last.',
+    ns_s_b:'If the system operates, invoices, delivers and retains without the founder stepping in.',
+    ns_s_c:'That is the difference between owning a business and owning a high-risk job. Everything in this volume measures that distinction.',
+    vn_mrr:'A service business can grow faster. A physical product normally slower. What matters: the curve ascends 3 consecutive months.',
+    vn_od:'If 90% of processes depend on the founder, there is no sellable or scalable business. The work of the valley is to lower that number systematically.',
+    vn_cac:'If it takes more than 6 months to recover what it cost to acquire a customer, the growth engine consumes more cash than it generates before you can scale.',
+    vsub_mensual:'monthly',
+    vsub_procesos:'% of processes',
+    vsub_meses:'months',
+    tct_icp:'ICP Defined',
+    tct_pp:'Paid Problem',
+    tct_pv:'Validated Offer',
+    tct_sop:'SOPs documented',
+    tct_idf:'IDF <70%',
+    tct_raci:'RACI Active',
+    tct_run:'Runway >4M',
+    tct_mrg:'Margin >50%',
+    tct_cacpb:'CAC Payback <6M',
+    vhd0:'MRR + Retention · take control',
+    vhd1:'CAC · IDF · Cash · all three in tension',
+    vhd2:'System > Founder · RACI documented',
+    vhd3:'Green traffic light · ready to scale',
+    ctx_mrr_lbl:'Why it matters in the valley:',
+    ctx_mrrg_lbl:'Reading the chart:',
+    ctx_cac_lbl:'Why it is critical in the valley:',
+    ctx_ue_lbl:'How to read:',
+    ctx_bcg_lbl:'Axes:',
+    ctx_idf_lbl:'Operational definition:',
+    ctx_cct_lbl:'The valley problem:',
+    ctx_raci_lbl:'RACI key:',
+    ctx_org_lbl:'Valley principle:',
+    ctx_coh_lbl:'How to read the table:',
+    insight_mrr_lbl:'Valley rule:',
+    insight_ue_lbl:'Concentration rule:',
+    insight_raci_lbl:'RACI diagnosis:',
+    watch_mrr_lbl:'Warning signal:',
+    watch_cac_lbl:'Valley rule:',
+    bcgd0:'High growth · High profitability. Referrals and SEO usually land here. Invest to sustain growth before they mature into Cash Cows.',
+    bcgd1:'High growth · Low profitability. New Meta Ads or untested influencer. Decide: invest to reach Star or cut before burning more?',
+    bcgd2:'Low growth · High profitability. Email nurture and existing base. Stop growing it — milk the margin to fund Stars and Question Marks.',
+    bcgd3:'Low growth · Low profitability. Trade shows, physical catalogs, a channel done "because we always have" without measuring. Close immediately and reallocate.',
+    mtb0:'A channel with LTV:CAC >4× and MoM growth >10% for 3 consecutive months is not luck — it\'s a system. Assign 50–60% of the acquisition budget to it.',
+    mtb1:'Don\'t extend a non-performing channel without a specific hypothesis for why it will improve. No clear hypothesis = Dog in disguise.',
+    mtb2:'Investing in a Cow to make it grow usually kills profitability. The goal is to maintain the margin flow and redirect energy to Stars.',
+    mtb3_pre:'The argument "I\'ve been at trade shows for 2 years" is not a financial reason. If data confirms Dog, every month it stays active funds stagnation.',
+    mtb4:'If the founder is the delivery bottleneck, growth is impossible. The first hire frees delivery capacity — not sales.',
+    mtb5:'Once delivery is systematized, the founder can focus on growing sales — or hire someone to do it with a defined system.',
+    mtb6:'Business cash managed by the founder is an operational risk. The third hire frees strategic time and closes the dependency cycle.',
+    stb0:'List every process that, if stopped, affects operations. Classify: can someone else do it with written instructions?',
+    stb1:'A process without documentation can only be delegated to the founder who created it. The SOP is the bridge between dependency and system.',
+    stb2:'Without clarity on who is Responsible, Accountable, Consulted and Informed for each process, delegation creates confusion and returns to the founder. See section 06.',
+    abd0:'Stop all growth initiatives. Talk to the last 10 customers who cancelled. The cause is always in the experience, not the price.',
+    abd1:'The model is in structural burn. Every new customer costs more than it generates before leaving. Revise price, channel or value proposition before investing another dollar in acquisition.',
+    abd3:'MRR growing 3M consecutively · CAC Payback <6M · Retention >60% at M+6 · IDF <70% · Runway ≥4M · RACI documented for core processes.',
+    dec_st0:'Growing MRR · Payback <6M · IDF <70% · Confirmed retention.',
+    dec_st1:'MRR growing but low retention or high IDF.',
+    dec_st2:'CAC Payback >LTV or structurally high churn.',
+    sig_v:'GROWTH OS · CROSS · 6–24 MONTHS · v1.0 · J.F.CARPIO · 2025–2026',
+    svc0:'✦ CROSS Dashboard with your REAL numbers in 48–72h',
+    svc1:'✦ Cohort analysis with your real customer base',
+    svc2:'✦ Full Growth OS system · 4 dashboards',
+    sig_handle:'@jfcarpio · Dashboards',
+    logo_sub:'management-financial operating system for growing businesses',
+    logo_vol2:'Vol. 2 · Crossing the "Valley of Death"',
+    pt_mrr:'MRR · Monthly Recurring Revenue',
+    pt_mrr_tag:'Pulse of the model',
+    pt_mrrg:'MRR Growth Rate',
+    pt_mrrg_tag:'Is the curve going up?',
+    pt_coh:'Cohort analysis · first 6 cohorts',
+    pt_coh_tag:'Illustrative reference',
+    pt_bench:'Interpretation & benchmarks',
+    pt_bench_tag:'By business type',
+    pt_cac:'CAC Payback Period',
+    pt_cac_tag:'When does it recover what it cost?',
+    pt_ue:'Unit Economics by channel',
+    pt_ue_tag:'Illustrative reference',
+    pt_bcg:'BCG Matrix · acquisition channels',
+    pt_bcg_tag:'Growth vs. profitability',
+    pt_diag:'Channel diagnosis in the valley',
+    pt_diag_tag:'How to allocate budget',
+    pt_idf:'Founder Dependency Index',
+    pt_idf_tag:'Can they take a week off?',
+    pt_cct:'Working Capital Cycle',
+    pt_cct_tag:'Does growth finance itself?',
+    pt_raci:'RACI Matrix · critical valley processes',
+    pt_raci_tag:'Illustrative reference',
+    pt_org:'Functional org chart for the valley',
+    pt_org_tag:'Structure to scale',
+    pt_sem:'Monthly Interactive Traffic Light',
+    pt_sem_tag:'First Monday of each month · 45min',
+    pt_sig:'🚨 Critical valley signals',
+    pt_sig_tag:'Action this month',
+    pt_m24:'Month 24 Decision',
+    pt_m24_tag:'Three paths to SCALE',
+    nav_cross:'CROSS · 6–24M',
+    nav_grow:'GROW · 0–6M',
+    nav_scale:'SCALE · 24M+',
+    hcenter:'6 to 24 months · "The Valley of Death"',
+    sem_titulo:'◆ Select the current status of each indicator',
+    sem_score_lbl:'Monthly score',
+    sq0:'Is this month\'s MRR higher than last month\'s?',
+    sq1:'Does M+6 retention exceed 60%?',
+    sq2:'Is this month\'s CAC equal to or lower than last month\'s?',
+    sq3:'Could the founder take 5 business days off without a crisis?',
+    sq4:'Did the cash conversion cycle stay flat or improve this month?',
+    sq5:'Did the main channel maintain or improve its LTV:CAC?',
+    sq6:'Was at least one founder-only process documented this month?',
+    sq7:'Does cash cover at least 4 months of burn without new revenue?',
+    vh0:'Month 6 · Entry',
+    vh1:'12–14M · Bottom',
+    vh2:'18–20M · Exit',
+    vh3:'24M · SCALE',
+    ab0:'2 consecutive months of negative MRR',
+    ab1:'CAC Payback > average customer lifetime',
+    ab2:'IDF > 85% after month 12',
+    ab3:'Ready for SCALE when…',
+    st0:'Map all critical processes',
+    st1:'Document before delegating',
+    st2:'Delegate with RACI, not with faith',
+    st3:'Move to SCALE',
+    st4:'Consolidate first',
+    st5:'Redesign the model',
+    mt0:'Confirmed Star → double the budget',
+    mt1:'Question Mark → 60 days and a hypothesis',
+    mt2:'Cow → protect profitability, don\'t grow it',
+    mt3:'Dog → close without sentiment',
+    mt4:'First valley hire: Operations (month 8–12)',
+    mt5:'Second valley hire: Sales (month 12–18)',
+    mt6:'Third valley hire: Finance / Admin (month 16–22)',
+    bcg0:'Star',
+    bcg1:'Question Mark',
+    bcg2:'Cash Cow',
+    bcg3:'Dog',
+    bs0:'Invest aggressively',
+    bs1:'Decide in 60 days',
+    bs2:'Maintain · don\'t invest more',
+    bs3:'Close / reallocate',
+    c1_name:'Clarity',
+    c2_name:'Consistency',
+    c3_name:'Cash Flow',
+    tc_footer:'Valley Rule: All three vertices must hold simultaneously. A business with Clarity and Cash Flow but no Consistency depends on the founder. With Clarity and Consistency but no Cash Flow, it burns until extinction. With Cash Flow and Consistency but no Clarity, it scales the wrong model.',
+    badge_mrr:'MRR growing',
+    badge_ret:'Retention >70%',
+    badge_cac:'CAC Payback <6M',
+    badge_dep:'Dependency <70%',
+    vl_mrr:'MRR growth rate · monthly target',
+    vl_od:'Owner Dependency · exit milestone',
+    vl_cac:'CAC Payback · exit milestone',
+    cue_canal:'Channel',
+    cue_ltv:'LTV:CAC ratio',
+    cue_cac:'CAC',
+    cue_pb:'Payback',
+    cue_acc:'Action',
+    calc_lbl:'◆ Calculator · CAC Payback — enter your real numbers',
+    calc_cac:'CAC ($)',
+    calc_ticket:'Monthly ticket ($)',
+    calc_margen:'Gross margin (%)',
+    calc_btn:'Calculate →',
+    mapa_lbl:'◆ Valley Map · Position based on monthly traffic light',
+    mapa_sub:'Complete Section 07 → your position moves in real time',
+    sig_title:'Dashboards · Visualizations · for growing businesses',
+    c1_desc:'Real problem verified with real payments from real customers. No surveys, no intentions, no promises. Without clarity no channel works.',
+    c1_desc_bare:'Real problem verified with real payments from real customers. No surveys, no intentions, no promises. Without clarity no channel works.',
+    c2_desc:'Processes that work without the founder. If the manual doesn\'t exist, the process doesn\'t exist. Consistency converts execution into a system.',
+    c2_desc_bare:'Processes that work without the founder. If the manual doesn\'t exist, the process doesn\'t exist. Consistency converts execution into a system.',
+    c3_desc:'The business generates more cash than it consumes every month. No exceptions. Growth without positive cash flow is debt disguised as traction.',
+    c3_desc_bare:'The business generates more cash than it consumes every month. No exceptions. Growth without positive cash flow is debt disguised as traction.',
+    tc_footer_lbl:'Valley Rule:',
+    flbl_mrr:'MRR Breakdown',
+    flbl_formulas:'Key formulas',
+    flbl_cac:'Formula',
+    flbl_churn:'Retention rate vs churn',
+    flbl_cce:'Cash Conversion Cycle (CCC)',
+    flbl_idf:'Simplified calculation',
+    fn_mrr:'Expansion MRR is the most efficient: from already-acquired customers, CAC=0. A healthy business has expansion MRR ≥ churned MRR → Net Revenue Retention >100%.',
+    fn_churn:'With 5%/month churn: LTV = 20× monthly ticket. With 15%/month churn: LTV = 6.7× monthly ticket. The difference in business value is enormous.',
+    fn_cac:'The denominator is monthly gross margin per customer — what each customer contributes, net of direct costs, to recover what it cost to acquire them.',
+    fn_nrr:'Negative Net MRR Churn (when expansion > churn) is called Net Revenue Retention >100% — the most powerful signal of business health in the valley.',
+    fn_cce:'Positive CCC = the business finances its customers. Negative CCC = customers finance the business (Amazon model). The goal: reduce CCC to the minimum.',
+    fn_idf:'Critical process = if it does not happen this week, it affects revenue, customers or continuity. Making coffee is not a critical process.',
+    exl0:'Marketing consultancy · month 12',
+    exl1:'Physical product with monthly subscription',
+    exl2:'Content agency · recurring client',
+    exl3:'E-commerce · physical product',
+    exl4:'Interpretation · CCC = 25 days',
+    ins_mrr_txt:'If MRR drops one month, it is not a crisis — it is a signal.',
+    ins_mrr_b:'If it drops two months in a row, it is a systemic problem',
+    ins_mrr_c:'If it drops three, it is the absolute priority',
+    ins_ue_txt:'In the valley, 80% of acquisition budget must go to the 2 channels with the best LTV:CAC.',
+    watch_err_bld:'If data confirms Dog, every month it stays active funds stagnation.',
+    abox_idf_bld:'If at 12 months the founder still handles 85% of critical processes, growth has hit its physical limit.',
+    pal_lbl:'Retention levers in the valley:',
+    coh_pos_lbl:'Positive signal:',
+    coh_alrt_lbl:'Warning signal:',
+    bcg_ax_l:'← Low profitability',
+    bcg_ax_r:'High profitability →',
+    bcg_ax_lbl:'Horizontal axis: Channel LTV:CAC',
+    raci_proc:'Process',
+    raci_fund:'Founder',
+    raci_ops:'Ops Lead',
+    raci_com:'Sales',
+    raci_fin:'Finance',
+    raci_r1:'Sales close >$500',
+    raci_r2:'Customer onboarding',
+    raci_r3:'Delivery / production',
+    raci_r4:'Invoicing and collection',
+    raci_r5:'Weekly reports',
+    raci_r6:'Supplier purchases',
+    raci_r7:'Strategy and pricing',
+    raci_r8:'Post-sale support',
+    cce_inv:'Inventory days',
+    cce_dso:'Days to collect (DSO)',
+    cce_dpo:'Days I pay (DPO)',
+    cc_reduce:'Reduce CCC',
+    cc_err:'Common mistake',
+    cc_reduce_txt:'Invoice upfront or at start. Request 50% advance. Negotiate payment terms with suppliers. Reduce inventory with just-in-time where possible.',
+    cc_err_txt:'Financing growth with a personal credit card while the business has $8K in outstanding receivables at 60 days. The problem is DSO, not cash.',
+    watch_err_lbl:'The most common valley mistake:',
+    watch_err_body:'keeping 5 channels active "to diversify" when none receives enough investment to mature. Concentrating on 1–2 channels with real data always beats premature diversification.',
+    svc_link:'I want a 10-minute exploration call',
+    logo_main:'Growth OS · management-financial operating system for growing businesses',
+    logo_main2:'Growth OS · management-financial operating system for growing businesses',
+    s02_sub:'Cohort analysis reveals what MRR hides. A business can show growing MRR while losing 60% of its customers every quarter.',
+    s05_sub:'Two indicators most dashboards ignore until they become the direct cause of collapse. Founder dependency and working capital are the connective tissue of the Valley.',
+    tag_crit:'Critical',
+    tag_vig:'Active watch',
+    tag_est:'Stable in the Valley',
+    tag_scale:'Ready for SCALE',
+    acc_crit_t:'CRITICAL — Stop and review now',
+    acc_crit_d:'3 or more red signals. Stop all new growth initiatives. Review MRR, cash and CAC this week — in that order. The Valley demands diagnosis, not more action.',
+    acc_vig_t:'ACTIVE WATCH — This week',
+    acc_vig_d:'Mixed signals. The business operates but there is friction. Identify the reddest indicator and attack it first. Launch nothing new until stable.',
+    acc_est_t:'STABLE IN THE VALLEY — Keep the pace',
+    acc_est_d:'The system works. Check if there is an opportunity to accelerate IDF reduction. Document one additional process this month.',
+    acc_scale_t:'READY FOR SCALE — Evaluate the move',
+    acc_scale_d:'System operating at maximum Valley capacity. Review the three Month 24 paths with real data before executing.',
+    cv_exc:'✓ EXCELLENT — Payback in',
+    cv_opt:'✓ OPTIMAL — Within the Valley threshold',
+    cv_ace:'◎ ACCEPTABLE — Optimize before scaling',
+    cv_ten:'◎ TENSE — Review price or channel urgently',
+    cv_crit:'✗ CRITICAL — Pause immediately',
+    cv_exc_note:'Highly efficient channel. Double investment and monitor CAC monthly to detect saturation early.',
+    cv_opt_note:'Payback below the critical 6-month threshold. Scale with confidence. Document the channel as a BCG Star.',
+    cv_ace_note:'Payback above threshold. Check if margin can increase 5–10% or average ticket can rise before scaling this channel.',
+    cv_ten_note:'Channel under financial tension. Without improvement in 60 days, reclassify as a BCG Dog and reallocate budget to better-ratio channels.',
+    cv_crit_note:'Payback over 12 months. Every new customer consumes more cash than it generates before recovering. Pause the channel and review the value proposition or target segment.',
+    logo_full:'Growth OS · management-financial operating system for growing businesses',
+    ns_hay_ej:'there is execution, no system.',
+    vl_od2:'Owner Dependency · exit milestone',
+    vsub_proc2:'% of processes',
+    vl_cac2:'CAC Payback · exit milestone',
+    watch_cac_bld:'CAC Payback >6 months in the valley requires reviewing price, channel or cost structure before increasing acquisition spend.',
+    bench_alrt:'Universal alert zone',
+    cc_tag_err:'No collection policy',
+    idf_s0:'Ready to scale',
+    idf_s2:'Alert zone',
+    idf_l0:'Ready to hire a manager',
+    idf_l1b:'exit milestone',
+    idf_l3:'No business — just a high-risk job',
+    dec_em0:'The system works. Time to lock in profitability.',
+    dec_em1:'Resolve retention and dependency before scaling. Two more months in the valley.',
+    dec_em2:'The model doesn\'t scale. Change the offer, segment or delivery mechanism using 24 months of data.'
+  }
+};
+
+var currentLang='es';
+function setLang(lang){
+  if(!T[lang])return; currentLang=lang;
+  document.querySelectorAll('[data-t]').forEach(function(el){
+    var k=el.getAttribute('data-t');
+    if(T[lang][k]===undefined)return;
+    /* Only update leaf nodes — skip elements with child elements */
+    if(el.children.length===0){
+      el.textContent=T[lang][k];
+    }
+  });
+  var be=document.getElementById('btn-es'),bn=document.getElementById('btn-en');
+  if(be){be.classList.toggle('active',lang==='es');be.setAttribute('aria-pressed',String(lang==='es'));}
+  if(bn){bn.classList.toggle('active',lang==='en');bn.setAttribute('aria-pressed',String(lang==='en'));}
+  document.documentElement.setAttribute('lang',lang==='en'?'en':'es');
+  try{localStorage.setItem('gos_cross_lang_v1',lang);}catch(e){}
+}
+/* localStorage persistence */
+(function(){
+  var LS_SEM='gos_cross_sem_v1',LS_CALC='gos_cross_calc_v1',LS_LANG='gos_cross_lang_v1';
+  var _sp=window.semPick;
+  window.semPick=function(btn,q,val){_sp(btn,q,val);try{localStorage.setItem(LS_SEM,JSON.stringify(semScores));}catch(e){}};
+  var _cp=window.calcPayback;
+  window.calcPayback=function(){
+    _cp();
+    try{var c=document.getElementById('inp-cac'),t=document.getElementById('inp-ticket'),m=document.getElementById('inp-margen');
+    localStorage.setItem(LS_CALC,JSON.stringify({cac:c?c.value:'',tkt:t?t.value:'',mrg:m?m.value:''}));}catch(e){}
+  };
+  document.addEventListener('DOMContentLoaded',function(){
+    try{var sc=localStorage.getItem(LS_CALC);if(sc){var cv=JSON.parse(sc);var c=document.getElementById('inp-cac'),t=document.getElementById('inp-ticket'),m=document.getElementById('inp-margen');if(c&&cv.cac)c.value=cv.cac;if(t&&cv.tkt)t.value=cv.tkt;if(m&&cv.mrg)m.value=cv.mrg;}}catch(e){}
+    try{var ss=localStorage.getItem(LS_SEM);if(ss){var sv=JSON.parse(ss);if(Array.isArray(sv)&&sv.length===8){var pg=document.querySelectorAll('.sem-pills');sv.forEach(function(val,q){if(val<0)return;var g=pg[q];if(!g)return;var ps=g.querySelectorAll('.sem-pill');ps.forEach(function(p){p.classList.remove('sel-r','sel-a','sel-v');});semScores[q]=val;if(ps[val])ps[val].classList.add(['sel-r','sel-a','sel-v'][val]);});actualizarSemaforo();}}}catch(e){}
+    try{var sl=localStorage.getItem(LS_LANG);if(sl&&T[sl])setLang(sl);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
