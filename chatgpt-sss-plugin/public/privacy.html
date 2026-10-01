@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SSS Privacy Promise</title>
+<style>
+:root{--navy:#0A1929;--ink:#0D1B2E;--paper:#F6F8FB;--line:#D9E1EA;--green:#066B40;--gold:#A06800}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:52px 22px}.card{background:white;border:1px solid var(--line);border-top:5px solid var(--navy);padding:34px;box-shadow:0 16px 48px rgba(10,25,41,.07)}
+.kicker{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#65738A}.lang{float:right;font-size:11px;color:#65738A}
+h1{font-size:38px;line-height:1.05;margin:10px 0 14px}.lead{font-size:21px;line-height:1.45;max-width:700px;margin:0 0 28px}
+.promise{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.box{padding:16px;border:1px solid var(--line);background:#FAFBFD}.box strong{display:block;font-size:13px;margin-bottom:5px}.yes{border-left:4px solid var(--green)}.no{border-left:4px solid var(--gold)}
+.rule{height:1px;background:var(--line);margin:28px 0}.small{font-size:13px;line-height:1.65;color:#4A5870}.seal{display:inline-flex;gap:8px;align-items:center;margin-top:18px;padding:8px 11px;border:1px solid #BFD7CA;color:var(--green);font-size:12px;font-weight:800}
+@media(max-width:640px){.promise{grid-template-columns:1fr}.card{padding:24px}h1{font-size:31px}.lead{font-size:18px}}
+</style>
+</head>
+<body><div class="wrap"><div class="card">
+<div class="lang">EN · ES · PT</div>
+<div class="kicker">Startup Survival Score · Privacy by design</div>
+<h1>Your finances stay yours.</h1>
+<p class="lead">SSS works with eight coarse business numbers. No bank connection. No transaction feed. No document upload. No accounting integration required.</p>
+<div class="promise">
+<div class="box yes"><strong>What SSS uses</strong>8 aggregate financial metrics needed to calculate your survival score.</div>
+<div class="box no"><strong>What SSS does not need</strong>Bank credentials, transactions, invoices, client names, employee names or uploaded financial files.</div>
+<div class="box yes"><strong>How it processes</strong>Inputs are used transiently for the requested calculation. The application is designed without a persistent scoring database.</div>
+<div class="box no"><strong>How you can verify it</strong>The scoring engine is open source: weights, thresholds and normalization logic can be inspected line by line.</div>
+</div>
+<div class="rule"></div>
+<p class="small"><strong>Important boundary:</strong> when you use SSS inside ChatGPT, the surrounding ChatGPT conversation is handled by OpenAI under your applicable ChatGPT terms. SSS itself does not require direct access to your bank, accounting software, Drive, Notion or financial documents.</p>
+<div class="seal">✓ MINIMUM DATA IN · MAXIMUM DIAGNOSTIC VALUE OUT</div>
+</div></div></body></html>
