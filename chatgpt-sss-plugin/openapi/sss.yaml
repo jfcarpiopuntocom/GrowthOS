@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
   title: Startup Survival Score API
-  version: 0.2.0
-  description: Deterministic SSS calculation and Pro analysis endpoints.
+  version: 0.3.0
+  description: Anonymous, stateless deterministic Startup Survival Score calculation.
 servers:
   - url: https://YOUR-HOST.example.com
 paths:
@@ -10,11 +10,13 @@ paths:
     get:
       operationId: health
       responses:
-        "200": { description: OK }
+        "200":
+          description: Service health and mode
   /api/calculate:
     post:
       operationId: calculateSSS
-      summary: Calculate the free Startup Survival Score
+      summary: Calculate the Startup Survival Score
+      description: Calculates a deterministic 0-100 business survival score from eight aggregate metrics. No account, bank connection, document upload, or business identity is required.
       requestBody:
         required: true
         content:
@@ -26,67 +28,8 @@ paths:
           content:
             application/json:
               schema: { $ref: "#/components/schemas/SSSResult" }
-  /api/analyze:
-    post:
-      operationId: analyzeSSS
-      summary: Pro prioritized SSS analysis
-      parameters:
-        - in: header
-          name: x-sss-license
-          schema: { type: string }
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: "#/components/schemas/SSSInput" }
-      responses:
-        "200": { description: Prioritized analysis }
-        "402": { description: Pro license required }
-  /api/simulate:
-    post:
-      operationId: simulateCashflow
-      summary: Pro 24-month cashflow simulation
-      parameters:
-        - in: header
-          name: x-sss-license
-          schema: { type: string }
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required: [openingCash, monthlyRevenue, monthlyCosts, scenario]
-              properties:
-                openingCash: { type: number }
-                monthlyRevenue: { type: number, minimum: 0 }
-                monthlyCosts: { type: number, minimum: 0 }
-                revenueGrowthPct: { type: number, default: 0 }
-                costGrowthPct: { type: number, default: 0 }
-                scenario: { type: string, enum: [base, stress, crash] }
-      responses:
-        "200": { description: 24 month simulation }
-        "402": { description: Pro license required }
-  /api/report:
-    post:
-      operationId: generateReport
-      summary: Pro print-ready HTML report
-      parameters:
-        - in: header
-          name: x-sss-license
-          schema: { type: string }
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema: { $ref: "#/components/schemas/SSSInput" }
-      responses:
-        "200":
-          description: HTML report
-          content:
-            text/html:
-              schema: { type: string }
-        "402": { description: Pro license required }
+        "400":
+          description: Invalid input
 components:
   schemas:
     SSSInput:
