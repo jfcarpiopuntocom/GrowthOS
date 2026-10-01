@@ -10,6 +10,7 @@ import { calculateSSS, type SSSInput } from "./score.js";
 import { simulate24 } from "./cashflow.js";
 import { verifyLicense } from "./license.js";
 import { executiveReport } from "./report.js";
+import { localizeResult, type Locale } from "./i18n.js";
 
 const __dirname=dirname(fileURLToPath(import.meta.url));
 const widgetHtml=readFileSync(join(__dirname,"../public/scorecard.html"),"utf8");
@@ -27,7 +28,9 @@ const sssShape={
   debtToCashflowVelocity:z.number().min(0),
   capitalEfficiencyIndex:z.number().min(0)
 };
+const localeSchema=z.enum(["en","es","pt"]).default("en");
 const sssSchema=z.object(sssShape);
+const localizedInputSchema=z.object({...sssShape,locale:localeSchema.optional()});
 
 function proFromArgs(args:any){
   const token=args?.licenseKey;
@@ -47,23 +50,27 @@ function createSssServer(){
   registerAppTool(server,"calculate_sss",{
     title:"Calculate Startup Survival Score",
     description:"Calculates a deterministic 0-100 Startup Survival Score from 8 financial metrics and returns the 3 weakest metrics under 60.",
-    inputSchema:sssShape,
+    inputSchema:{...sssShape,locale:localeSchema.optional()},
     _meta:{ui:{resourceUri:"ui://sss/scorecard.html"}}
   },async(args)=>{
-    const input=sssSchema.parse(args) as SSSInput;
-    const result=calculateSSS(input);
-    return {content:[{type:"text",text:`SSS ${result.score}/100 · ${result.risk}. ${result.actionPlan.length} priority metrics.`}],structuredContent:result};
+    const parsed=localizedInputSchema.parse(args);
+    const {locale="en",...raw}=parsed;
+    const input=raw as SSSInput;
+    const result=localizeResult(calculateSSS(input),locale as Locale);
+    return {content:[{type:"text",text:`SSS ${result.score}/100 · ${result.riskLabel}. ${result.actionPlan.length} priority metrics.`}],structuredContent:result};
   });
 
   registerAppTool(server,"analyze_sss",{
     title:"Analyze Startup Survival Score",
     description:"Pro: provides a prioritized interpretation of the SSS and weakest metrics.",
-    inputSchema:{...sssShape,licenseKey:z.string().min(10)},
+    inputSchema:{...sssShape,locale:localeSchema.optional(),licenseKey:z.string().min(10)},
     _meta:{ui:{resourceUri:"ui://sss/scorecard.html"}}
   },async(args)=>{
     requirePro(args);
-    const input=sssSchema.parse(args) as SSSInput;
-    const result=calculateSSS(input);
+    const parsed=z.object({...sssShape,locale:localeSchema.optional(),licenseKey:z.string().min(10)}).parse(args);
+    const {locale="en",licenseKey:_licenseKey,...raw}=parsed;
+    const input=raw as SSSInput;
+    const result=localizeResult(calculateSSS(input),locale as Locale);
     const priorities=result.actionPlan.map((m,i)=>({rank:i+1,metric:m.label,subScore:m.subScore,severity:m.severity,weight:m.weight}));
     return {content:[{type:"text",text:`SSS ${result.score}/100 (${result.risk}). Priorities: ${priorities.map(p=>p.metric).join(", ")||"none"}.`}],structuredContent:{...result,priorities}};
   });
@@ -86,12 +93,14 @@ function createSssServer(){
   registerAppTool(server,"generate_report",{
     title:"Generate executive SSS report",
     description:"Pro: returns a print-ready HTML executive report for the current SSS inputs.",
-    inputSchema:{...sssShape,licenseKey:z.string().min(10)},
+    inputSchema:{...sssShape,locale:localeSchema.optional(),licenseKey:z.string().min(10)},
     _meta:{}
   },async(args)=>{
     requirePro(args);
-    const input=sssSchema.parse(args) as SSSInput;
-    const result=calculateSSS(input);
+    const parsed=z.object({...sssShape,locale:localeSchema.optional(),licenseKey:z.string().min(10)}).parse(args);
+    const {locale="en",licenseKey:_licenseKey,...raw}=parsed;
+    const input=raw as SSSInput;
+    const result=localizeResult(calculateSSS(input),locale as Locale);
     const html=executiveReport(input,result);
     return {content:[{type:"text",text:"Executive HTML report generated."}],structuredContent:{score:result.score,risk:result.risk,html}};
   });
@@ -135,13 +144,17 @@ const httpServer=createServer(async(req,res)=>{
     try{
       const body=await readJson(req);
       if(url.pathname==="/api/calculate"){
-        const input=sssSchema.parse(body) as SSSInput;
-        sendJson(res,200,calculateSSS(input));return;
+        const parsed=localizedInputSchema.parse(body);
+        const {locale="en",...raw}=parsed;
+        const input=raw as SSSInput;
+        sendJson(res,200,localizeResult(calculateSSS(input),locale as Locale));return;
       }
       if(!httpLicense(req,body)){sendJson(res,402,{error:"PRO_LICENSE_REQUIRED"});return;}
       if(url.pathname==="/api/analyze"){
-        const input=sssSchema.parse(body) as SSSInput;
-        const result=calculateSSS(input);
+        const parsed=localizedInputSchema.parse(body);
+        const {locale="en",...raw}=parsed;
+        const input=raw as SSSInput;
+        const result=localizeResult(calculateSSS(input),locale as Locale);
         sendJson(res,200,{...result,priorities:result.actionPlan});return;
       }
       if(url.pathname==="/api/simulate"){
