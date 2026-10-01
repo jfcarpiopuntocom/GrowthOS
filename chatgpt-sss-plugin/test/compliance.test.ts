@@ -49,6 +49,6 @@ describe("OpenAI compliance guardrails", () => {
 
   it("does not log request bodies or financial input objects", () => {
     expect(server).not.toMatch(/console\.(log|error|warn)\s*\(\s*(body|args|input|raw)\b/);
-    expect(server).not.toMatch(/JSON\.stringify\s*\(\s*(body|args|input|raw)\b/);
+    expect(server).not.toMatch(/(writeFile|appendFile|insert|update|analytics|telemetry)\s*\([^\n]*(body|args|input|raw)\b/i);
   });
 });
