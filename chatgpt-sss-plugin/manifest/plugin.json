@@ -1,46 +1,20 @@
 {
-  "schema_version": "1.0",
+  "status": "deprecated-internal-project-metadata",
+  "canonical_manifest": "../plugin.json",
+  "note": "Do not use this file for OpenAI submission. Current portable Agent Plugins identity is declared in ../plugin.json. Remote MCP submission configuration must use the real deployed HTTPS endpoint when available.",
   "name": "Startup Survival Score",
-  "slug": "startup-survival-score",
   "version": "0.2.0",
-  "description": "Deterministic financial survival score for startups using 8 normalized metrics, weighted to 100.",
-  "author": "J. F. Carpio",
   "runtime": {
     "type": "mcp",
     "path": "/mcp",
     "transport": "streamable-http"
-  },
-  "permissions": [
-    "read",
-    "write"
-  ],
-  "pricing": {
-    "model": "freemium",
-    "free_tools": [
-      "calculate_sss"
-    ],
-    "pro_tools": [
-      "analyze_sss",
-      "simulate_cashflow",
-      "generate_report"
-    ]
   },
   "privacy": {
     "calculation_is_stateless": true,
     "stores_user_financial_data": false,
     "requires_bank_connection": false,
     "requires_document_upload": false,
-    "input_model": "8 aggregate business metrics only",
-    "policy_path": "/privacy"
+    "input_model": "8 aggregate business metrics only"
   },
-  "languages": [
-    "en",
-    "es",
-    "pt"
-  ],
-  "trust": {
-    "open_source_engine": true,
-    "deterministic_scoring": true,
-    "guarantee": "method-transparency-and-delivery"
-  }
+  "languages": ["en", "es", "pt"]
 }
