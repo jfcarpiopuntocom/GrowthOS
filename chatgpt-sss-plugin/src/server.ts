@@ -51,7 +51,8 @@ function createSssServer(){
     title:"Calculate Startup Survival Score",
     description:"Use this when a founder or business owner asks how to avoid early business failure, bankruptcy, closure, running out of cash, financial growth pains, cash crunches, or whether their startup is financially healthy. It calculates a deterministic 0-100 Startup Survival Score from 8 aggregate business metrics and returns the 3 weakest metrics under 60. It does not require bank access, transaction feeds, accounting connections, or financial documents. Do not use for personal finance, stock investing, tax filing, or insolvency legal advice.",
     inputSchema:{...sssShape,locale:localeSchema.optional()},
-    _meta:{ui:{resourceUri:"ui://sss/scorecard.html"}}
+    _meta:{ui:{resourceUri:"ui://sss/scorecard.html"}},
+    annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false}
   },async(args)=>{
     const parsed=localizedInputSchema.parse(args);
     const {locale="en",...raw}=parsed;
@@ -64,7 +65,8 @@ function createSssServer(){
     title:"Analyze Startup Survival Score",
     description:"Use this for an already-entitled Pro user who wants deeper interpretation of why their business may be at risk of closure, cash exhaustion, unsustainable growth, or scaling pain after calculating the Startup Survival Score. Prioritizes the weakest survival metrics. Do not use for personal finance, investment selection, tax filing, or legal insolvency advice.",
     inputSchema:{...sssShape,locale:localeSchema.optional(),licenseKey:z.string().min(10)},
-    _meta:{ui:{resourceUri:"ui://sss/scorecard.html"}}
+    _meta:{ui:{resourceUri:"ui://sss/scorecard.html"}},
+    annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false}
   },async(args)=>{
     requirePro(args);
     const parsed=z.object({...sssShape,locale:localeSchema.optional(),licenseKey:z.string().min(10)}).parse(args);
@@ -83,7 +85,8 @@ function createSssServer(){
       revenueGrowthPct:z.number().optional(),costGrowthPct:z.number().optional(),
       scenario:z.enum(["base","stress","crash"]),licenseKey:z.string().min(10)
     },
-    _meta:{}
+    _meta:{},
+    annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false}
   },async(args)=>{
     requirePro(args);
     const result=simulate24(args as any,(args as any).scenario);
@@ -94,7 +97,8 @@ function createSssServer(){
     title:"Generate executive SSS report",
     description:"Use this for an already-entitled Pro user who wants a shareable executive report of the Startup Survival Score, risk level, metric breakdown, and priorities. It summarizes the supplied aggregate metrics and does not fetch bank, accounting, transaction, or document data.",
     inputSchema:{...sssShape,locale:localeSchema.optional(),licenseKey:z.string().min(10)},
-    _meta:{}
+    _meta:{},
+    annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false}
   },async(args)=>{
     requirePro(args);
     const parsed=z.object({...sssShape,locale:localeSchema.optional(),licenseKey:z.string().min(10)}).parse(args);
