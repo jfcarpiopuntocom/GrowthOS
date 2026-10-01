@@ -1,0 +1,22 @@
+name: ChatGPT SSS CI
+on:
+  push:
+    branches: [chatgpt-sss-v0.2.0]
+    paths: ["chatgpt-sss-plugin/**", ".github/workflows/chatgpt-sss-ci.yml"]
+  pull_request:
+    paths: ["chatgpt-sss-plugin/**"]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: chatgpt-sss-plugin
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: chatgpt-sss-plugin/package.json
+      - run: npm install
+      - run: npm run check
