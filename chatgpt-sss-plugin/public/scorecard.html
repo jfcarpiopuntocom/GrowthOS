@@ -1,24 +1,53 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
-:root{font-family:ui-sans-serif,system-ui,sans-serif;color:#0A1929;background:#fff}body{margin:0;padding:16px}.card{border:1px solid #d9e1ec;border-top:4px solid #0A1929;padding:18px}.top{display:flex;align-items:flex-end;gap:18px}.score{font-size:64px;font-weight:900;line-height:.9}.risk{font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:16px}.m{background:#f0f4fa;padding:10px;border-left:3px solid #0F2544}.n{font-size:11px}.v{font-size:22px;font-weight:800}.actions{margin-top:14px;padding-top:12px;border-top:1px solid #d9e1ec}.actions li{margin:6px 0;font-size:12px}@media(min-width:640px){.grid{grid-template-columns:repeat(4,1fr)}}</style></head>
-<body><div class="card"><div class="top"><div class="score" id="score">—</div><div><div class="risk" id="risk">SSS</div><div style="font-size:12px">Startup Survival Score</div></div></div><div class="grid" id="grid"></div><div class="actions"><strong style="font-size:12px">Top prioridades</strong><ol id="actions"></ol></div></div>
+:root{--navy:#0A1929;--ink:#0D1B2E;--muted:#637089;--paper:#F7F9FC;--line:#DCE3EC;--green:#066B40;--amber:#A06800;--red:#AA1A1A;--mono:ui-monospace,SFMono-Regular,Menlo,monospace}
+*{box-sizing:border-box}body{margin:0;padding:14px;background:transparent;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.card{background:#fff;border:1px solid var(--line);border-top:5px solid var(--navy);border-radius:2px;overflow:hidden;box-shadow:0 10px 28px rgba(10,25,41,.06)}
+.head{padding:18px 18px 14px;background:linear-gradient(180deg,#fff,#FBFCFE)}.eyebrow{display:flex;justify-content:space-between;gap:12px;font:700 10px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.top{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:end;margin-top:10px}.score{font-size:68px;line-height:.85;font-weight:900;letter-spacing:-.05em}.risk{font-size:14px;font-weight:800;margin-bottom:3px}.subtitle{font-size:12px;color:var(--muted)}
+.trust{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 18px 16px}.seal{border:1px solid var(--line);background:var(--paper);padding:9px 10px;font-size:10px;line-height:1.35}.seal b{display:block;font-size:10px;margin-bottom:2px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.m{padding:12px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:86px}.m:nth-child(2n){border-right:none}.n{font-size:10px;line-height:1.3;color:var(--muted);min-height:26px}.v{font-size:25px;font-weight:900;margin-top:4px}.w{font:700 9px var(--mono);color:var(--muted)}
+.actions{padding:15px 18px}.actions h3{font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin:0 0 8px}.actions ol{margin:0;padding-left:18px}.actions li{font-size:11px;line-height:1.45;margin:5px 0}
+.foot{border-top:1px solid var(--line);padding:10px 18px;font:600 9px/1.4 var(--mono);color:var(--muted);display:flex;justify-content:space-between;gap:12px}
+@media(min-width:680px){.grid{grid-template-columns:repeat(4,1fr)}.m:nth-child(2n){border-right:1px solid var(--line)}.m:nth-child(4n){border-right:none}.m:nth-last-child(-n+4){border-bottom:none}}
+@media(max-width:480px){.trust{grid-template-columns:1fr}.score{font-size:58px}.foot{flex-direction:column}}
+</style></head>
+<body><div class="card">
+<div class="head">
+  <div class="eyebrow"><span>STARTUP SURVIVAL SCORE</span><span>EN · ES · PT</span></div>
+  <div class="top"><div class="score" id="score">—</div><div><div class="risk" id="risk">SSS</div><div class="subtitle" id="subtitle">Eight numbers. One survival score.</div></div></div>
+</div>
+<div class="trust">
+  <div class="seal"><b id="privacy-title">PRIVATE BY DESIGN</b><span id="privacy">Only 8 aggregate numbers. No bank login or transaction feed.</span></div>
+  <div class="seal"><b id="open-title">OPEN LOGIC</b><span id="open">Weights and normalization rules are inspectable.</span></div>
+</div>
+<div class="grid" id="grid"></div>
+<div class="actions"><h3 id="actions-title">Priority action plan</h3><ol id="actions"></ol></div>
+<div class="foot"><span>Deterministic · same input = same output</span><span>Growth OS · J.F. Carpio</span></div>
+</div>
 <script>
-let state=null;
+const labels={
+ en:{privacyTitle:"PRIVATE BY DESIGN",openTitle:"OPEN LOGIC",action:"Priority action plan",tag:"Eight numbers. One survival score. No financial-data plumbing.",none:"No metric is below 60.",weight:"weight",sev:{high:"high",medium:"medium",ok:"ok"}},
+ es:{privacyTitle:"PRIVACIDAD POR DISEÑO",openTitle:"LÓGICA ABIERTA",action:"Plan de acción prioritario",tag:"Ocho cifras. Un score de supervivencia. Sin conectar tus finanzas.",none:"Ninguna métrica está por debajo de 60.",weight:"peso",sev:{high:"alta",medium:"media",ok:"ok"}},
+ pt:{privacyTitle:"PRIVACIDADE DE ORIGEM",openTitle:"LÓGICA ABERTA",action:"Plano de ação prioritário",tag:"Oito números. Um score de sobrevivência. Sem ligar as suas finanças.",none:"Nenhuma métrica está abaixo de 60.",weight:"peso",sev:{high:"alta",medium:"média",ok:"ok"}}
+};
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
 function render(data){
-  if(!data)return; state=data;
+  if(!data)return;
+  const l=labels[data.locale]||labels.en;
   const color=data.risk==="green"?"#066B40":data.risk==="yellow"?"#A06800":"#AA1A1A";
-  const s=document.getElementById("score"); s.textContent=data.score; s.style.color=color;
-  const r=document.getElementById("risk"); r.textContent=data.risk; r.style.color=color;
-  document.getElementById("grid").innerHTML=(data.metrics||[]).map(m=>'<div class="m"><div class="n">'+m.label+'</div><div class="v">'+Math.round(m.subScore)+'</div><div style="font-size:10px">'+m.weight+'% peso</div></div>').join('');
-  document.getElementById("actions").innerHTML=(data.actionPlan||[]).map(m=>'<li>'+m.label+' — '+Math.round(m.subScore)+'/100 · '+m.severity+'</li>').join('') || '<li>Sin métricas bajo 60.</li>';
+  const s=document.getElementById("score");s.textContent=data.score;s.style.color=color;
+  const r=document.getElementById("risk");r.textContent=data.riskLabel||data.risk;r.style.color=color;
+  document.getElementById("subtitle").textContent=l.tag;
+  document.getElementById("privacy-title").textContent=l.privacyTitle;
+  document.getElementById("privacy").textContent=data.privacy||"";
+  document.getElementById("open-title").textContent=l.openTitle;
+  document.getElementById("open").textContent=data.openSource||"";
+  document.getElementById("actions-title").textContent=l.action;
+  document.getElementById("grid").innerHTML=(data.metrics||[]).map(m=>'<div class="m"><div class="n">'+esc(m.label)+'</div><div class="v" style="color:'+(m.subScore<40?"#AA1A1A":m.subScore<60?"#A06800":"#0A1929")+'">'+Math.round(m.subScore)+'</div><div class="w">'+m.weight+'% '+l.weight+'</div></div>').join("");
+  document.getElementById("actions").innerHTML=(data.actionPlan||[]).map(m=>'<li><b>'+esc(m.label)+'</b> — '+Math.round(m.subScore)+'/100 · '+esc(l.sev[m.severity]||m.severity)+'</li>').join("")||'<li>'+l.none+'</li>';
 }
-window.addEventListener("message",(event)=>{
-  const msg=event.data;
-  if(msg?.method==="ui/notifications/tool-result"){
-    const payload=msg.params?.structuredContent || msg.params?.content;
-    if(payload) render(payload);
-  }
-});
-if(window.openai?.toolOutput) render(window.openai.toolOutput);
+window.addEventListener("message",(event)=>{const msg=event.data;if(msg?.method==="ui/notifications/tool-result"){const payload=msg.params?.structuredContent||msg.params?.content;if(payload)render(payload)}});
+if(window.openai?.toolOutput)render(window.openai.toolOutput);
 </script></body></html>
