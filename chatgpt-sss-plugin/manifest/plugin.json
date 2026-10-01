@@ -10,14 +10,37 @@
     "path": "/mcp",
     "transport": "streamable-http"
   },
-  "permissions": ["read", "write"],
+  "permissions": [
+    "read",
+    "write"
+  ],
   "pricing": {
     "model": "freemium",
-    "free_tools": ["calculate_sss"],
-    "pro_tools": ["analyze_sss", "simulate_cashflow", "generate_report"]
+    "free_tools": [
+      "calculate_sss"
+    ],
+    "pro_tools": [
+      "analyze_sss",
+      "simulate_cashflow",
+      "generate_report"
+    ]
   },
   "privacy": {
     "calculation_is_stateless": true,
-    "stores_user_financial_data": false
+    "stores_user_financial_data": false,
+    "requires_bank_connection": false,
+    "requires_document_upload": false,
+    "input_model": "8 aggregate business metrics only",
+    "policy_path": "/privacy"
+  },
+  "languages": [
+    "en",
+    "es",
+    "pt"
+  ],
+  "trust": {
+    "open_source_engine": true,
+    "deterministic_scoring": true,
+    "guarantee": "method-transparency-and-delivery"
   }
 }
