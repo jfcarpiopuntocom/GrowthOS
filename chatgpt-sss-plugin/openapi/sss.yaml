@@ -102,6 +102,7 @@ components:
         customerConcentrationPct: { type: number, minimum: 0, maximum: 100 }
         debtToCashflowVelocity: { type: number, minimum: 0 }
         capitalEfficiencyIndex: { type: number, minimum: 0 }
+        locale: { type: string, enum: [en, es, pt], default: en }
     SSSResult:
       type: object
       required: [score,risk,metrics,actionPlan]
