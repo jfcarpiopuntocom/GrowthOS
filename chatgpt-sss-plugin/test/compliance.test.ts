@@ -27,13 +27,17 @@ describe("OpenAI compliance guardrails", () => {
     expect(legacy.canonical_manifest).toBe("../plugin.json");
   });
 
-  it("keeps calculate_sss free of license or credential fields", () => {
-    const start = server.indexOf('registerAppTool(server,"calculate_sss"');
-    const end = server.indexOf('registerAppTool(server,"analyze_sss"');
-    const block = server.slice(start, end).toLowerCase();
-    expect(block).not.toContain("licensekey");
-    expect(block).not.toContain("apikey");
-    expect(block).not.toContain("password");
+  it("keeps the entire public server free of credential fields", () => {
+    const source = server.toLowerCase();
+    expect(source).not.toContain("licensekey");
+    expect(source).not.toContain("x-sss-license");
+    expect(source).not.toContain("apikey");
+    expect(source).not.toContain("password");
+  });
+
+  it("exposes only the complete anonymous calculation tool before OAuth exists", () => {
+    expect((server.match(/registerAppTool\(/g) || []).length).toBe(1);
+    expect(server).toContain('registerAppTool(server,"calculate_sss"');
   });
 
   it("sets explicit safety annotations on every registered app tool", () => {
