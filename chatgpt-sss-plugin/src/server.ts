@@ -58,7 +58,8 @@ function createSssServer(){
   registerAppTool(server,"analyze_sss",{
     title:"Analyze Startup Survival Score",
     description:"Pro: provides a prioritized interpretation of the SSS and weakest metrics.",
-    inputSchema:{...sssShape,licenseKey:z.string().min(10)}
+    inputSchema:{...sssShape,licenseKey:z.string().min(10)},
+    _meta:{ui:{resourceUri:"ui://sss/scorecard.html"}}
   },async(args)=>{
     requirePro(args);
     const input=sssSchema.parse(args) as SSSInput;
@@ -74,7 +75,8 @@ function createSssServer(){
       openingCash:z.number(),monthlyRevenue:z.number().min(0),monthlyCosts:z.number().min(0),
       revenueGrowthPct:z.number().optional(),costGrowthPct:z.number().optional(),
       scenario:z.enum(["base","stress","crash"]),licenseKey:z.string().min(10)
-    }
+    },
+    _meta:{}
   },async(args)=>{
     requirePro(args);
     const result=simulate24(args as any,(args as any).scenario);
@@ -84,7 +86,8 @@ function createSssServer(){
   registerAppTool(server,"generate_report",{
     title:"Generate executive SSS report",
     description:"Pro: returns a print-ready HTML executive report for the current SSS inputs.",
-    inputSchema:{...sssShape,licenseKey:z.string().min(10)}
+    inputSchema:{...sssShape,licenseKey:z.string().min(10)},
+    _meta:{}
   },async(args)=>{
     requirePro(args);
     const input=sssSchema.parse(args) as SSSInput;
