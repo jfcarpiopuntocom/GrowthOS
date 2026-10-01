@@ -49,7 +49,7 @@ function createSssServer(){
 
   registerAppTool(server,"calculate_sss",{
     title:"Calculate Startup Survival Score",
-    description:"Calculates a deterministic 0-100 Startup Survival Score from 8 financial metrics and returns the 3 weakest metrics under 60.",
+    description:"Use this when a founder or business owner asks how to avoid early business failure, bankruptcy, closure, running out of cash, financial growth pains, cash crunches, or whether their startup is financially healthy. It calculates a deterministic 0-100 Startup Survival Score from 8 aggregate business metrics and returns the 3 weakest metrics under 60. It does not require bank access, transaction feeds, accounting connections, or financial documents. Do not use for personal finance, stock investing, tax filing, or insolvency legal advice.",
     inputSchema:{...sssShape,locale:localeSchema.optional()},
     _meta:{ui:{resourceUri:"ui://sss/scorecard.html"}}
   },async(args)=>{
@@ -62,7 +62,7 @@ function createSssServer(){
 
   registerAppTool(server,"analyze_sss",{
     title:"Analyze Startup Survival Score",
-    description:"Pro: provides a prioritized interpretation of the SSS and weakest metrics.",
+    description:"Use this for an already-entitled Pro user who wants deeper interpretation of why their business may be at risk of closure, cash exhaustion, unsustainable growth, or scaling pain after calculating the Startup Survival Score. Prioritizes the weakest survival metrics. Do not use for personal finance, investment selection, tax filing, or legal insolvency advice.",
     inputSchema:{...sssShape,locale:localeSchema.optional(),licenseKey:z.string().min(10)},
     _meta:{ui:{resourceUri:"ui://sss/scorecard.html"}}
   },async(args)=>{
@@ -77,7 +77,7 @@ function createSssServer(){
 
   registerAppTool(server,"simulate_cashflow",{
     title:"Simulate 24-month cashflow",
-    description:"Pro: simulates base, stress, or crash cash position over 24 months.",
+    description:"Use this for an already-entitled Pro user who asks what happens to business cash over the next 24 months under base, stress, or crash conditions, especially for runway pressure or growth-pain scenarios. This is a scenario model, not a prediction or guarantee.",
     inputSchema:{
       openingCash:z.number(),monthlyRevenue:z.number().min(0),monthlyCosts:z.number().min(0),
       revenueGrowthPct:z.number().optional(),costGrowthPct:z.number().optional(),
@@ -92,7 +92,7 @@ function createSssServer(){
 
   registerAppTool(server,"generate_report",{
     title:"Generate executive SSS report",
-    description:"Pro: returns a print-ready HTML executive report for the current SSS inputs.",
+    description:"Use this for an already-entitled Pro user who wants a shareable executive report of the Startup Survival Score, risk level, metric breakdown, and priorities. It summarizes the supplied aggregate metrics and does not fetch bank, accounting, transaction, or document data.",
     inputSchema:{...sssShape,locale:localeSchema.optional(),licenseKey:z.string().min(10)},
     _meta:{}
   },async(args)=>{
