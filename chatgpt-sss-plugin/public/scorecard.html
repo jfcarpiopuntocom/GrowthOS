@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+:root{font-family:ui-sans-serif,system-ui,sans-serif;color:#0A1929;background:#fff}body{margin:0;padding:16px}.card{border:1px solid #d9e1ec;border-top:4px solid #0A1929;padding:18px}.top{display:flex;align-items:flex-end;gap:18px}.score{font-size:64px;font-weight:900;line-height:.9}.risk{font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:16px}.m{background:#f0f4fa;padding:10px;border-left:3px solid #0F2544}.n{font-size:11px}.v{font-size:22px;font-weight:800}.actions{margin-top:14px;padding-top:12px;border-top:1px solid #d9e1ec}.actions li{margin:6px 0;font-size:12px}@media(min-width:640px){.grid{grid-template-columns:repeat(4,1fr)}}</style></head>
+<body><div class="card"><div class="top"><div class="score" id="score">—</div><div><div class="risk" id="risk">SSS</div><div style="font-size:12px">Startup Survival Score</div></div></div><div class="grid" id="grid"></div><div class="actions"><strong style="font-size:12px">Top prioridades</strong><ol id="actions"></ol></div></div>
+<script>
+let state=null;
+function render(data){
+  if(!data)return; state=data;
+  const color=data.risk==="green"?"#066B40":data.risk==="yellow"?"#A06800":"#AA1A1A";
+  const s=document.getElementById("score"); s.textContent=data.score; s.style.color=color;
+  const r=document.getElementById("risk"); r.textContent=data.risk; r.style.color=color;
+  document.getElementById("grid").innerHTML=(data.metrics||[]).map(m=>'<div class="m"><div class="n">'+m.label+'</div><div class="v">'+Math.round(m.subScore)+'</div><div style="font-size:10px">'+m.weight+'% peso</div></div>').join('');
+  document.getElementById("actions").innerHTML=(data.actionPlan||[]).map(m=>'<li>'+m.label+' — '+Math.round(m.subScore)+'/100 · '+m.severity+'</li>').join('') || '<li>Sin métricas bajo 60.</li>';
+}
+window.addEventListener("message",(event)=>{
+  const msg=event.data;
+  if(msg?.method==="ui/notifications/tool-result"){
+    const payload=msg.params?.structuredContent || msg.params?.content;
+    if(payload) render(payload);
+  }
+});
+if(window.openai?.toolOutput) render(window.openai.toolOutput);
+</script></body></html>
