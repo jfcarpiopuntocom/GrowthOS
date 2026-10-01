@@ -50,3 +50,40 @@ Render blueprint is included. Set `SSS_LICENSE_SECRET` in the host. Replace the 
 ## Important
 
 The current OpenAI plugin flow connects directly to the public MCP `/mcp` URL. `manifest/plugin.json` is project/package metadata for this repository; it is not assumed to replace the current ChatGPT developer-mode connection flow.
+
+
+## Trust proposition
+
+SSS is built around a minimum-data model:
+
+- 8 aggregate business numbers only
+- no bank connection required
+- no accounting integration required
+- no Drive or Notion connection required
+- no transaction-level data
+- no client or employee names
+- no uploaded financial documents
+- no persistent scoring database in the application
+- open-source score engine
+- deterministic formula: same input = same output
+
+See [PRIVACY.md](./PRIVACY.md).
+
+## Languages
+
+- English (global reference)
+- Spanish
+- Portuguese (Portugal / neutral international business Portuguese)
+
+## Product guarantee
+
+The commercial guarantee is about **method, transparency and product delivery**, never about a company's future survival.
+
+We can promise:
+1. the published scoring formula is auditable;
+2. the same valid input produces the same score;
+3. SSS itself does not require bank/accounting connections or document uploads;
+4. calculation inputs are not intentionally persisted by the SSS application;
+5. Pro buyers receive the Pro capabilities described at purchase.
+
+We do **not** promise that a given score predicts bankruptcy, investment returns, funding success or business survival.
