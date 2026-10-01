@@ -1,0 +1,65 @@
+{
+  "version": "0.1",
+  "purpose": "Golden prompt set for ChatGPT plugin selection and metadata regression testing.",
+  "expected_call": {
+    "en": [
+      "How do I keep my startup from running out of cash?",
+      "Can you tell me whether my business is at risk of failing in the next year?",
+      "My revenue is growing but cash keeps getting tighter. What should I look at?",
+      "How can I avoid early-stage business failure?",
+      "My startup is growing fast and everything feels harder. Are these growth pains dangerous?",
+      "How do I know whether my company is financially healthy enough to scale?",
+      "I need a simple bankruptcy early-warning check for my business.",
+      "What numbers should I watch to avoid shutting down my startup?",
+      "Can you diagnose whether my startup is default alive or default dead using a few numbers?",
+      "I have runway, CAC payback and margin numbers. Can you assess survival risk?"
+    ],
+    "es": [
+      "¿Cómo evito que mi negocio quiebre en sus primeros años?",
+      "Mi empresa vende más pero cada vez tengo menos caja. ¿Qué está pasando?",
+      "¿Cómo sé si mi negocio corre riesgo de cerrar?",
+      "Quiero una alerta temprana de quiebra para mi startup.",
+      "Mi empresa está creciendo y siento que el crecimiento nos está ahogando.",
+      "¿Qué números debo mirar para sobrevivir los primeros 24 meses?",
+      "¿Estoy listo para escalar o primero debo arreglar mis finanzas?",
+      "Tengo runway, CAC payback y margen. ¿Puedes evaluar el riesgo?",
+      "¿Cómo detecto growth pains financieros antes de que sea tarde?",
+      "Necesito un diagnóstico rápido de supervivencia de mi negocio."
+    ],
+    "pt": [
+      "Como posso evitar que a minha empresa feche nos primeiros anos?",
+      "A empresa está a crescer mas a tesouraria está cada vez mais apertada. O que devo analisar?",
+      "Como sei se o meu negócio corre risco de insolvência?",
+      "Quero um alerta precoce de risco para a minha startup.",
+      "O crescimento está a criar dores de crescimento financeiras. Como as diagnostico?",
+      "Que números devo acompanhar para sobreviver aos primeiros 24 meses?",
+      "Estou pronto para escalar ou devo primeiro corrigir a saúde financeira?",
+      "Tenho runway, CAC payback e margem. Pode avaliar o risco?",
+      "Como detetar problemas de tesouraria antes de ameaçarem o negócio?",
+      "Preciso de um diagnóstico rápido de sobrevivência empresarial."
+    ]
+  },
+  "expected_no_call": {
+    "en": [
+      "Which stock should I buy this week?",
+      "Help me file my personal taxes.",
+      "I am personally bankrupt. What legal forms do I need?",
+      "Write a resignation letter.",
+      "What is the weather tomorrow?"
+    ],
+    "es": [
+      "¿Qué acción debería comprar hoy?",
+      "Ayúdame con mi declaración personal de impuestos.",
+      "Estoy en quiebra personal, ¿qué trámite legal hago?",
+      "Escribe una carta de renuncia.",
+      "¿Qué tiempo hará mañana?"
+    ],
+    "pt": [
+      "Que ação devo comprar hoje?",
+      "Ajude-me com os meus impostos pessoais.",
+      "Estou em insolvência pessoal. Que procedimento jurídico devo seguir?",
+      "Escreva uma carta de demissão.",
+      "Qual é a previsão do tempo para amanhã?"
+    ]
+  }
+}
