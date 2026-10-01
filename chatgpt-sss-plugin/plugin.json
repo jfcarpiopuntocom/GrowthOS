@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "startup-survival-score",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Calculate a deterministic business survival score from eight aggregate operating metrics and identify the three weakest areas to fix first.",
   "author": {
     "name": "J. F. Carpio",
