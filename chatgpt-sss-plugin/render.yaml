@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: startup-survival-score
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: SSS_LICENSE_SECRET
+        sync: false
+      - key: PORT
+        value: 8787
