@@ -1,0 +1,19 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "startup-survival-score",
+  "version": "0.2.0",
+  "description": "Calculate a deterministic business survival score from eight aggregate operating metrics and identify the three weakest areas to fix first.",
+  "author": {
+    "name": "J. F. Carpio",
+    "url": "https://jfcarpio.com"
+  },
+  "homepage": "https://jfcarpio.com",
+  "repository": "https://github.com/jfcarpiopuntocom/GrowthOS",
+  "keywords": [
+    "business-survival",
+    "cash-runway",
+    "working-capital",
+    "startup-finance",
+    "growth-risk"
+  ]
+}
