@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "name": "Startup Survival Score",
+  "slug": "startup-survival-score",
+  "version": "0.2.0",
+  "description": "Deterministic financial survival score for startups using 8 normalized metrics, weighted to 100.",
+  "author": "J. F. Carpio",
+  "runtime": {
+    "type": "mcp",
+    "path": "/mcp",
+    "transport": "streamable-http"
+  },
+  "permissions": ["read", "write"],
+  "pricing": {
+    "model": "freemium",
+    "free_tools": ["calculate_sss"],
+    "pro_tools": ["analyze_sss", "simulate_cashflow", "generate_report"]
+  },
+  "privacy": {
+    "calculation_is_stateless": true,
+    "stores_user_financial_data": false
+  }
+}
