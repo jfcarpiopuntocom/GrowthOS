@@ -37,7 +37,12 @@ describe("OpenAI compliance guardrails", () => {
 
   it("exposes only the complete anonymous calculation tool before OAuth exists", () => {
     expect((server.match(/registerAppTool\(/g) || []).length).toBe(1);
-    expect(server).toContain('registerAppTool(server,"calculate_sss"');
+    expect(server).toContain('registerAppTool(server,"calculate_business_survival_score"');
+  });
+
+  it("advertises the submission-facing BSS server identity and concise shared instructions", () => {
+    expect(server).toContain('name:"business-survival-score",version:"1.0.10"');
+    expect(server).toContain('instructions:"Business Survival Score is an educational, deterministic business-health diagnostic');
   });
 
   it("sets explicit safety annotations on every registered app tool", () => {
