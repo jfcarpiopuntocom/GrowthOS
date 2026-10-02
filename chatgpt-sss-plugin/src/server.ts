@@ -84,6 +84,16 @@ const httpServer=createServer(async(req,res)=>{
     return;
   }
 
+  if((req.method==="GET" || req.method==="HEAD") && url.pathname==="/.well-known/openai-apps-challenge"){
+    res.writeHead(200,{
+      "content-type":"text/plain; charset=utf-8",
+      "cache-control":"no-store"
+    });
+    if(req.method==="HEAD") res.end();
+    else res.end("YcAqQF2X6HWUHvVRd7hImDU0OxzFolxRJIeWMTpoX4s");
+    return;
+  }
+
   if(req.method==="GET" && (url.pathname==="/" || url.pathname==="/health")){
     sendJson(res,200,{
       ok:true,
