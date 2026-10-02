@@ -51,4 +51,10 @@ describe("OpenAI compliance guardrails", () => {
     expect(server).not.toMatch(/console\.(log|error|warn)\s*\(\s*(body|args|input|raw)\b/);
     expect(server).not.toMatch(/(writeFile|appendFile|insert|update|analytics|telemetry)\s*\([^\n]*(body|args|input|raw)\b/i);
   });
+
+  it("serves the exact OpenAI domain-verification token as plain text", () => {
+    expect(server).toContain('url.pathname==="/.well-known/openai-apps-challenge"');
+    expect(server).toContain('"content-type":"text/plain; charset=utf-8"');
+    expect(server).toContain('res.end("YcAqQF2X6HWUHvVRd7hImDU0OxzFolxRJIeWMTpoX4s")');
+  });
 });
