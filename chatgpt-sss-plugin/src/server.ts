@@ -28,15 +28,15 @@ const localeSchema=z.enum(["en","es","pt"]).default("en");
 const localizedInputSchema=z.object({...sssShape,locale:localeSchema.optional()});
 
 function createSssServer(){
-  const server=new McpServer({name:"startup-survival-score",version:"0.3.0"});
+  const server=new McpServer({name:"business-survival-score",version:"1.0.10"},{instructions:"Business Survival Score is an educational, deterministic business-health diagnostic using eight aggregate business metrics. Use its calculation tool only when the user wants a business-health score, metric breakdown, or review priorities from those metrics. It does not predict bankruptcy, guarantee survival, make lending or investment decisions, or provide legal, tax, or accounting advice."});
 
   registerAppResource(server,"sss-scorecard","ui://sss/scorecard.html",{},async()=>({
     contents:[{uri:"ui://sss/scorecard.html",mimeType:RESOURCE_MIME_TYPE,text:widgetHtml}]
   }));
 
-  registerAppTool(server,"calculate_sss",{
-    title:"Calculate Startup Survival Score",
-    description:"Use this when a founder or business owner wants to assess business survival risk, cash-runway pressure, unsustainable growth, financial growth pains, or whether the business is financially healthy enough to keep operating or scale. It calculates a deterministic 0-100 Startup Survival Score from 8 aggregate business metrics and returns the 3 weakest metrics under 60. It requires no bank access, transaction feeds, accounting connections, documents, business identity, or customer data. Do not use for personal finance, stock investing, tax filing, or insolvency legal advice.",
+  registerAppTool(server,"calculate_business_survival_score",{
+    title:"Calculate Business Survival Score",
+    description:"Calculates a deterministic 0-100 Business Survival Score from eight aggregate business metrics and returns the metric breakdown plus up to three lowest-scoring review priorities. Use it for business-health scoring and metric prioritization when the user supplies the required inputs. It does not predict bankruptcy or guarantee survival and does not make lending, investment, legal, tax, or accounting decisions.",
     inputSchema:{...sssShape,locale:localeSchema.optional()},
     _meta:{ui:{resourceUri:"ui://sss/scorecard.html"}},
     annotations:{readOnlyHint:true,destructiveHint:false,openWorldHint:false}
@@ -46,7 +46,7 @@ function createSssServer(){
     const input=raw as SSSInput;
     const result=localizeResult(calculateSSS(input),locale as Locale);
     return {
-      content:[{type:"text",text:`SSS ${result.score}/100 · ${result.riskLabel}. ${result.actionPlan.length} priority metrics.`}],
+      content:[{type:"text",text:`Business Survival Score ${result.score}/100 · ${result.riskLabel}. ${result.actionPlan.length} priority metrics.`}],
       structuredContent:result
     };
   });
@@ -97,8 +97,8 @@ const httpServer=createServer(async(req,res)=>{
   if(req.method==="GET" && (url.pathname==="/" || url.pathname==="/health")){
     sendJson(res,200,{
       ok:true,
-      name:"startup-survival-score",
-      version:"0.3.0",
+      name:"business-survival-score",
+      version:"1.0.10",
       mode:"anonymous-stateless",
       mcp:MCP_PATH
     });
@@ -137,4 +137,4 @@ const httpServer=createServer(async(req,res)=>{
   res.writeHead(404).end("Not Found");
 });
 
-httpServer.listen(PORT,()=>console.log(`SSS plugin v0.3.0 listening on :${PORT}${MCP_PATH}`));
+httpServer.listen(PORT,()=>console.log(`Business Survival Score v1.0.10 listening on :${PORT}${MCP_PATH}`));
